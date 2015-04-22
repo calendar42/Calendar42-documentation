@@ -5,11 +5,11 @@ _Note: This documentation is a work in progress. There may be errors and inconsi
 This documentation is currently divided into the following categories:
 
 1. **API documentation**
-⋅⋅* [REST](/rest-api/introduction/)
-⋅⋅* [XMPP](/xmpp-api/introduction/)
+⋅⋅1. [REST](/rest-api/introduction/)
+⋅⋅2. [XMPP](/xmpp-api/introduction/)
 2. **[Application frameworks documentation](/application-frameworks/introduction/)** 
-⋅⋅* c42.js 
-⋅⋅* native components
+⋅⋅1. c42.js 
+⋅⋅2. native components
 3. **[Calendar42 services](/services/introduction/)**
 
 ## Introduction to Calendar42 
