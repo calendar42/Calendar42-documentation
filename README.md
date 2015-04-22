@@ -4,8 +4,16 @@ _Note: This documentation is a work in progress. There may be errors and inconsi
 
 This documentation is currently divided into two different categories:
 
-1. **API documentation** (including REST and XMPP)
-2. **Application frameworks documentation** (including c42.js and our native components)
+1. **API documentation**
+	a. REST
+	b. XMPP
+2. **Application frameworks documentation** 
+	a. c42.js 
+	b. native components
+3. **Calendar24 services**
+
+
+_Note: This documentation is a work in progress. There may be errors and inconsistencies and things will change. However, you’ll be able to gain insight into our roadmap, ask questions, give suggestions and even help shape the development._
 
 ## Introduction to Calendar42 
 
@@ -27,35 +35,4 @@ The Calendar42 platform has an open character on all three levels, enabling thir
 3. Creation of interfaces to allow their own data to become consumable through the Calendar42 platform.
 
 With our non-profit initiative [Plannerstack](http://plannerstack.org) we developed and open, multimodal, real-time travel information ‘toolbox’; including real-time trip planners, high quality linked geo-coders and subscription services. The purpose of this tool box is to enable any and all interested parties to develop and offer plug & play, dynamic and multimodal travel information services and applications. The idea is that collaboration makes innovative developments possible. Co-creation is an important factor to make new solutions possible.
-
-## Calendar42 services
-
-On top of the full platform experience, you might want to use specific parts of the Calendar42 platform, such as:
-
-### Chat bots
-XMPP (jabber) based chat bots, extended to support set_items in order to chat with the different resources within Calendar42 (events, users, groups, services, ...)
-
-### Activity stream
-This is an endpoint where clients can sync all the activities they missed when they were offline.
-
-### Async notifier
-Custom bots based on IFTTT (IF This, Then That) business rules.
-
-### Calendaring
-* Google calendar sync: two-way sync system between Google Calendar and Calendar42.
-* ICS importer including timezone normaliser
-* WebDAV storage
-
-### Spatial enricher
-It's a service that both translates addresses into geo_positions (geocoding) and geo_positions into addresses (reverse geocoding).
-
-### Tripplanning
-It's a real-time trip planning service that "smartly" creates trips (car, public transport, etc.) based on where Calendar42 thinks you want to come from/go to either by using your events that explicitly state it or by fetching it from your current position or home/work locations. Trips are actively monitored for real-time updates.
-
-### Position tracking
-Position interpreter: This bot interprets user locations in real-time in order to know where the user might be. The objective is to automatically create events for users based on 
-* planned events
-* favourite locations
-* events of peers (social network)
-* favourite locations of peers (social network)
 
