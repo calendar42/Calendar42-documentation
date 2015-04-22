@@ -5,14 +5,14 @@ This chapter describes the actual endpoints ot the Calendar42 API.
 
 # /events/
 
-### Supported methods
+**Supported methods**
 * GET
 
-## Response
+**Response**
 
 Returns a default response object with a list of [Event](#event) objects inside the data object.
 
-## GET parameters
+**GET parameters**
 
 Parameter | Value | Required | Description
 --- | --- | --- | --- 
@@ -21,8 +21,6 @@ service_ids | `[<service_id>]` | false
 calendar_ids | `[<calendar_id>]` | false
 event_types | `[<event_type>]` | false | [Event Types](#event-types)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
-
-
 
 # /events/`<event_id>`/
 
