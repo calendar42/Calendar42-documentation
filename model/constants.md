@@ -1,4 +1,6 @@
-# Event Type
+# Constants
+
+## Event Type
 
 Type | Description
 --- | ---
@@ -11,7 +13,7 @@ tracked_event | -
 tracked_arrive_by | -
 route | -
 
-# Calendar Type
+## Calendar Type
 
 @todo
 
@@ -19,7 +21,7 @@ Type | Description
 --- | ---
 @todo | -
 
-# RSVP Status
+## RSVP Status
 
 Type | Description
 --- | ---
@@ -27,7 +29,7 @@ not_replied | You cant set attendance to this number this is the default, is int
 attending | -
 not_attending | -
 
-# Location type
+## Location type
 
 Type | Description
 --- | ---
@@ -35,14 +37,14 @@ favorite | -
 home | -
 work | -
 
-# Transport mode
+## Transport mode
 
 Type | Description
 --- | ---
 car | -
 public_transport | -
 
-# Permission
+## Permission
 
 Type | Description
 --- | ---

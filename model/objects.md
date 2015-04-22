@@ -1,7 +1,6 @@
-Objects
-=======
+# Objects
 
-# Person
+## Person
 
 ```javascript
     {
@@ -14,7 +13,7 @@ Objects
     }
 ```
 
-# Subscription
+## Subscription
 
 ```javascript
     {
@@ -34,7 +33,12 @@ Objects
     }
 ```
 
-# Event
+## Event
+
+Within Calendar42 the (internal) standard used for marking-up calendar information is xCal, an XML- compliant representation of the iCalendar standard. This standard can be used to data format for representing and exchanging calendaring and scheduling information such as events, to-dos, journal entries, and free/busy information, independent of any particular calendar service or protocol.
+
+Standard an iCalendar object consists of a sequence of calendar properties and one or more calendar components. iCalendar properties are enclosed in the XML element ICAL:properties. Each individual iCalendar property is represented in XML by an element of the same name as the iCalendar property, but in lowercase. For example, the CALSCALE property is represented in XML by the ICAL: calscale element.
+
 
 Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
@@ -124,7 +128,9 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
     }
 ```
 
-# Calendar
+## Calendar
+
+The calendar data model
 
 Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
@@ -203,7 +209,7 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
     }
 ```
     
-# Position
+## Position
 <!-- *TODO : further explain fields* -->
 
 ```javascript
@@ -226,7 +232,7 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
 	    "altitude_accuracy": "<string representation of altitude_accuracy value (double)>"
     }
 ```
-# Invitation
+## Invitation
 ```javascript
 	{
 	    "actor": "<person>",
@@ -235,7 +241,9 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
 	}
 ```
 
-# Trip
+## Trip
+
+Itineraries have a similar data model as normal events, except there eventType not set to 1 (normal events), but either to 2 (itinerary to a location/time) or to 3 (itinerary from a location/time). The actual itinerary details are provided by different itinerary providers (like Google, [PlannerStack](http://plannerstack.org) or the NS) and are then wrapped inside an itinerary event. This event will only contain the basics of the itinerary, like the start and end-location and their belonging times. The details of the itineraries are being updated if needed.
 
 ```javascript
 	{

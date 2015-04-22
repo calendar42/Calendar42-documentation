@@ -1,18 +1,20 @@
+# REST API Endpoints
+
 This chapter describes the actual endpoints ot the Calendar42 API.
 
-# Events
+## Events
 
-## /events/
+### /events/
 
-### Supported methods
+#### Supported methods
 
 * GET
 
-### Response
+#### Response
 
 Returns a default response object with a list of [Event](/model/objects/#event) objects inside the data object.
 
-### GET parameters
+#### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | --- 
@@ -23,9 +25,9 @@ event_types | `[<event_type>]` | false | [Event Types](/model/constants/#event-t
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
-## /events/`<event_id>`/
+### /events/`<event_id>`/
 
-### Supported methods
+#### Supported methods
 
 * GET
 
@@ -55,21 +57,21 @@ Similarly, the following request
     
 will not only update the calendar_ids list of the specific event resource, it will also unsubscribe the specific event from the `calendar_id2` calendar.
 
-# Calendars
+## Calendars
 
-## /calendars/
+### /calendars/
 
-### Supported methods
+#### Supported methods
 
 * GET
 * POST
 * PATCH
 
-### Response
+#### Response
 
 Returns a default response object with a list of [Calendar](/model/objects/#calendar) objects inside the data object.
 
-### GET parameters
+#### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
@@ -77,21 +79,21 @@ sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/g
 service_ids | `[<service_id>]` | false
 calendar_categories | `[<calendar_category>]` | false | [Calendar Category](/model/objects/#calendar)
 
-### POST parameters
+#### POST parameters
 
 All required attributes of a [calendar](/model/objects/#calendar) should be sent, and all editable params can be sent as a param
 
-### PATCH parameters
+#### PATCH parameters
 
 All editable params of a [calendar](/model/objects/#calendar) can be sent as a param and it will be replaced with the new value
 
-# Subscriptions
+## Subscriptions
 
-## /subscriptions/
+### /subscriptions/
 
 Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
 
-### Supported methods
+#### Supported methods
 
 * GET
 
@@ -99,11 +101,11 @@ Parameter | Value | Required | Description
 --- | --- | --- | ---
 - | - | - | -
 
-### Response
+#### Response
 
 Returns a default response object with a list of [Subscription](/model/objects/#subscription) objects inside the data object.
 
-### GET parameters
+#### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | --- 
@@ -113,31 +115,31 @@ service_ids | `[<service_id>]` | false
 calendar_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 event_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 
-## /subscriptions/`<subscription_id>`/
+### /subscriptions/`<subscription_id>`/
 
-### Supported methods
+#### Supported methods
 
 * GET Same as [/subscriptions/](#subscriptions) but getting a list containing the single subscription based on the subscription id.
 * POST
 * PATCH
 
-### GET parameters
+#### GET parameters
 
 Same as [/subscriptions/](#subscriptions) GET call
 
-### POST parameters
+#### POST parameters
 
 All required attributes of a [subscription](/model/objects/#subscription) should be sent, and all editable params can be sent as a param
 
-### PATCH parameters
+#### PATCH parameters
 
 All editable params of a [subscription](/model/objects/#subscription) can be sent as a param and it will be replaced with the new value
 
-# Locations
+## Locations
 
-## /locations/
+### /locations/
 
-### Supported methods
+#### Supported methods
 
 * GET
 * PUT
@@ -145,7 +147,7 @@ All editable params of a [subscription](/model/objects/#subscription) can be sen
 * POST
 * DELETE
 
-### Response
+#### Response
 
 Returns a default response object with a list of [Location](/model/objects/#location) objects inside the data object.
 
@@ -153,7 +155,7 @@ As depicted, [Location](/model/objects/#location) objects may contain one or mor
 
 When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
-### GET parameters
+#### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
@@ -165,24 +167,24 @@ location_types | `[<location_type>]` | false | [Location Type](/model/constants/
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
-# /locations/`<location_id>`/
+## /locations/`<location_id>`/
 
-### Supported methods
+#### Supported methods
 
 * GET
 
 Same as [/locations/](/model/objects/#location) but getting a list containing the single location based on the location id.
 
-# Positions
+## Positions
 
-# /positions
+### /positions
 <!-- *TODO* -->
 
-### Supported methods
+#### Supported methods
 
 * POST
 
-## Request Body
+### Request Body
 
 See [Position](/model/objects/#position) model.
 
