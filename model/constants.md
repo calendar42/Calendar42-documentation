@@ -1,6 +1,3 @@
-Constants
-=========
-
 # Event Type
 
 Type | Description

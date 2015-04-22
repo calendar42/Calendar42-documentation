@@ -2,15 +2,15 @@ This chapter describes the actual endpoints ot the Calendar42 API.
 
 # /events/
 
-**Supported methods**
+### Supported methods
 
 * GET
 
-**Response**
+### Response
 
 Returns a default response object with a list of [Event](#event) objects inside the data object.
 
-**GET parameters**
+### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | --- 
@@ -20,9 +20,10 @@ calendar_ids | `[<calendar_id>]` | false
 event_types | `[<event_type>]` | false | [Event Types](#event-types)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
+
 # /events/`<event_id>`/
 
-**Supported methods**
+### Supported methods
 
 * GET
 
@@ -55,17 +56,17 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 # /calendars/
 
-**Supported methods**
+### Supported methods
 
 * GET
 * POST
 * PATCH
 
-**Response**
+### Response
 
 Returns a default response object with a list of [Calendar](#calendar) objects inside the data object.
 
-**GET parameters**
+### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
@@ -73,11 +74,11 @@ sync_token | `<sync_token>` | false | [See Sync Token for more info](#sync-token
 service_ids | `[<service_id>]` | false
 calendar_categories | `[<calendar_category>]` | false | [Calendar Category](#calendar-category)
 
-**POST parameters**
+### POST parameters
 
 All required attributes of a [calendar](#calendar) should be sent, and all editable params can be sent as a param
 
-**PATCH parameters**
+### PATCH parameters
 
 All editable params of a [calendar](#calendar) can be sent as a param and it will be replaced with the new value
 
@@ -85,18 +86,18 @@ All editable params of a [calendar](#calendar) can be sent as a param and it wil
 
 Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
 
-**Supported methods**
+### Supported methods
 
 * GET
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
 
-**Response**
+### Response
 
 Returns a default response object with a list of [Subscription](#subscription) objects inside the data object.
 
-**GET parameters**
+### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | --- 
@@ -108,27 +109,27 @@ event_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they
 
 # /subscriptions/`<subscription_id>`/
 
-**Supported methods**
+### Supported methods
 
 * GET Same as [/subscriptions/](#subscriptions) but getting a list containing the single subscription based on the subscription id.
 * POST
 * PATCH
 
-**GET parameters**
+### GET parameters
 
 Same as [/subscriptions/](#subscriptions) GET call
 
-**POST parameters**
+### POST parameters
 
 All required attributes of a [subscription](#subscription) should be sent, and all editable params can be sent as a param
 
-**PATCH parameters**
+### PATCH parameters
 
 All editable params of a [subscription](#subscription) can be sent as a param and it will be replaced with the new value
 
 # /locations/
 
-**Supported methods**
+### Supported methods
 
 * GET
 * PUT
@@ -136,7 +137,7 @@ All editable params of a [subscription](#subscription) can be sent as a param an
 * POST
 * DELETE
 
-**Response**
+### Response
 
 Returns a default response object with a list of [Location](#location) objects inside the data object.
 
@@ -144,7 +145,7 @@ As depicted, [Location](#location) objects may contain one or more labels that a
 
 When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
-**GET parameters**
+### GET parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
@@ -158,7 +159,7 @@ geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 # /locations/`<location_id>`/
 
-**Supported methods**
+### Supported methods
 
 * GET
 
@@ -167,7 +168,7 @@ Same as [/locations/](#location) but getting a list containing the single locati
 # /positions
 <!-- *TODO* -->
 
-**Supported methods**
+### Supported methods
 
 * POST
 

@@ -67,7 +67,7 @@ In a representation of a resource, related resources are represented by a list o
 
 ## Date Time
 
-**Date format**
+### Date format
 
     The date format that should be used is ISO-8601  2012-04-23T18:25:43.511Z extended.
     
@@ -77,7 +77,7 @@ In a representation of a resource, related resources are represented by a list o
     
     "2004-02-12T15:19:21+00:00" // URL ENCODED: 2015-03-24T14%3A29%3A47.613Z
     
-**Timezone format**
+### Timezone format
 
 For timezones the standard olson timezone definitions should be used (see: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
@@ -85,7 +85,7 @@ For timezones the standard olson timezone definitions should be used (see: http:
 # Sync token
 To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
 
-**Example:**
+### Example:
 
 *Step 1:*
 GET /api/v1/events/ 
@@ -121,7 +121,7 @@ Parameter | Type | Required | Default |Description
 limit | INT | False |  | Tells to the API the amount of rows that are being requested
 offset | INT | False |  | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
 
-**Example:**
+### Example:
 
 GET /api/v1/events/?limit=10&offset=0
 
