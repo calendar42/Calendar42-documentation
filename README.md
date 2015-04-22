@@ -5,7 +5,7 @@ _Note: This documentation is a work in progress. There may be errors and inconsi
 This documentation is currently divided into two different categories:
 
 1. **API documentation**
-..* [REST](../REST-API/introduction.md)
+..* [REST](/rest-api/introduction.md)
 ..* [XMPP](../XMPP-API/introduction.md)
 2. **[Application frameworks documentation](../application-frameworks/introduction.md)** 
 ..* c42.js 
