@@ -167,7 +167,7 @@ location_types | `[<location_type>]` | false | [Location Type](/model/constants/
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
-## /locations/`<location_id>`/
+### /locations/`<location_id>`/
 
 #### Supported methods
 

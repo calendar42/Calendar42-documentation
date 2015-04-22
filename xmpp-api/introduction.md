@@ -29,7 +29,9 @@ Calendar42 implements several standard XEP's (XMPP Extension Protocol) to provid
 
 ## XMPP over BOSH
 While XMPP connections live for arbitrarily long periods of time, HTTP requests are quite short lived. In order to enable HTTP clients to also receive the data once available, XMPP takes advantage of so-called long-polling requests. This bridge is called BOSH, for Bidirectional streams Over Synchronous HTTP, which is handled by a connection manager. Essentially, BOSH helps an HTTP client establish a new XMPP session, then transports stanzas back and forth over HTTP wrapped in a special `<body>` element. It also provides some security features to make sure that XMPP sessions can’t be easily hijacked. The connection manager communicates with an XMPP server as if it were a normal client.
+
 Sources: 
+
 * http://en.wikipedia.org/wiki/XMPP 
 * http://xmpp.org
 * "Professional XMPP Programming with JavaScript and jQuery"
