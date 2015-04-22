@@ -41,8 +41,9 @@ work | -
 
 Type | Description
 --- | ---
-car | -
-public_transport | -
+car | Travel by car
+public_transport | Travel by public transport
+bicycle (coming soon!) | Travel by bicycle
 
 ## Permission
 
