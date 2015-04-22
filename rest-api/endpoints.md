@@ -97,6 +97,7 @@ Subscriptions are resources describing the relationship between events and users
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
+- | - | - | -
 
 ### Response
 
