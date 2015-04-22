@@ -1,6 +1,8 @@
 This chapter describes the actual endpoints ot the Calendar42 API.
 
-# /events/
+# Events
+
+## /events/
 
 ### Supported methods
 
@@ -8,7 +10,7 @@ This chapter describes the actual endpoints ot the Calendar42 API.
 
 ### Response
 
-Returns a default response object with a list of [Event](#event) objects inside the data object.
+Returns a default response object with a list of [Event](/model/objects/#event) objects inside the data object.
 
 ### GET parameters
 
@@ -21,7 +23,7 @@ event_types | `[<event_type>]` | false | [Event Types](#event-types)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
-# /events/`<event_id>`/
+## /events/`<event_id>`/
 
 ### Supported methods
 
@@ -53,8 +55,9 @@ Similarly, the following request
     
 will not only update the calendar_ids list of the specific event resource, it will also unsubscribe the specific event from the `calendar_id2` calendar.
 
+# Calendars
 
-# /calendars/
+## /calendars/
 
 ### Supported methods
 
@@ -82,7 +85,9 @@ All required attributes of a [calendar](#calendar) should be sent, and all edita
 
 All editable params of a [calendar](#calendar) can be sent as a param and it will be replaced with the new value
 
-# /subscriptions/
+# Subscriptions
+
+## /subscriptions/
 
 Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
 
@@ -107,7 +112,7 @@ service_ids | `[<service_id>]` | false
 calendar_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 event_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 
-# /subscriptions/`<subscription_id>`/
+## /subscriptions/`<subscription_id>`/
 
 ### Supported methods
 
@@ -127,7 +132,9 @@ All required attributes of a [subscription](#subscription) should be sent, and a
 
 All editable params of a [subscription](#subscription) can be sent as a param and it will be replaced with the new value
 
-# /locations/
+# Locations
+
+## /locations/
 
 ### Supported methods
 
@@ -164,6 +171,8 @@ geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 * GET
 
 Same as [/locations/](#location) but getting a list containing the single location based on the location id.
+
+# Positions
 
 # /positions
 <!-- *TODO* -->
