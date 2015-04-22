@@ -128,11 +128,12 @@ In some cases a query parameter value is actually a collection of values. For in
 To encode this in as a query parameter value the collection of values are converted in to a tuple representation as follows:
     
     GET /events?geo_circles=[(<lat value1>, <lon value 1>, <radius 1>), …, (<lat valueN>, <lon value N>, <radius N>)]
-# JSON API Responses
+    
+## JSON API Responses
 
-## General structure of a JSON response
+### General structure of a JSON response
 
-### In case of success
+#### In case of success
 
 When a request was successful (e.g. status code is 2xx) the generally expected structure of the response body is as follows:
 
@@ -151,7 +152,7 @@ When a request was successful (e.g. status code is 2xx) the generally expected s
     
 Note that the results data is always in the form of an array. This is to make the structure uniform for all the possible responses.
 
-### In case of error
+#### In case of error
 
 When a request was NOT successful (e.g. status code is 4xx or 5xx) the response body can contain an "error" field with an error object.
 
@@ -165,7 +166,7 @@ Response with an error object
         }
     }
     
-## Field names use underscore notation
+### Field names use underscore notation
 
 Field names in response bodies use underscore notation, for instance :
 
@@ -174,7 +175,7 @@ Field names in response bodies use underscore notation, for instance :
         is_awesome : true
     }    
     
-## Representation of related resources
+### Representation of related resources
 
 In a representation of a resource, related resources are represented by a list of resource IDs. For example, with each event a list of related calendars is given as follows: 
 
@@ -195,9 +196,9 @@ In a representation of a resource, related resources are represented by a list o
         
     }
 
-# Date Time
+## Date Time
 
-## Date format
+### Date format
 
     The date format that should be used is ISO-8601  2012-04-23T18:25:43.511Z extended.
     
@@ -207,7 +208,7 @@ In a representation of a resource, related resources are represented by a list o
     
     "2004-02-12T15:19:21+00:00" // URL ENCODED: 2015-03-24T14%3A29%3A47.613Z
     
-## Timezone format
+### Timezone format
 
 For timezones the standard olson timezone definitions should be used (see: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
@@ -242,7 +243,7 @@ Only the event changed between Step 1, and Step 2 are returned, so in this case 
         }
     }
 
-# Pagination
+## Pagination
 
 To allow to request a limited amount of rows, is required to send the limit and offset params 
 
