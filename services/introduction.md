@@ -1,6 +1,5 @@
 # Calendar42 services
 
-
 On top of the full platform experience, you might want to use specific parts of the Calendar42 platform, such as:
 
 ## Chat bots
