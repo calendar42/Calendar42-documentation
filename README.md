@@ -2,15 +2,15 @@
 
 _Note: This documentation is a work in progress. There may be errors and inconsistencies and things will change. However, you’ll be able to gain insight into our roadmap, ask questions, give suggestions and even help shape the development._
 
-This documentation is currently divided into two different categories:
+This documentation is currently divided into the following categories:
 
-* **API documentation**
-.* [REST](/rest-api/introduction/)
-.* [XMPP](/xmpp-api/introduction/)
-* **[Application frameworks documentation](/application-frameworks/introduction/)** 
-.* c42.js 
-.* native components
-* **[Calendar42 services](/services/introduction/)**
+1. **API documentation**
+⋅⋅* [REST](/rest-api/introduction/)
+⋅⋅* [XMPP](/xmpp-api/introduction/)
+2. **[Application frameworks documentation](/application-frameworks/introduction/)** 
+⋅⋅* c42.js 
+⋅⋅* native components
+3. **[Calendar42 services](/services/introduction/)**
 
 ## Introduction to Calendar42 
 
