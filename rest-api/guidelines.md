@@ -1,16 +1,16 @@
-# Applied API Design guidelines
+## Applied API Design guidelines
 
-## Public requests don't use header parameters
+### Public requests don't use header parameters
 
 Because we want to keep any public request linkable (e.g. on a web page or in an email) we will not use HTTP headers to provide request meta-data such as accepted content type.
 
-# Endpoint URI syntax and specification
+## Endpoint URI syntax and specification
 
-## API versioning
+### API versioning
 
 Every endpoint starts with /v`<x>` where x is the version
 
-## Interpretation of HTTP methods
+### Interpretation of HTTP methods
 
 This is how different HTTP methods are interpreted and used in the API
 
@@ -22,7 +22,7 @@ Partially **U**pdate resource  | PATCH | `PATCH /events/<event_id>`
 **D**elete resource  | DELETE | `DELETE /events/<event_id>`
 Replace complete resource | PUT | `PUT /events/<event_id>`
 
-## Endpoints only use lower case characters and dashes
+### Endpoints only use lower case characters and dashes
 
 Good:
 ```
@@ -47,7 +47,7 @@ Bad:
 ```
 
 
-## A query parameter value that could be an array is always an array
+### A query parameter value that could be an array is always an array
 
 If a value for a query parameter could be an array, it is _always_ send as an array.
 This is done to keep the URI endpoint syntax uniform. For instance:
@@ -67,7 +67,7 @@ And thus not:
 
 Query parameters that can not have an array as value, such as sync_token, of course don't use a list syntax.
 
-## A query parameter name is always plural when its value could be an array
+### A query parameter name is always plural when its value could be an array
 
 Query parameters that could have an array as value will always have a name in plural form, calendar_id**s** instead of calendar_id.
 
@@ -76,7 +76,7 @@ Example:
     /events/?calendar_ids=[<resource_id>,..]
 ```
 
-## Constants are represented by there semantic definition
+### Constants are represented by there semantic definition
 
 Sometimes values of query parameters are enumeration values. For example imagine `event_type` is one of the following constants:
 
@@ -92,7 +92,7 @@ Thus a request for weird events might look like this:
 
     GET /events?event_types=["weird"]
    
-## Queries are evaluated using the AND operator
+### Queries are evaluated using the AND operator
 
 When querying resources using GET requests with query parameters, the query is interpreted by concatenating the query predicates with AND operators.
 
@@ -115,7 +115,7 @@ Needs two API calls as follows
     
 The responses of the two requests are then combined to get the full query result.
 
-## Objects are encoded as tuples
+### Objects are encoded as tuples
 
 In some cases a query parameter value is actually a collection of values. For instance a circular area is normally represented as follows:
 
