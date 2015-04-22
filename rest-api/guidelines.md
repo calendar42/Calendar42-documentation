@@ -1,4 +1,6 @@
-## Applied API Design guidelines
+# Applied API Design guidelines
+
+## Header parameters
 
 ### Public requests don't use header parameters
 
