@@ -4,13 +4,13 @@
 
 Because we want to keep any public request linkable (e.g. on a web page or in an email) we will not use HTTP headers to provide request meta-data such as accepted content type.
 
-## Endpoint URI syntax and specification
+# Endpoint URI syntax and specification
 
-### API versioning
+## API versioning
 
 Every endpoint starts with /v`<x>` where x is the version
 
-### Interpretation of HTTP methods
+## Interpretation of HTTP methods
 
 This is how different HTTP methods are interpreted and used in the API
 
@@ -22,7 +22,7 @@ Partially **U**pdate resource  | PATCH | `PATCH /events/<event_id>`
 **D**elete resource  | DELETE | `DELETE /events/<event_id>`
 Replace complete resource | PUT | `PUT /events/<event_id>`
 
-### Endpoints only use lower case characters and dashes
+## Endpoints only use lower case characters and dashes
 
 Good:
 ```
@@ -47,7 +47,7 @@ Bad:
 ```
 
 
-### A query parameter value that could be an array is always an array
+## A query parameter value that could be an array is always an array
 
 If a value for a query parameter could be an array, it is _always_ send as an array.
 This is done to keep the URI endpoint syntax uniform. For instance:
@@ -67,7 +67,7 @@ And thus not:
 
 Query parameters that can not have an array as value, such as sync_token, of course don't use a list syntax.
 
-### A query parameter name is always plural when its value could be an array
+## A query parameter name is always plural when its value could be an array
 
 Query parameters that could have an array as value will always have a name in plural form, calendar_id**s** instead of calendar_id.
 
@@ -76,7 +76,7 @@ Example:
     /events/?calendar_ids=[<resource_id>,..]
 ```
 
-### Constants are represented by there semantic definition
+## Constants are represented by there semantic definition
 
 Sometimes values of query parameters are enumeration values. For example imagine `event_type` is one of the following constants:
 
@@ -128,7 +128,7 @@ In some cases a query parameter value is actually a collection of values. For in
 To encode this in as a query parameter value the collection of values are converted in to a tuple representation as follows:
     
     GET /events?geo_circles=[(<lat value1>, <lon value 1>, <radius 1>), …, (<lat valueN>, <lon value N>, <radius N>)]
-    
+
 ## JSON API Responses
 
 ### General structure of a JSON response
@@ -213,7 +213,7 @@ In a representation of a resource, related resources are represented by a list o
 For timezones the standard olson timezone definitions should be used (see: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
     
-# Sync token
+## Sync token
 To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
 
 ### Example:
