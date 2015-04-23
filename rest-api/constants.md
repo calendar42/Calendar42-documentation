@@ -18,16 +18,12 @@ This chapter describes the different constants that are used, both in paramaters
 
 * A trip: has extra (end-) location. Both start and end-time are not set.
 
-##### @todo
-
-``todo``, ``tracked_tentative``, ``tracked_event`` & ``tracked_arrive_by``
+**@todo:** ``todo``, ``tracked_tentative``, ``tracked_event`` & ``tracked_arrive_by``
 
 
 ## Calendar Type
 
-##### @todo
-
-``private``, ``webdav``, ``ics`` & ``google``
+**@todo:** ``private``, ``webdav``, ``ics`` & ``google``
 
 # RSVP Status
 
@@ -45,9 +41,7 @@ This chapter describes the different constants that are used, both in paramaters
 
 # Location type
 
-##### @todo
-
-``favorite``, ``home`` & ``work``
+**@todo:** ``favorite``, ``home`` & ``work``
 
 # Transport mode
 
