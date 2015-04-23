@@ -4,7 +4,7 @@ On top of the full platform experience, you might want to use specific parts of 
 
 ## Chat bots
 
-[XMPP](http://xmpp.org/) ([jabber](https://www.ejabberd.im/)) based chat bots, extended to support set_items in order to chat with the different [objects](/REST-API/objects/) within Calendar42 (events, users, groups, services, ...)
+[XMPP](http://xmpp.org/) ([jabber](https://www.ejabberd.im/)) based chat bots, extended to support set_items in order to chat with the different [objects](/rest-api/objects/) within Calendar42 (events, users, groups, services, ...)
 
 ## Activity stream
 This is an endpoint where clients can sync all the activities they missed when they were offline.
