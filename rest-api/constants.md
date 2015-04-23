@@ -8,15 +8,15 @@
 
 ``arrive_by``
 
-* A journey event: has extra (end-) location. The start-time is read-only and follows the duration needed to travel between start & end locations based on the end-time
+* A trip: has extra (end-) location. The start-time is read-only and follows the duration needed to travel between start & end locations based on the end-time
 
 ``depart_from``
 
-* A journey event: has extra (end-) location. The end-time is read-only and follows the duration needed to travel between start & end locations based on the start-time
+* A trip: has extra (end-) location. The end-time is read-only and follows the duration needed to travel between start & end locations based on the start-time
 
 ``route``
 
-* A journey event: has extra (end-) location. Both start and end-time are not set.
+* A trip: has extra (end-) location. Both start and end-time are not set.
 
 ##### @todo
 

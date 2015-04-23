@@ -34,7 +34,7 @@ Get events belonging to a certain calendar within a certain geographic range, or
 
 * ``/events/?calendar_ids=[abc123]&geo_circles=[(52.28297176 5.27424839 5000)]&order_by=distance``
 
-Get journeys longer than 15km
+Get trips longer than 15km
 
 * ``/events/?event_types=[arrive_by,depart_from]&length__gt=15000``
 
@@ -106,7 +106,7 @@ Parameter | Required |
 
 #### Example usage
 
-Get a journey from point A to arrive at a certain time at point B
+Get a trip from point A to arrive at a certain time at point B
 
 * ``/events/suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
@@ -248,7 +248,7 @@ All required attributes of a [subscription](/rest-api/objects/#subscription) sho
 All editable params of a [subscription](/rest-api/objects/#subscription) can be sent as a param and it will be replaced with the new value
 
 
-## /positions
+## /positions/
 <!-- *TODO* -->
 
 Supported methods

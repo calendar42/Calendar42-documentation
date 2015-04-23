@@ -64,7 +64,7 @@ related_event | Array | false | true | [] | List of events ID's related to this 
 sync_token | Integer | false | false |  | The [sync token](/rest-api/guidelines/#sync-token) |  |
 permissions | String | true | true | 'subscribed_write' | The string that defines the permission that the user have over this event. This is an user related attribute | [Permission](/rest-api/constants/#permission) |
 previous_permission | String | false | false |  | The previous permission that the user had over this event. This is an user related attribute | [Permission](/rest-api/constants/#permission) |
-trip | Object | false | true |  | If the event is actually a trip, this attribute will contain all the meta data related with the trip | [Trip](#trip) |
+trip | Object | false | true |  | If the event is actually a trip, this attribute will contain all the data related with the trip | [Trip](#trip) |
 
 ```javascript
     {
@@ -77,7 +77,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
         "modified": "<date>",
 
         "is_invitation": "<bool>",
-        "invitation": <invitation>,
+        "invitation": "<string>",
 
         "rsvp_status": "<rsvp-status>", // See rsvp list
 
@@ -109,19 +109,121 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
         "permission": "<permission>",
         "previous_permission": "<permission>",
 
+        // present when event_type equals arrive_by, depart_from or route
         "trip": {
             "query_parameters": {
                 "transport_mode": "<transport-mode>",
                 "time_buffer": "<int>", // Seconds
             },
+            "state": {
+                "code": "<string>",
+                "text": "<string>"
+            },
             "data": {
-                "distance": "<int>", // Meters
-                "duration": "<int>", // Seconds
-                "legs": [],
+                "legs":[]
             }
-        }
+        },
+        "length": "<int>" // Meters
     }
 ```
+
+### Event.trip
+
+Events with an [Event Type](/rest-api/constants/#event-type) that equals either `arrive_by`, `depart_from` or `route` will contain trip-data existing of three main elements:
+
+* `query_parameters`: containing the send in parameters that resulted in the trip
+* `state`: the state of the trip request (loading, error, success)
+* `data`: the actual data belonging to the trip
+
+Next to this trip-data, the event itself will also reflect the start-location, end-location, start-time and end-time of the trip.
+Other data and relationships are completely similar to regular events.
+
+#### Event.trip.data
+
+The trip data contains an array of legs depicting the different parts of the trip.
+
+Example of a trip containing one simple 'walk-leg':
+
+```javascript
+"data": {
+    "legs":[
+        {
+            "mode": "WALK",
+            "distance": 21.754,
+            "from": {
+                "lat": 52.0680422,
+                "arrival": 1427220648000,
+                "lon": 4.3650344,
+                "name": "osm:node:45105337",
+                "departure": 1427220648000,
+                "location-id": "<string>"
+            },
+            "interlineWithPreviousLeg": false,
+            "realTime": false,
+            "startTime": 1427220648000,
+            "route": "",
+            "departureDelay": 0,
+            "rentedBike": false,
+            "pathway": false,
+            "to": {
+                "lat": 52.067903900000005,
+                "arrival": 1427220660000,
+                "lon": 4.3648093,
+                "name": "osm:node:45104577",
+                "departure": 1427220660000,
+                "location-id": "<string>"
+            },
+            "arrivalDelay": 0,
+            "transitLeg": false,
+            "duration": 12.0,
+            "steps": [
+                {
+                    "distance": 21.754,
+                    "relativeDirection": "CONTINUE",
+                    "elevation": [],
+                    "area": false,
+                    "lon": 4.3650344,
+                    "stayOn": false,
+                    "absoluteDirection": "SOUTHWEST",
+                    "bogusName": false,
+                    "lat": 52.0680422,
+                    "streetName": "Herenstraat"
+                }
+            ],
+            "endTime": 1427220660000,
+            "agencyTimeZoneOffset": 3600000,
+            "legGeometry": {
+                "length": 2,
+                "points": "gpx|HmpsYZl@"
+            }
+        }
+    ]
+}
+```
+
+@todo: currently the serializer for trip data still returns too much data and doesn't correctly format everything:
+
+* In the root data object, deprecate everything but "legs":
+  * deprecate .requestParameters (it's already in the parent object)
+  * deprecate .walkTime
+  * deprecate .endTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
+  * deprecate .startTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
+  * deprecate .walkDistance
+  * deprecate .tooSloped
+  * deprecate .walkLimitExceeded
+  * deprecate .waitingTime
+  * deprecate .elevationLost
+  * deprecate .elevationGained
+  * deprecate .transitTime
+  * deprecate .mode (already in query_parameters)
+  * deprecate .duration
+  * deprecate .transfers
+  * deprecate .duration
+* In the leg data objects:
+  * Rewrite modes to be similar to [Transport Modes](/rest-api/constants/#transport-mode)
+  * Rewrite datetime stamps to be similar to [Date time](/rest-api/guidelines/#date-time)
+  * Rewirite camelcased keys to underscores
+
 
 ## Calendar
 
@@ -209,20 +311,18 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
 
 ```javascript
     {
-	    //META DATA
+	    // Position meta data
         "source"        : "<the client app name>",
 	    "type"          : "<normal || forced>",
 	    "timestamp"     : "<string representation of date and time>",
 	    "user_info"     : "<An object containing information of user>",
 
-	    //LOCATION DATA
+	    // Position data
 	    "latitude"      : "<string representation of latitude value (double)>",
 	    "longitude"     : "<string representation of longitude value (double)>",
 	    "accuracy"      : "<string representation of accurracy value (double)>",
 	    "heading"       : "<string representation of heading value (double)>",
 	    "speed"         : "<string representation of speed value (double)>",
-	
-	    //Currently not used for checkin detection
 	    "altitude"      : "<string representation of altitude value (double)>",
 	    "altitude_accuracy": "<string representation of altitude_accuracy value (double)>"
     }
@@ -233,23 +333,5 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
 	    "actor": "<person>",
 	    "message": "<string>",
 	    "created": "<date>",
-	}
-```
-
-## Trip
-
-Itineraries have a similar data model as normal events, except there eventType not set to 1 (normal events), but either to 2 (itinerary to a location/time) or to 3 (itinerary from a location/time). The actual itinerary details are provided by different itinerary providers (like Google, [PlannerStack](http://plannerstack.org) or the NS) and are then wrapped inside an itinerary event. This event will only contain the basics of the itinerary, like the start and end-location and their belonging times. The details of the itineraries are being updated if needed.
-
-```javascript
-	{
-		"query_parameters": {
-			"transport_mode": "<transport-mode>",
-			"time_buffer": "<int>", // Seconds
-		},
-		"data": {
-			"distance": "<int>", // Meters
-			"duration": "<int>", // Seconds
-			"legs": [],
-		}
 	}
 ```
