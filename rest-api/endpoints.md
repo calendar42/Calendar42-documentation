@@ -12,7 +12,7 @@ Support methods:
 
 ### GET: /events/
 
-Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
+* Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
 
 #### parameters
 
@@ -24,7 +24,7 @@ service_ids | `[<service_id>]` | false |
 calendar_ids | `[<calendar_id>]` | false | 
 event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#event-type)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
-length | `<length>` | false | length in meters of event types arrive_by, depart_from and route. Supports __lt and __gt operators
+length | `<length>` | false | length in meters of event types arrive_by, depart_from and route. Supports lt and gt operators
 order_by | `"distance"` | false | Can only be set when exactly 1 geo_circle is passed along
  | | | 
 
@@ -53,7 +53,7 @@ Supported methods
 
 ### GET: /events/`<event_id>`/
 
-Returns a default response object with a list containing the requested [Event](/rest-api/objects/#event) object inside the data object.
+* Returns a default response object with a list containing the requested [Event](/rest-api/objects/#event) object inside the data object.
 
 ### PATCH: /events/`<event_id>`/
 
@@ -81,6 +81,33 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 ---------------------------------------
 
+
+## /events/suggestions/
+
+Supported methods
+
+* GET
+
+### GET /events/suggestions/
+
+* Returns a default response object with a list containing [Event](/rest-api/objects/#event) objects inside the data object.
+* Note that the returned event objects are considered suggestions and have no id related to it yet. In order to store the event and perform other actions, the event needs to be published to the server
+
+#### Parameters
+
+Parameter | Value | Required | Description
+--- | --- | --- | ---
+event_type | `<event_type>` | true | Journey subset of [Event Type](/rest-api/constants/#event-type)
+transport_modes | `[<transport_mode>]` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
+from_location | `position` | true | Tuple with lat lon
+to_location | `position` | true | Tuple with lat lon
+time | `date-time` | false (if event_type equals 'route') | [Date time](/rest-api/objects/#date-time)
+
+#### Example usage
+
+Get a journey from point A to arrive at a certain time at point B
+
+* ``/events/suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
 ## /calendars/
 
