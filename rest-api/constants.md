@@ -2,55 +2,70 @@
 
 ## Event Type
 
-Type | Description
---- | ---
-normal | Normal events
-arrive_by | -
-depart_from | -
-todo | -
-tracked_tentative | -
-tracked_event | -
-tracked_arrive_by | -
-route | -
+``normal``
+* A normal event: has one location and both start & end time that can be freely set
+
+``arrive_by``
+* A journey event: has extra (end-) location. The start-time is read-only and follows the duration needed to travel between start & end locations based on the end-time
+
+``depart_from``
+* A journey event: has extra (end-) location. The end-time is read-only and follows the duration needed to travel between start & end locations based on the start-time
+
+``route``
+* A journey event: has extra (end-) location. Both start and end-time are not set.
+
+##### @todo
+
+``todo``, ``tracked_tentative``, ``tracked_event`` & ``tracked_arrive_by``
+
 
 ## Calendar Type
 
-@todo
+##### @todo
 
-Type | Description
---- | ---
-@todo | -
+``private``, ``webdav``, ``ics`` & ``google``
 
 ## RSVP Status
 
-Type | Description
---- | ---
-not_replied | You cant set attendance to this number this is the default, is interpreted as not-attending
-attending | -
-not_attending | -
+``not_replied``
+* You cant set attendance to this number this is the default, is interpreted as not-attending
+
+``attending``
+* Indicating you're attending the event
+
+``not_attending``
+* Indicating you're not attending the event
 
 ## Location type
 
-Type | Description
---- | ---
-favorite | -
-home | -
-work | -
+##### @todo
+
+``favorite``, ``home`` & ``work``
 
 ## Transport mode
 
-Type | Description
---- | ---
-car | Travel by car
-public_transport | Travel by public transport
-bicycle (coming soon!) | Travel by bicycle
+``car``
+* Travel by car
+
+``public_transport``
+* Travel by public transport
+
+``bicycle``
+* Travel by bicycle
 
 ## Permission
 
-Type | Description
---- | ---
-invited_read | Invited with read-only permission
-subscribed_read | Subscribed with read-only permission
-invited_write | Invited with read-write permission
-subscribed_write | Subscribed with read-write permission
-removed | Removed
+``invited_read``
+* Invited with read-only permission
+
+``subscribed_read``
+* Subscribed with read-only permission
+
+``invited_write`` 
+* Invited with read-write permission
+
+``subscribed_write``
+* Subscribed with read-write permission
+
+``removed``
+* Removed
