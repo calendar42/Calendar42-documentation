@@ -1,5 +1,3 @@
-# Objects
-
 ## Person
 
 ```javascript
