@@ -101,7 +101,7 @@ event_type | `<event_type>` | true | Journey subset of [Event Type](/rest-api/co
 transport_modes | `[<transport_mode>]` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
 from_location | `position` | true | Tuple with lat lon
 to_location | `position` | true | Tuple with lat lon
-time | `date-time` | false (if event_type equals 'route') | [Date time](/rest-api/objects/#date-time)
+time | `date-time` | false (if event_type equals 'route') | [Date time](/rest-api/guidelines/#date-time)
 
 #### Example usage
 
