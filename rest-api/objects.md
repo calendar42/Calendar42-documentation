@@ -201,28 +201,30 @@ Example of a trip containing one simple 'walk-leg':
 }
 ```
 
-@todo: currently the serializer for trip data still returns too much data and doesn't correctly format everything:
+##### @todo: update the trip data serializer
+
+Currently the serializer for trip data still returns too much data and doesn't correctly format everything:
 
 * In the root data object, deprecate everything but "legs":
-  * deprecate .requestParameters (it's already in the parent object)
-  * deprecate .walkTime
-  * deprecate .endTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
-  * deprecate .startTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
-  * deprecate .walkDistance
-  * deprecate .tooSloped
-  * deprecate .walkLimitExceeded
-  * deprecate .waitingTime
-  * deprecate .elevationLost
-  * deprecate .elevationGained
-  * deprecate .transitTime
-  * deprecate .mode (already in query_parameters)
-  * deprecate .duration
-  * deprecate .transfers
-  * deprecate .duration
+    * deprecate .requestParameters (it's already in the parent object)
+    * deprecate .walkTime
+    * deprecate .endTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
+    * deprecate .startTime (it's in the event for arrive_by/ depart_form. routes don't have start/endtimes)
+    * deprecate .walkDistance
+    * deprecate .tooSloped
+    * deprecate .walkLimitExceeded
+    * deprecate .waitingTime
+    * deprecate .elevationLost
+    * deprecate .elevationGained
+    * deprecate .transitTime
+    * deprecate .mode (already in query_parameters)
+    * deprecate .duration
+    * deprecate .transfers
+    * deprecate .duration
 * In the leg data objects:
-  * Rewrite modes to be similar to [Transport Modes](/rest-api/constants/#transport-mode)
-  * Rewrite datetime stamps to be similar to [Date time](/rest-api/guidelines/#date-time)
-  * Rewirite camelcased keys to underscores
+    * Rewrite modes to be similar to [Transport Modes](/rest-api/constants/#transport-mode)
+    * Rewrite datetime stamps to be similar to [Date time](/rest-api/guidelines/#date-time)
+    * Rewirite camelcased keys to underscores
 
 
 ## Calendar
