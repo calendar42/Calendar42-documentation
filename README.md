@@ -4,11 +4,10 @@ _Note: This documentation is a work in progress. There may be errors and inconsi
 
 This documentation is currently divided into the following categories:
 
-1. [Data model](/model/introduction/)
-2. [REST API](/rest-api/introduction/) 
-3. [XMPP API](/xmpp-api/introduction/) 
-4. [Application frameworks](/application-frameworks/introduction/)
-5. [Services](/services/introduction/) 
+1. [REST API](/rest-api/introduction/) 
+2. [XMPP API](/xmpp-api/introduction/) 
+3. [Application frameworks](/application-frameworks/introduction/)
+4. [Services](/services/introduction/) 
 
 ## Introduction to Calendar42 
 

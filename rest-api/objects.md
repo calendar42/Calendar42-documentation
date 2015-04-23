@@ -35,11 +35,6 @@
 
 ## Event
 
-Within Calendar42 the (internal) standard used for marking-up calendar information is xCal, an XML- compliant representation of the iCalendar standard. This standard can be used to data format for representing and exchanging calendaring and scheduling information such as events, to-dos, journal entries, and free/busy information, independent of any particular calendar service or protocol.
-
-Standard an iCalendar object consists of a sequence of calendar properties and one or more calendar components. iCalendar properties are enclosed in the XML element ICAL:properties. Each individual iCalendar property is represented in XML by an element of the same name as the iCalendar property, but in lowercase. For example, the CALSCALE property is represented in XML by the ICAL: calscale element.
-
-
 Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
 id | String | false | false | true | Unique id that identifies the event | |
