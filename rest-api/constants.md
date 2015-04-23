@@ -2,7 +2,7 @@ This chapter describes the different constants that are used, both in paramaters
 
 # General Constants
 
-## Permission
+## • Permission
 
 ``invited_read``
 
@@ -27,7 +27,7 @@ This chapter describes the different constants that are used, both in paramaters
 
 # Event Constants
 
-## Event Type
+## • Event Type
 
 ``normal``
 
@@ -47,7 +47,7 @@ This chapter describes the different constants that are used, both in paramaters
 
 **@todo:** ``todo``, ``tracked_tentative``, ``tracked_event`` & ``tracked_arrive_by``
 
-## RSVP Status
+## • RSVP Status
 
 ``not_replied``
 
@@ -61,7 +61,7 @@ This chapter describes the different constants that are used, both in paramaters
 
 * Indicating you're not attending the event
 
-## Transport mode
+## • Transport mode
 
 ``car``
 
@@ -78,14 +78,14 @@ This chapter describes the different constants that are used, both in paramaters
 
 # Calendar Constants
 
-## Calendar Type
+## • Calendar Type
 
 **@todo:** ``private``, ``webdav``, ``ics`` & ``google``
 
 
 # Location Constants
 
-## Location type
+## • Location type
 
 **@todo:** ``favorite``, ``home`` & ``work``
 
