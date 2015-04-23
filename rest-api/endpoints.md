@@ -23,7 +23,7 @@ Parameter | Required |
 `calendar_ids` | false | Array of calendar ids
 `event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
 `geo_circles` | false | Array of [Geo Circles](#geo-circle)
-`length` | false | Length in meters of event types arrive_by, depart_from and route. Supports lt and gt operators
+`length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports lt and gt operators
 `order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
@@ -95,13 +95,13 @@ Supported methods
 
 #### Parameters
 
-Parameter | Value | Required | Description
---- | --- | --- | ---
-event_type | `<event_type>` | true | [Event Type](/rest-api/constants/#event-type) (Journey subset)
-transport_modes | `[<transport_mode>]` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
-from_location | `position` | true | Tuple with lat lon
-to_location | `position` | true | Tuple with lat lon
-time | `date-time` | false (if event_type equals 'route') | [Date time](/rest-api/guidelines/#date-time)
+Parameter | Required | 
+--- | --- | --- 
+`event_type` | true | [Event Type](/rest-api/constants/#event-type) (Journey subset)
+`transport_modes` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
+`from_location` | true | Tuple with lat lon
+`to_location` | true | Tuple with lat lon
+`time` | true | [Date time](/rest-api/guidelines/#date-time) (not required if event_type equals 'route')
 <br>
 
 #### Example usage
@@ -124,12 +124,12 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 
 #### parameters
 
-Parameter | Value | Required | Description
---- | --- | --- | ---
-ids | `[<calendar_id>]` | false | Allows to retrieve or filter specific calendars
-sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
-service_ids | `[<service_id>]` | false
-categories | `[<calendar_category>]` | false | [Calendar Category](/rest-api/objects/#calendar)
+Parameter | Required | 
+--- | --- | --- 
+`ids` | false | Array of event ids. To filter on specific events
+`service_ids` | false | Array of service ids
+`categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
+`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
 
 #### POST parameters
@@ -150,8 +150,8 @@ Subscriptions are resources describing the relationship between events and users
 
 * GET
 
-Parameter | Value | Required | Description
---- | --- | --- | ---
+Parameter | Required | Description
+--- | --- | --- 
 - | - | - | -
 <br>
 
@@ -161,13 +161,13 @@ Returns a default response object with a list of [Subscription](/rest-api/object
 
 #### GET parameters
 
-Parameter | Value | Required | Description
---- | --- | --- | --- 
-object_type | `[<object_type (event || calendar)>` | true | Only get subscriptions related to a certain type ex. events
-sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
-service_ids | `[<service_id>]` | false
-calendar_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
-event_ids | `[<calendar_id>]` | false | only use calendar_ids or event_ids, they can't be used together in the same request
+Parameter | Required | Description
+--- | --- | --- 
+`object_type` | true | Only get subscriptions related to a certain type ex. events (event || calendar)
+`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`service_ids` | false | 
+`calendar_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
+`event_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 <br>
 
 ### /subscriptions/`<subscription_id>`/
@@ -212,15 +212,16 @@ When requesting the `/locations/` without any parameters, it will return all loc
 
 #### GET parameters
 
-Parameter | Value | Required | Description
---- | --- | --- | ---
-ids | `[<location_id>]` | false | Allows to retrieve or filter specific locations
-sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
-user_ids | `[<user_id>]` | false
-service_ids | `[<service_id>]` | false | Only return locations that have labels in relation to the service
-search_pattern | `<string>` | false
-location_types | `[<location_type>]` | false | [Location Type](/rest-api/constants/#location-type)
-geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
+Parameter | Required | Description
+--- | --- | --- 
+`ids` | false | Array of location ids. To filter on specific locations
+`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`user_ids` | false | Array of service ids. Only return locations that have labels in relation to user
+`service_ids` | false | Array of service ids. Only return locations that have labels in relation to the service
+`search_pattern` | false | String to match on in location text, address, city and label
+`location_types` | false | Array of [Location Type](/rest-api/constants/#location-type)
+`geo_circles` | false | Array of [Geo Circle](#geo-circle)
+<!-- `order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along -->
 <br>
 
 ### /locations/`<location_id>`/
