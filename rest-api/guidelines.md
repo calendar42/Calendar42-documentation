@@ -17,12 +17,14 @@ Every endpoint starts with /v`<x>` where x is the version
 This is how different HTTP methods are interpreted and used in the API
 
 Action | HTTP method | Example
---- | --- | --- |
+:--- | :--- | :--- |
 **C**reate new resource | POST | `POST /events`
 **R**etrieve resource  | GET | `GET /events/<event_id>` 
 Partially **U**pdate resource  | PATCH | `PATCH /events/<event_id>`
 **D**elete resource  | DELETE | `DELETE /events/<event_id>`
 Replace complete resource | PUT | `PUT /events/<event_id>`
+
+
 
 ### Endpoints only use lower case characters and dashes
 
@@ -257,8 +259,13 @@ To allow to request a limited amount of rows, is required to send the limit and 
 
 Parameter | Type | Required | Default |Description
 --- | --- | --- | --- | --- 
-limit | INT | False |  | Tells to the API the amount of rows that are being requested
-offset | INT | False |  | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
+limit | INT | False | 10 | Tells to the API the amount of rows that are being requested
+offset | INT | False | 0 | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
+
+As described above, GET requests will default to sending the first 10 items when no offset or limit are specified. To find out whether all items are returned, the count can be checked inside the meta-data send along with the request.
+
+
+
 
 ### Example:
 
