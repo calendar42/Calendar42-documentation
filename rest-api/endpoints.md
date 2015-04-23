@@ -126,7 +126,7 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 
 Parameter | Required | 
 --- | --- | --- 
-`ids` | false | Array of event ids. To filter on specific events
+`ids` | false | Array of calendar ids. To filter on specific events
 `service_ids` | false | Array of service ids
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
@@ -140,69 +140,26 @@ All required attributes of a [calendar](/rest-api/objects/#calendar) should be s
 
 All editable params of a [calendar](/rest-api/objects/#calendar) can be sent as a param and it will be replaced with the new value
 
-## Subscriptions
+## /calendars/`<calendar_id>`/
 
-### /subscriptions/
-
-Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
-
-#### Supported methods
+Supported methods
 
 * GET
 
-Parameter | Required | Description
---- | --- | --- 
-- | - | - | -
-<br>
+### GET: /calendars/`<calendar_id>`/
 
-#### Response
+* Returns a default response object with a list containing the requested [Calendar](/rest-api/objects/#calendar) object inside the data object.
 
-Returns a default response object with a list of [Subscription](/rest-api/objects/#subscription) objects inside the data object.
+## /locations/
 
-#### GET parameters
-
-Parameter | Required | Description
---- | --- | --- 
-`object_type` | true | Only get subscriptions related to a certain type ex. events (event || calendar)
-`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
-`service_ids` | false | 
-`calendar_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
-`event_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
-<br>
-
-### /subscriptions/`<subscription_id>`/
-
-#### Supported methods
-
-* GET Same as [/subscriptions/](#subscriptions) but getting a list containing the single subscription based on the subscription id.
-* POST
-* PATCH
-
-#### GET parameters
-
-Same as [/subscriptions/](#subscriptions) GET call
-
-#### POST parameters
-
-All required attributes of a [subscription](/rest-api/objects/#subscription) should be sent, and all editable params can be sent as a param
-
-#### PATCH parameters
-
-All editable params of a [subscription](/rest-api/objects/#subscription) can be sent as a param and it will be replaced with the new value
-
-## Locations
-
-### /locations/
-
-#### Supported methods
+Supported methods
 
 * GET
 * PUT
-* PATCH
 * POST
 * DELETE
 
-#### Response
+### GET /locations/
 
 Returns a default response object with a list of [Location](/rest-api/objects/#location) objects inside the data object.
 
@@ -210,7 +167,7 @@ As depicted, [Location](/rest-api/objects/#location) objects may contain one or 
 
 When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
-#### GET parameters
+#### Parameters
 
 Parameter | Required | Description
 --- | --- | --- 
@@ -221,23 +178,80 @@ Parameter | Required | Description
 `search_pattern` | false | String to match on in location text, address, city and label
 `location_types` | false | Array of [Location Type](/rest-api/constants/#location-type)
 `geo_circles` | false | Array of [Geo Circle](#geo-circle)
-<!-- `order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along -->
 <br>
 
-### /locations/`<location_id>`/
+Note: doesn't support order_by=distance yet
 
-#### Supported methods
+## /locations/`<location_id>`/
+
+Supported methods
 
 * GET
 
-Same as [/locations/](/rest-api/objects/#location) but getting a list containing the single location based on the location id.
+### GET: /locations/`<location_id>`/
 
-## Positions
+* Returns a default response object with a list containing the requested [Location](/rest-api/objects/#location) object inside the data object.
 
-### /positions
+
+---------------------------------------
+
+Below API's are still in early development
+
+---------------------------------------
+
+## /subscriptions/
+
+Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
+
+Supported methods:
+
+* GET
+
+Parameter | Required | Description
+--- | --- | --- 
+- | - | - | -
+<br>
+
+### Response
+
+Returns a default response object with a list of [Subscription](/rest-api/objects/#subscription) objects inside the data object.
+
+### GET parameters
+
+Parameter | Required | Description
+--- | --- | --- 
+`object_type` | true | Only get subscriptions related to a certain type ex. events (event || calendar)
+`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`service_ids` | false | 
+`calendar_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
+`event_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
+<br>
+
+## /subscriptions/`<subscription_id>`/
+
+Supported methods
+
+* GET Same as [/subscriptions/](#subscriptions) but getting a list containing the single subscription based on the subscription id.
+* POST
+* PATCH
+
+### GET parameters
+
+Same as [/subscriptions/](#subscriptions) GET call
+
+### POST parameters
+
+All required attributes of a [subscription](/rest-api/objects/#subscription) should be sent, and all editable params can be sent as a param
+
+### PATCH parameters
+
+All editable params of a [subscription](/rest-api/objects/#subscription) can be sent as a param and it will be replaced with the new value
+
+
+## /positions
 <!-- *TODO* -->
 
-#### Supported methods
+Supported methods
 
 * POST
 
