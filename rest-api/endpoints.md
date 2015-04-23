@@ -26,7 +26,7 @@ event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#even
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 length | `<length>` | false | length in meters of event types arrive_by, depart_from and route. Supports lt and gt operators
 order_by | `"distance"` | false | Can only be set when exactly 1 geo_circle is passed along
- | | | 
+<br>
 
 ### Example usages
 
