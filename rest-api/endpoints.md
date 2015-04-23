@@ -27,6 +27,7 @@ event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#even
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 order_by | "distance" | false | Can only be set when exactly 1 geo_circle is passed along
 
+---------------------------------------
 
 ## /events/`<event_id>`/
 
