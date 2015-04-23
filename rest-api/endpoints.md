@@ -16,16 +16,16 @@ Support methods:
 
 #### Parameters
 
-Parameter | Required | Description
+Parameter | Required | 
 :--- | :--- | :---
-ids | false | Array of event ids. To filter on specific events
-service_ids | false | Array of service ids
-calendar_ids | false | Array of calendar ids
-event_types | false | Array of [Event Types](/rest-api/constants/#event-type)
-geo_circles | false | Array of [Geo Circles](#geo-circle)
-length | false | Length in meters of event types arrive_by, depart_from and route. Supports lt and gt operators
-order_by | false | Can be set to "distance" when exactly one geo_circle is passed along
-sync_token | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`ids` | false | Array of event ids. To filter on specific events
+`service_ids` | false | Array of service ids
+`calendar_ids` | false | Array of calendar ids
+`event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
+`geo_circles` | false | Array of [Geo Circles](#geo-circle)
+`length` | false | Length in meters of event types arrive_by, depart_from and route. Supports lt and gt operators
+`order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along
+`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
 
 ### Example usages
