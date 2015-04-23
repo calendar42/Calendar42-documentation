@@ -180,6 +180,10 @@ Parameter | Required | Description
 
 Note: doesn't support order_by=distance yet
 
+### Example usage
+
+**@todo:** Add example usage
+
 # /locations/`<location_id>`/
 
 Supported methods
@@ -188,7 +192,7 @@ Supported methods
 
 ## GET: /locations/`<location_id>`/
 
-* Returns a default response object with a list containing the requested [Location](/rest-api/objects/#location) object inside the data object.
+* Returns a default response object with a list containing the requested [Location](/rest-api/objects/#location) object inside the data object
 
 
 ---------------------------------------
