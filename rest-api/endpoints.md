@@ -2,6 +2,8 @@
 
 This chapter describes the actual endpoints ot the Calendar42 API.
 
+---------------------------------------
+
 ## /events/
 
 Support methods:
@@ -10,22 +12,35 @@ Support methods:
 
 ### GET: /events/
 
-Allows to for example get events belonging to a certain calendar within a certain geographic range:
-``/events/?calendar_ids=[abc123]geo_circles=[(52.28297176 5.27424839 5000)]``
-
 Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
 
 #### parameters
 
-
 Parameter | Value | Required | Description
 :--- | :--- | :--- | :---
+ids | `[<event_id>]` | false | Allows to retrieve or filter specific events
 sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
 service_ids | `[<service_id>]` | false | 
 calendar_ids | `[<calendar_id>]` | false | 
 event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#event-type)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
-order_by | "distance" | false | Can only be set when exactly 1 geo_circle is passed along
+length | `<length>` | false | length in meters of event types arrive_by, depart_from and route. Supports __lt and __gt operators
+order_by | `"distance"` | false | Can only be set when exactly 1 geo_circle is passed along
+ | | | 
+
+### Example usages
+
+Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
+
+* ``/events/?calendar_ids=[abc123]&geo_circles=[(52.28297176 5.27424839 5000)]&order_by=distance``
+
+Get journeys longer than 15km
+
+* ``/events/?event_types=[arrive_by,depart_from]&length__gt=15000``
+
+Get events that changed since last retrieval
+
+* ``/events/?sync_token=128973981273``
 
 ---------------------------------------
 
@@ -38,7 +53,7 @@ Supported methods
 
 ### GET: /events/`<event_id>`/
 
-Returns a default response object with a list containing a single [Event](/rest-api/objects/#event) object inside the data object.
+Returns a default response object with a list containing the requested [Event](/rest-api/objects/#event) object inside the data object.
 
 ### PATCH: /events/`<event_id>`/
 
@@ -64,27 +79,29 @@ Similarly, the following request
     
 will not only update the calendar_ids list of the specific event resource, it will also unsubscribe the specific event from the `calendar_id2` calendar.
 
-## Calendars
+---------------------------------------
 
-### /calendars/
 
-#### Supported methods
+## /calendars/
+
+Supported methods:
 
 * GET
 * POST
 * PATCH
 
-#### Response
+### GET /calendars/
 
 Returns a default response object with a list of [Calendar](/rest-api/objects/#calendar) objects inside the data object.
 
-#### GET parameters
+#### parameters
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
+ids | `[<calendar_id>]` | false | Allows to retrieve or filter specific calendars
 sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
 service_ids | `[<service_id>]` | false
-calendar_categories | `[<calendar_category>]` | false | [Calendar Category](/rest-api/objects/#calendar)
+categories | `[<calendar_category>]` | false | [Calendar Category](/rest-api/objects/#calendar)
 
 #### POST parameters
 
@@ -166,6 +183,7 @@ When requesting the `/locations/` without any parameters, it will return all loc
 
 Parameter | Value | Required | Description
 --- | --- | --- | ---
+ids | `[<location_id>]` | false | Allows to retrieve or filter specific locations
 sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
 user_ids | `[<user_id>]` | false
 service_ids | `[<service_id>]` | false | Only return locations that have labels in relation to the service
