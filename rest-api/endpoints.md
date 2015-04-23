@@ -12,7 +12,7 @@ This chapter describes the actual endpoints ot the Calendar42 API.
 
 #### Response
 
-Returns a default response object with a list of [Event](/model/objects/#event) objects inside the data object.
+Returns a default response object with a list of [Event](objects/#event) objects inside the data object.
 
 #### GET parameters
 
@@ -21,7 +21,7 @@ Parameter | Value | Required | Description
 sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
 service_ids | `[<service_id>]` | false
 calendar_ids | `[<calendar_id>]` | false
-event_types | `[<event_type>]` | false | [Event Types](/model/constants/#event-type)
+event_types | `[<event_type>]` | false | [Event Types](constants/#event-type)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
@@ -69,7 +69,7 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 #### Response
 
-Returns a default response object with a list of [Calendar](/model/objects/#calendar) objects inside the data object.
+Returns a default response object with a list of [Calendar](objects/#calendar) objects inside the data object.
 
 #### GET parameters
 
@@ -77,15 +77,15 @@ Parameter | Value | Required | Description
 --- | --- | --- | ---
 sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
 service_ids | `[<service_id>]` | false
-calendar_categories | `[<calendar_category>]` | false | [Calendar Category](/model/objects/#calendar)
+calendar_categories | `[<calendar_category>]` | false | [Calendar Category](objects/#calendar)
 
 #### POST parameters
 
-All required attributes of a [calendar](/model/objects/#calendar) should be sent, and all editable params can be sent as a param
+All required attributes of a [calendar](objects/#calendar) should be sent, and all editable params can be sent as a param
 
 #### PATCH parameters
 
-All editable params of a [calendar](/model/objects/#calendar) can be sent as a param and it will be replaced with the new value
+All editable params of a [calendar](objects/#calendar) can be sent as a param and it will be replaced with the new value
 
 ## Subscriptions
 
@@ -103,7 +103,7 @@ Parameter | Value | Required | Description
 
 #### Response
 
-Returns a default response object with a list of [Subscription](/model/objects/#subscription) objects inside the data object.
+Returns a default response object with a list of [Subscription](objects/#subscription) objects inside the data object.
 
 #### GET parameters
 
@@ -129,11 +129,11 @@ Same as [/subscriptions/](#subscriptions) GET call
 
 #### POST parameters
 
-All required attributes of a [subscription](/model/objects/#subscription) should be sent, and all editable params can be sent as a param
+All required attributes of a [subscription](objects/#subscription) should be sent, and all editable params can be sent as a param
 
 #### PATCH parameters
 
-All editable params of a [subscription](/model/objects/#subscription) can be sent as a param and it will be replaced with the new value
+All editable params of a [subscription](objects/#subscription) can be sent as a param and it will be replaced with the new value
 
 ## Locations
 
@@ -149,9 +149,9 @@ All editable params of a [subscription](/model/objects/#subscription) can be sen
 
 #### Response
 
-Returns a default response object with a list of [Location](/model/objects/#location) objects inside the data object.
+Returns a default response object with a list of [Location](objects/#location) objects inside the data object.
 
-As depicted, [Location](/model/objects/#location) objects may contain one or more labels that add extra details to the location. These labels add extra context for a user or a service. It may for instance mark the location as a work location for the requesting user, or contain service specific details.
+As depicted, [Location](objects/#location) objects may contain one or more labels that add extra details to the location. These labels add extra context for a user or a service. It may for instance mark the location as a work location for the requesting user, or contain service specific details.
 
 When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
@@ -163,7 +163,7 @@ sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/g
 user_ids | `[<user_id>]` | false
 service_ids | `[<service_id>]` | false | Only return locations that have labels in relation to the service
 search_pattern | `<string>` | false
-location_types | `[<location_type>]` | false | [Location Type](/model/constants/#location-type)
+location_types | `[<location_type>]` | false | [Location Type](constants/#location-type)
 geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 
@@ -173,7 +173,7 @@ geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
 
 * GET
 
-Same as [/locations/](/model/objects/#location) but getting a list containing the single location based on the location id.
+Same as [/locations/](objects/#location) but getting a list containing the single location based on the location id.
 
 ## Positions
 
@@ -186,5 +186,5 @@ Same as [/locations/](/model/objects/#location) but getting a list containing th
 
 ### Request Body
 
-See [Position](/model/objects/#position) model.
+See [Position](objects/#position) model.
 
