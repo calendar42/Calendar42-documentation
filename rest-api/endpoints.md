@@ -44,7 +44,7 @@ Get events that changed since last retrieval
 
 ---------------------------------------
 
-## • /events/<event_id>/
+## • /events/\<event_id>/
 
 Supported methods
 
@@ -143,7 +143,7 @@ All editable params of a [calendar](/rest-api/objects/#calendar) can be sent as 
 
 ---------------------------------------
 
-## • /calendars/<calendar_id>/
+## • /calendars/\<calendar_id>/
 
 Supported methods
 
@@ -193,7 +193,7 @@ Note: doesn't support order_by=distance yet
 
 ---------------------------------------
 
-## • /locations/<location_id>/
+## • /locations/\<location_id>/
 
 Supported methods
 
@@ -240,7 +240,7 @@ Parameter | Required | Description
 
 ---------------------------------------
 
-## • /subscriptions/<subscription_id>/
+## • /subscriptions/\<subscription_id>/
 
 Supported methods
 
