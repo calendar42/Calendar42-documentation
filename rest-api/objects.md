@@ -1,37 +1,6 @@
-## Person
+This chapter describes the different object models that can be expected within the Calendar42 REST API.
 
-```javascript
-    {
-        "id": "<string>",
-        "first_name": "<string>",
-        "last_name": "<string>",
-        "photo": "<url>",
-        "email": "<email>",
-        "phonenumber": "<phonenumber>",
-    }
-```
-
-## Subscription
-
-```javascript
-    {
-        "id": "<string>",
-
-        "object": {
-            "object_type": "<event || calendar>",
-            "id": "<string>",
-        }
-
-        "subscriber": "<person>", // Person that has the subscription
-        "creator": "<person>", // Person created the subscription
-
-        "is_invitation": "<boolean>",
-        "rsvp_status": "<rsvp-status>",
-        "permission": "<permission>",
-    }
-```
-
-## Event
+# Event
 
 Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
@@ -125,7 +94,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
     }
 ```
 
-### Event.trip
+## Event.trip
 
 Events with an [Event Type](/rest-api/constants/#event-type) that equals either `arrive_by`, `depart_from` or `route` will contain trip-data existing of three main elements:
 
@@ -136,7 +105,7 @@ Events with an [Event Type](/rest-api/constants/#event-type) that equals either 
 Next to this trip-data, the event itself will also reflect the start-location, end-location, start-time and end-time of the trip.
 Other data and relationships are completely similar to regular events.
 
-#### Event.trip.data
+### Event.trip.data
 
 The trip data contains an array of legs depicting the different parts of the trip.
 
@@ -199,7 +168,7 @@ Example of a trip containing one simple 'walk-leg':
 }
 ```
 
-##### @todo: update the trip data serializer
+#### @todo: update the trip data serializer
 
 Currently the serializer for trip data still returns too much data and doesn't correctly format everything:
 
@@ -225,7 +194,7 @@ Currently the serializer for trip data still returns too much data and doesn't c
     * Rewirite camelcased keys to underscores
 
 
-## Calendar
+# Calendar
 
 The calendar data model
 
@@ -279,7 +248,7 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
     }
 ```
 
-## Location
+# Location
     
 ```javascript
     {
@@ -305,8 +274,8 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
         ]
     }
 ```
-    
-## Position
+   
+# Position
 <!-- *TODO : further explain fields* -->
 
 ```javascript
@@ -327,11 +296,46 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
 	    "altitude_accuracy": "<string representation of altitude_accuracy value (double)>"
     }
 ```
-## Invitation
+
+# Invitation
+
 ```javascript
 	{
 	    "actor": "<person>",
 	    "message": "<string>",
 	    "created": "<date>",
 	}
+```
+
+# Person
+
+```javascript
+    {
+        "id": "<string>",
+        "first_name": "<string>",
+        "last_name": "<string>",
+        "photo": "<url>",
+        "email": "<email>",
+        "phonenumber": "<phonenumber>",
+    }
+```
+
+# Subscription
+
+```javascript
+    {
+        "id": "<string>",
+
+        "object": {
+            "object_type": "<event || calendar>",
+            "id": "<string>",
+        }
+
+        "subscriber": "<person>", // Person that has the subscription
+        "creator": "<person>", // Person created the subscription
+
+        "is_invitation": "<boolean>",
+        "rsvp_status": "<rsvp-status>",
+        "permission": "<permission>",
+    }
 ```

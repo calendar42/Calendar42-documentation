@@ -1,6 +1,6 @@
-# Constants
+This chapter describes the different constants that are used, both in paramaters as in the models.
 
-## Event Type
+# Event Type
 
 ``normal``
 
@@ -29,7 +29,7 @@
 
 ``private``, ``webdav``, ``ics`` & ``google``
 
-## RSVP Status
+# RSVP Status
 
 ``not_replied``
 
@@ -43,13 +43,13 @@
 
 * Indicating you're not attending the event
 
-## Location type
+# Location type
 
 ##### @todo
 
 ``favorite``, ``home`` & ``work``
 
-## Transport mode
+# Transport mode
 
 ``car``
 
@@ -63,7 +63,7 @@
 
 * Travel by bicycle
 
-## Permission
+# Permission
 
 ``invited_read``
 
