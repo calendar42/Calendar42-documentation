@@ -2,38 +2,44 @@
 
 This chapter describes the actual endpoints ot the Calendar42 API.
 
-## Events
+## /events/
 
-### /events/
-
-#### Supported methods
+Support methods:
 
 * GET
 
-#### Response
+### GET: /events/
+
+Allows to for example get events belonging to a certain calendar within a certain geographic range:
+``/events/?calendar_ids=[abc123]geo_circles=[(52.28297176 5.27424839 5000)]``
 
 Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
 
-#### GET parameters
+#### parameters
 
-Parameter | Value | Required | Description
---- | --- | --- | --- 
-sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
-service_ids | `[<service_id>]` | false
-calendar_ids | `[<calendar_id>]` | false
-event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#event-type)
-geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
+================	================	================	================
+Parameter  			Value 				Required 			Description
+================	================	================	================
+sync_token 			`<sync_token>` 		false				[See Sync Token for more info](/rest-api/guidelines/#sync-token)
+service_ids 		`[<service_id>]`	false
+calendar_ids 		`[<calendar_id>]`	false
+event_types			`[<event_type>]` 	false				[Event Types](/rest-api/constants/#event-type)
+geo_circles			`[<geo_circle>]`	false				[Geo Circle](#geo-circle)
+order_by			"distance"			false				Can only be set when exactly 1 geo_circle is passed along
+================	================	================	================
 
+## /events/`<event_id>`/
 
-### /events/`<event_id>`/
-
-#### Supported methods
+Supported methods
 
 * GET
-
-Same as [/events/](#events) but getting a list containing the single event based on the event id.
-
 * PATCH
+
+### GET: /events/`<event_id>`/
+
+Returns a default response object with a list containing a single [Event](/rest-api/objects/#event) object inside the data object.
+
+### PATCH: /events/`<event_id>`/
 
 Any (#events)editable attribute can be sent as a param and it will be replaced with the sended param.
 
