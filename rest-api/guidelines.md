@@ -48,6 +48,12 @@ Bad:
     GET /super_trip/?ModalityTypes=["spaceship"]
 ```
 
+### Operaters upon query parameters use lower case characters and underscores and start with double underscores
+
+Good:
+```
+    GET /super-trip/?modality_types=["spaceship"]&top_speed__gt=420000
+```
 
 ### A query parameter value that could be an array is always an array
 
