@@ -1,18 +1,20 @@
+# General introduction
+
 This chapter describes the actual endpoints ot the Calendar42 API.
 
 ---------------------------------------
 
-# /events/
+## • /events/
 
 Support methods:
 
 * GET
 
-## GET: /events/
+### GET: /events/
 
 * Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
 
-### Parameters
+#### Parameters
 
 Parameter | Required | 
 :--- | :--- | :---
@@ -26,7 +28,7 @@ Parameter | Required |
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
 
-## Example usages
+#### Example usages
 
 Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
 
@@ -42,18 +44,18 @@ Get events that changed since last retrieval
 
 ---------------------------------------
 
-# /events/`<event_id>`/
+## • /events/`<event_id>`/
 
 Supported methods
 
 * GET
 * PATCH
 
-## GET: /events/`<event_id>`/
+### GET: /events/`<event_id>`/
 
 * Returns a default response object with a list containing the requested [Event](/rest-api/objects/#event) object inside the data object.
 
-## PATCH: /events/`<event_id>`/
+### PATCH: /events/`<event_id>`/
 
 Any (#events)editable attribute can be sent as a param and it will be replaced with the sended param.
 
@@ -79,19 +81,18 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 ---------------------------------------
 
-
-# /events/suggestions/
+## • /events/suggestions/
 
 Supported methods
 
 * GET
 
-## GET /events/suggestions/
+### GET /events/suggestions/
 
 * Returns a default response object with a list containing [Event](/rest-api/objects/#event) objects inside the data object.
 * Note that the returned event objects are considered suggestions and have no id related to it yet. In order to store the event and perform other actions, the event needs to be published to the server
 
-### Parameters
+#### Parameters
 
 Parameter | Required | 
 --- | --- | --- 
@@ -102,13 +103,15 @@ Parameter | Required |
 `time` | true | [Date time](/rest-api/guidelines/#date-time) (not required if event_type equals 'route')
 <br>
 
-### Example usage
+#### Example usage
 
 Get a trip from point A to arrive at a certain time at point B
 
 * ``/events/suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
-# /calendars/
+---------------------------------------
+
+## • /calendars/
 
 Supported methods:
 
@@ -116,11 +119,11 @@ Supported methods:
 * POST
 * PATCH
 
-## GET /calendars/
+### GET /calendars/
 
 Returns a default response object with a list of [Calendar](/rest-api/objects/#calendar) objects inside the data object.
 
-### parameters
+#### parameters
 
 Parameter | Required | 
 --- | --- | --- 
@@ -130,25 +133,29 @@ Parameter | Required |
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
 
-### POST parameters
+#### POST parameters
 
 All required attributes of a [calendar](/rest-api/objects/#calendar) should be sent, and all editable params can be sent as a param
 
-### PATCH parameters
+#### PATCH parameters
 
 All editable params of a [calendar](/rest-api/objects/#calendar) can be sent as a param and it will be replaced with the new value
 
-# /calendars/`<calendar_id>`/
+---------------------------------------
+
+## • /calendars/`<calendar_id>`/
 
 Supported methods
 
 * GET
 
-## GET: /calendars/`<calendar_id>`/
+### GET: /calendars/`<calendar_id>`/
 
 * Returns a default response object with a list containing the requested [Calendar](/rest-api/objects/#calendar) object inside the data object.
 
-# /locations/
+---------------------------------------
+
+## • /locations/
 
 Supported methods
 
@@ -157,7 +164,7 @@ Supported methods
 * POST
 * DELETE
 
-## GET /locations/
+### GET /locations/
 
 Returns a default response object with a list of [Location](/rest-api/objects/#location) objects inside the data object.
 
@@ -165,7 +172,7 @@ As depicted, [Location](/rest-api/objects/#location) objects may contain one or 
 
 When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
-### Parameters
+#### Parameters
 
 Parameter | Required | Description
 --- | --- | --- 
@@ -180,17 +187,19 @@ Parameter | Required | Description
 
 Note: doesn't support order_by=distance yet
 
-### Example usage
+#### Example usage
 
 **@todo:** Add example usage
 
-# /locations/`<location_id>`/
+---------------------------------------
+
+## • /locations/`<location_id>`/
 
 Supported methods
 
 * GET
 
-## GET: /locations/`<location_id>`/
+### GET: /locations/`<location_id>`/
 
 * Returns a default response object with a list containing the requested [Location](/rest-api/objects/#location) object inside the data object
 
@@ -201,7 +210,7 @@ Below API's are still in early development
 
 ---------------------------------------
 
-# /subscriptions/
+## • /subscriptions/
 
 Subscriptions are resources describing the relationship between events and users (the 'event subscribers).
 
@@ -214,11 +223,11 @@ Parameter | Required | Description
 - | - | - | -
 <br>
 
-## Response
+Response
 
 Returns a default response object with a list of [Subscription](/rest-api/objects/#subscription) objects inside the data object.
 
-## GET parameters
+GET parameters
 
 Parameter | Required | Description
 --- | --- | --- 
@@ -229,7 +238,9 @@ Parameter | Required | Description
 `event_ids` | false | only use calendar_ids or event_ids, they can't be used together in the same request
 <br>
 
-# /subscriptions/`<subscription_id>`/
+---------------------------------------
+
+## • /subscriptions/`<subscription_id>`/
 
 Supported methods
 
@@ -237,27 +248,29 @@ Supported methods
 * POST
 * PATCH
 
-## GET parameters
+GET parameters
 
 Same as [/subscriptions/](#subscriptions) GET call
 
-## POST parameters
+POST parameters
 
 All required attributes of a [subscription](/rest-api/objects/#subscription) should be sent, and all editable params can be sent as a param
 
-## PATCH parameters
+PATCH parameters
 
 All editable params of a [subscription](/rest-api/objects/#subscription) can be sent as a param and it will be replaced with the new value
 
 
-# /positions/
+---------------------------------------
+
+## • /positions/
 <!-- *TODO* -->
 
 Supported methods
 
 * POST
 
-## Request Body
+Request Body
 
 See [Position](/rest-api/objects/#position) model.
 
