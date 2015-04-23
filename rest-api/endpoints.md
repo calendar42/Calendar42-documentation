@@ -17,16 +17,16 @@ Returns a default response object with a list of [Event](/rest-api/objects/#even
 
 #### parameters
 
-==============   ===============    ==============   ===============
-Parameter        Value              Required         Description
-==============   ===============    ==============   ===============
-sync_token       `<sync_token>`     false            [See Sync Token for more info](/rest-api/guidelines/#sync-token)
-service_ids      `[<service_id>]`   false
-calendar_ids     `[<calendar_id>]`  false
-event_types      `[<event_type>]`   false            [Event Types](/rest-api/constants/#event-type)
-geo_circles      `[<geo_circle>]`   false            [Geo Circle](#geo-circle)
-order_by         "distance"         false            Can only be set when exactly 1 geo_circle is passed along
-==============   ===============    ==============   ===============
+
+Parameter | Value | Required | Description
+:--- | :--- | :--- | :---
+sync_token | `<sync_token>` | false | [See Sync Token for more info](/rest-api/guidelines/#sync-token)
+service_ids | `[<service_id>]` | false | 
+calendar_ids | `[<calendar_id>]` | false | 
+event_types | `[<event_type>]` | false | [Event Types](/rest-api/constants/#event-type)
+geo_circles | `[<geo_circle>]` | false | [Geo Circle](#geo-circle)
+order_by | "distance" | false | Can only be set when exactly 1 geo_circle is passed along
+
 
 ## /events/`<event_id>`/
 
