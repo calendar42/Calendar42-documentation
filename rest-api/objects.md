@@ -81,7 +81,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
 
         "rsvp_status": "<rsvp-status>", // See rsvp list
 
-        "calendar_ids": [ <calendar-id>, <calendar-id>, <calendar-id> ],
+        "calendar_ids": [ "<calendar-id>", "<calendar-id>", "<calendar-id>" ],
 
         "start": "<date>",
         "end": "<date>",
