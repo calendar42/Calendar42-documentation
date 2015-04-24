@@ -123,7 +123,7 @@ Example of a trip containing one simple 'walk-leg':
                 "lon": 4.3650344,
                 "name": "osm:node:45105337",
                 "departure": 1427220648000,
-                "location-id": "<string>"
+                "location_id": "<string>"
             },
             "interlineWithPreviousLeg": false,
             "realTime": false,
@@ -138,7 +138,7 @@ Example of a trip containing one simple 'walk-leg':
                 "lon": 4.3648093,
                 "name": "osm:node:45104577",
                 "departure": 1427220660000,
-                "location-id": "<string>"
+                "location_id": "<string>"
             },
             "arrivalDelay": 0,
             "transitLeg": false,
