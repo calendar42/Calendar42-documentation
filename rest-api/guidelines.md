@@ -283,10 +283,6 @@ As described above, requests will default to repsonding with the first 10 items 
 
 Furthermore, even when specifying for a specific set of items with for instance the `ids` parameter, the limit will still default to 10. If you for example retrieve `/events/ids=[01,02,03,04,05,06,07,08,08,10,11]`, only the first 10 items will be returned.
 
-# Max-limit
-
-Currently the maximum value that can be set for `limit` is 100, meaning that any endpoint can only be paginated by 100 at the time. Setting the limit to any higher value will return an error.
-
 ### Example:
 
 GET /api/v1/events/?limit=10&offset=0
@@ -311,3 +307,14 @@ GET /api/v1/events/?limit=10&offset=10
         }
     }
 
+# Max-limit
+
+Currently the maximum value that can be set for `limit` is 100, meaning that any endpoint can only be paginated by 100 at the time. Setting the limit to any higher value will return an error.
+
+# Rate-limits
+
+* The number of API calls is limited on an hour basis accross the API
+* The amount of calls differ between anonymous users and users with an [API Token](/rest-api/api-tokens/)
+
+* Anonymous requests: 50/hour
+* Requests with API token: 10000/hour

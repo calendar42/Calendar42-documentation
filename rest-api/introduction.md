@@ -5,7 +5,7 @@ Using our [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) A
 * [Guidelines](/rest-api/guidelines/)
 * [Constants](/rest-api/constants/)
 * [Objects](/rest-api/objects/)
-* [Endpoints](/rest-api/guidelines/)
+* [Endpoints](/rest-api/endpoints/)
 
 ### Explore
 
