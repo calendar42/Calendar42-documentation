@@ -18,7 +18,7 @@ Support methods:
 
 Parameter | Required | 
 :--- | :--- | :---
-`ids` | false | Array of event ids. To filter on specific events
+`ids` | false | Array of event ids. To filter on specific events (reponse is not equally ordered)
 `service_ids` | false | Array of service ids
 `calendar_ids` | false | Array of calendar ids
 `event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
@@ -127,7 +127,7 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 
 Parameter | Required | 
 --- | --- | --- 
-`ids` | false | Array of calendar ids. To filter on specific events
+`ids` | false | Array of calendar ids. To filter on specific events (reponse is not equally ordered)
 `service_ids` | false | Array of service ids
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
@@ -176,7 +176,7 @@ When requesting the `/locations/` without any parameters, it will return all loc
 
 Parameter | Required | Description
 --- | --- | --- 
-`ids` | false | Array of location ids. To filter on specific locations
+`ids` | false | Array of location ids. To filter on specific locations (reponse is not equally ordered)
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 `user_ids` | false | Array of service ids. Only return locations that have labels in relation to user
 `service_ids` | false | Array of service ids. Only return locations that have labels in relation to the service
