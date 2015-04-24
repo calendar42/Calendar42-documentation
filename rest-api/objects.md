@@ -209,12 +209,12 @@ Currently the serializer for trip data still returns too much data and doesn't c
             "departure_delay": "<int>",
             "arrival_delay": "<int>",
             "transit_leg": "<boolean>",
-            "agency_timezone_offset": "<int>",
+            "agency_time_zone_offset": "<int>",
             "leg_geometry": {
                 "length": "<int>",
                 "points": "<string>"
             },
-            "from": {
+            "from_location": {
                 "location_id": "<string>",
                 "text": "<string>",  // was "name"
                 "geo": { // was in root as lat & lon
@@ -224,7 +224,7 @@ Currently the serializer for trip data still returns too much data and doesn't c
                 "departure": "<date>",
                 "arrival": "<date>"
             },
-            "to": {
+            "to_location": {
                 "location_id": "<string>",
                 "text": "<string>",  // was "name"
                 "geo": { // was in root as lat & lon
