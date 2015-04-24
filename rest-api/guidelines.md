@@ -228,6 +228,9 @@ In a representation of a resource, related resources are represented by a list o
 
 For timezones the standard olson timezone definitions should be used (see: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
+## URL Fields pointing to images
+
+In order to cope with images being served over both secure (https) and insecure (http) connections, URL fields are expected to begin with `"://"` instead of "http://" or "https://".
     
 ## Sync token
 To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.

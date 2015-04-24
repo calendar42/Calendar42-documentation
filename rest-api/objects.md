@@ -21,7 +21,7 @@ all_day | Boolean | true | true | false | If the event is an all day event this 
 title | String | true | true |  | The title of the event  | |
 description | String | false | true |  | Description of the event | |
 color | String | false | true |  | Events can have a color related, this color should be in hsla format | |
-image | String | false | true |  | the url where to reach the event image | |
+logo | String | false | true |  | the url where to reach the event image | |
 source_url | String | false | false | Url source of the event | If the event is imported from an external service (ics) this attribute contains the URL where to reach the event information from the source | |
 start_location | Object | false | true |  | The location where the event starts | [Location](/rest-api/objects/#location) |
 end_location | Object | false | true |  | The location where the event ends | [Location](/rest-api/objects/#location) |
@@ -59,7 +59,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
         "title": "<string>",
         "description": "<string>",
         "color": "<string>",
-        "image": "<url>",
+        "logo": "<url>",
         "source_url": "<url>",
         
         "start_location": "<location>",
@@ -211,7 +211,8 @@ name | String | true | true |  | Name of the calendar | |
 description | String | false | true |  | Description of the calendar | |
 category | String | false | true |  | Category of the calendar (will be lowercased and stripped from spaces by default) | |
 color | String | false | true |  | Calendars can have a color related, this color should be in hsla format | |
-image | String | false | true |  | the url where to reach the calendar image | |
+icon | String | false | true |  | the url where to reach the calendar icon | |
+logo | String | false | true |  | the url where to reach the calendar image | |
 sync_token | Integer | false | false |  | The [sync token](/rest-api/guidelines/#sync-token) |  |
 url| String | false | false |  | The url where to reach the calendar information | |
 calendar_type | String | false | false |  | The type of the calendar | [Calendar type](#calenda-type) |
@@ -236,7 +237,8 @@ import_failed | [Date](/rest-api/guidelines/#date-format) | false |  | true | Da
         "description": "<string>",
         "category": "<string>",
         "color": "<string>",
-        "image": "<url>",
+        "icon": "<url>",
+        "logo": "<url>",
 
         "sync_token": "<int>",
 
