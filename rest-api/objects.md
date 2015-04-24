@@ -201,16 +201,16 @@ Currently the serializer for trip data still returns too much data and doesn't c
     "legs":[
         {
             "mode": "<transport_type>",
-            "start-time": "<date>",
-            "end-time": "<date>",
+            "start_time": "<date>",
+            "end_time": "<date>",
             "distance": "<float>",
             "duration": "<float>",
-            "real-time": "<boolean>",
-            "departure-delay": "<int>",
-            "arrival-delay": "<int>",
-            "transit-leg": "<boolean>",
-            "agency-timezone-offset": "<int>",
-            "legGeometry": {
+            "real_time": "<boolean>",
+            "departure_delay": "<int>",
+            "arrival_delay": "<int>",
+            "transit_leg": "<boolean>",
+            "agency_timezone_offset": "<int>",
+            "leg_geometry": {
                 "length": "<int>",
                 "points": "<string>"
             },
@@ -236,14 +236,14 @@ Currently the serializer for trip data still returns too much data and doesn't c
             },
             "steps": [
                 {
-                    "street-name": "<string>",
+                    "street_name": "<string>",
                     "distance": "<int>",
                     "elevation": "<array>",
                     "area": "<boolean>",
-                    "absolute-direction": "<string>",
-                    "relative-direction": "<string>",
-                    "stay-on": "<boolean>",
-                    "bogus-name": "<boolean>",
+                    "absolute_direction": "<string>",
+                    "relative_direction": "<string>",
+                    "stay_on": "<boolean>",
+                    "bogus_name": "<boolean>",
                     "geo": { // was in root as lat & lon
                         "latitude": "<float>",
                         "longitude": "<float>"
