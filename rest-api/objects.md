@@ -90,7 +90,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
                 "legs":[]
             }
         },
-        "length": "<int>" // Meters
+        "length": "<float>" // Meters
     }
 ```
 
@@ -194,6 +194,71 @@ Currently the serializer for trip data still returns too much data and doesn't c
     * Rewrite datetime stamps to be similar to [Date time](/rest-api/guidelines/#date-time)
     * Rewirite camelcased keys to underscores
 
+##### Desired format
+
+```javascript
+"data": {
+    "legs":[
+        {
+            "mode": "<transport_type>",
+            "start-time": "<date>",
+            "end-time": "<date>",
+            "distance": "<float>",
+            "duration": "<float>",
+            "real-time": "<boolean>",
+            "departure-delay": "<int>",
+            "arrival-delay": "<int>",
+            "transit-leg": "<boolean>",
+            "agency-timezone-offset": "<int>",
+            "legGeometry": {
+                "length": "<int>",
+                "points": "<string>"
+            },
+            "from": {
+                "location_id": "<string>",
+                "text": "<string>",  // was "name"
+                "geo": { // was in root as lat & lon
+                    "latitude": "<float>",
+                    "longitude": "<float>"
+                },
+                "departure": "<date>",
+                "arrival": "<date>"
+            },
+            "to": {
+                "location_id": "<string>",
+                "text": "<string>",  // was "name"
+                "geo": { // was in root as lat & lon
+                    "latitude": "<float>",
+                    "longitude": "<float>"
+                },
+                "departure": "<date>",
+                "arrival": "<date>"
+            },
+            "steps": [
+                {
+                    "street-name": "<string>",
+                    "distance": "<int>",
+                    "elevation": "<array>",
+                    "area": "<boolean>",
+                    "absolute-direction": "<string>",
+                    "relative-direction": "<string>",
+                    "stay-on": "<boolean>",
+                    "bogus-name": "<boolean>",
+                    "geo": { // was in root as lat & lon
+                        "latitude": "<float>",
+                        "longitude": "<float>"
+                    }
+                }
+            ]
+            // Deprecated:
+            // "interline-with-previous-leg": "<boolean>",
+            // "route": "<string>",
+            // "rented-bike": "<boolean>",
+            // "pathway": "<boolean>",
+        }
+    ]
+}
+```
 
 # Calendar
 

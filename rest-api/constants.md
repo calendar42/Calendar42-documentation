@@ -67,14 +67,21 @@ This chapter describes the different constants that are used, both in paramaters
 
 * Travel by car
 
-``public_transport``
+``transit``
 
-* Travel by public transport
+* Travel by transit/ public transport
 
 ``bicycle``
 
 * Travel by bicycle
 
+``walk``
+
+* Travel by foot
+
+### Combining transport modes
+
+Inside trip requests combinations of several transport modes may also occur, `[transit,walk]` is for instance often used to serve door-to-door trips by public transport.
 
 # Calendar Constants
 
