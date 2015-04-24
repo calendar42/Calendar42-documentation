@@ -9,7 +9,7 @@ Using our [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) A
 
 ### Explore
 
-* Interactive API documentation `coming soon`
+* Interactive API documentation `coming soon!`
 
 ### Start developing
 
