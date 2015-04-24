@@ -23,8 +23,7 @@ Action | HTTP method | Example
 Partially **U**pdate resource  | PATCH | `PATCH /events/<event_id>`
 **D**elete resource  | DELETE | `DELETE /events/<event_id>`
 Replace complete resource | PUT | `PUT /events/<event_id>`
-
-
+<br/>
 
 ### Endpoints only use lower case characters and dashes
 
@@ -267,9 +266,10 @@ Only the event changed between Step 1, and Step 2 are returned, so in this case 
 To allow to request a limited amount of rows, is required to send the limit and offset params 
 
 Parameter | Type | Required | Default |Description
---- | --- | --- | --- | --- 
+:--- | :--- | :--- | :--- | :--- 
 limit | INT | False | 10 | Tells to the API the amount of rows that are being requested
 offset | INT | False | 0 | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
+<br/>
 
 ### Offset, limit and count
 
