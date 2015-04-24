@@ -262,8 +262,11 @@ Parameter | Type | Required | Default |Description
 limit | INT | False | 10 | Tells to the API the amount of rows that are being requested
 offset | INT | False | 0 | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
 
-As described above, GET requests will default to sending the first 10 items when no offset or limit are specified. To find out whether all items are returned, the count can be checked inside the meta-data send along with the request.
+### A note on default offset and limit
 
+As described above, requests will default to repsonding with the first 10 items when no offset or limit are specified. To find out whether all items are returned, the count can be checked inside the meta-data send along with the request.
+
+Furthermore, even when specifying for a specific set of items with for instance the `ids` parameter, the limit will still default to 10. If you for example retrieve `/events/ids=[01,02,03,04,05,06,07,08,08,10,11]`, only the first 10 items will be returned.
 
 
 
