@@ -315,6 +315,3 @@ Currently the maximum value that can be set for `limit` is 100, meaning that any
 
 * The number of API calls is limited on an hour basis accross the API
 * The amount of calls differ between anonymous users and users with an [API Token](/rest-api/api-tokens/)
-
-* Anonymous requests: 50/hour
-* Requests with API token: 10000/hour
