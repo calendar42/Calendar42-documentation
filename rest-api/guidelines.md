@@ -156,11 +156,17 @@ When a request was successful (e.g. status code is 2xx) the generally expected s
         
         meta_data : {
             //… meta data fields …
-            //contents depends on request            
         }
     }
     
-Note that the results data is always in the form of an array. This is to make the structure uniform for all the possible responses.
+Note that the results `data` is always in the form of an array. This is to make the structure uniform for all the possible responses.
+
+The `meta_data` field may contain the following fields, depening on the request:
+
+* `sync_token`: see [Sync token](#sync-token)
+* `limit`: see [Pagination](#pagination)
+* `offset`: see [Pagination](#pagination)
+* `count`: The total count of the items that could be returned, also see [Offset, limit and count](#offset-limit-and-count)
 
 #### In case of error
 
@@ -262,13 +268,21 @@ Parameter | Type | Required | Default |Description
 limit | INT | False | 10 | Tells to the API the amount of rows that are being requested
 offset | INT | False | 0 | Tells the API where to start returning records from the entire set of results. If you don't include this parameter, the default is to start at record number 0 and then return the number of records specified with the 'limit' parameter.
 
+### Offset, limit and count
+
+When requesting an endpoint that supports `offset` and `limit`, the response will also contain a `count` that specifies the total amount of items that could be returned. This `count` can be used to determine whether all items have been returned, and the amount of necessary pagination needed.
+
+By sending `offset=0&limit=0` the `count` will still be returned, allowing to only request the `count` for usecases in which the item details are not needed.
+
 ### A note on default offset and limit
 
 As described above, requests will default to repsonding with the first 10 items when no offset or limit are specified. To find out whether all items are returned, the count can be checked inside the meta-data send along with the request.
 
 Furthermore, even when specifying for a specific set of items with for instance the `ids` parameter, the limit will still default to 10. If you for example retrieve `/events/ids=[01,02,03,04,05,06,07,08,08,10,11]`, only the first 10 items will be returned.
 
+# Max-limit
 
+Currently the maximum value that can be set for `limit` is 100, meaning that any endpoint can only be paginated by 100 at the time. Setting the limit to any higher value will return an error.
 
 ### Example:
 
