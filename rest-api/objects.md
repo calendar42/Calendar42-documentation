@@ -172,6 +172,7 @@ Example of a trip containing one simple 'walk-leg':
 
 Currently the serializer for trip data still returns too much data and doesn't correctly format everything:
 
+* in the state object, define the codes & texts
 * In the root data object, deprecate everything but "legs":
     * deprecate .requestParameters (it's already in the parent object)
     * deprecate .walkTime
@@ -203,12 +204,12 @@ Attribute name | Type | Mandatory | Editable | Default | Description | Valid val
 id | String | false | false | true | Unique id that identifies the calendar | |
 created | [Date](/rest-api/guidelines/#date-format) | false | false |  | Date were the calendar was created | |
 modified | [Date](/rest-api/guidelines/#date-format) | false | false |  | Date of the last modification of the calendar | |
-creator | Object | true | false | [Person](#person) | [Person object](#person) that created that event |  |
-inviter | Object | true | false | [Person](#person) | [Person object](#person) that invited to this event |  |
+creator | Object | true | false | [Person](#person) | [Person object](#person) that created that calendar |  |
+inviter | Object | true | false | [Person](#person) | [Person object](#person) that invited to this calendar |  |
 permission | String | false | false |  | Type of [permission](/rest-api/constants/#permission) that the user have in this calenda. This is an used related attribute | [Permission](/rest-api/constants/#permission) |
 name | String | true | true |  | Name of the calendar | |
-description | String | false | true |  | Description of the event | |
-category | String | false | true |  | Category of the event | |
+description | String | false | true |  | Description of the calendar | |
+category | String | false | true |  | Category of the calendar (will be lowercased and stripped from spaces by default) | |
 color | String | false | true |  | Calendars can have a color related, this color should be in hsla format | |
 image | String | false | true |  | the url where to reach the calendar image | |
 sync_token | Integer | false | false |  | The [sync token](/rest-api/guidelines/#sync-token) |  |
