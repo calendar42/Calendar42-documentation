@@ -232,7 +232,10 @@ For timezones the standard olson timezone definitions should be used (see: http:
 In order to cope with images being served over both secure (https) and insecure (http) connections, URL fields are expected to begin with `"://"` instead of "http://" or "https://".
     
 ## Sync token
+
 To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
+
+Note that the `sync_token` returned is related to the current state of all the data, it's the responsibility of the client to have requested all the (paginated) data beforehand.
 
 ### Example:
 
