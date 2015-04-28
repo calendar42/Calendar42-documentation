@@ -49,9 +49,13 @@ This chapter describes the different constants that are used, both in paramaters
 
 ## • RSVP Status
 
+``null``
+
+* You can't set attendance to this status as this is the default.
+
 ``not_replied``
 
-* You cant set attendance to this number this is the default, is interpreted as not-attending
+* Indicating you haven't replied.
 
 ``attending``
 
