@@ -81,13 +81,13 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 ---------------------------------------
 
-## • /events/suggestions/
+## • /events/trip-suggestions/
 
 Supported methods
 
 * GET
 
-### GET /events/suggestions/
+### GET /events/trip-suggestions/
 
 * Returns a default response object with a list containing [Event](/rest-api/objects/#event) objects inside the data object.
 * Note that the returned event objects are considered suggestions and have no id related to it yet. In order to store the event and perform other actions, the event needs to be published to the server
@@ -107,7 +107,7 @@ Parameter | Required |
 
 Get a trip from point A to arrive at a certain time at point B
 
-* ``/events/suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
+* ``/events/trip-suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
 ---------------------------------------
 
