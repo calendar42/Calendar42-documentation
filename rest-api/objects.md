@@ -115,7 +115,7 @@ Example of a trip containing one simple 'walk-leg':
 "data": {
     "legs":[
         {
-            "mode": "WALK",
+            "mode": "walk",
             "distance": 21.754,
             "from": {
                 "lat": 52.0680422,
