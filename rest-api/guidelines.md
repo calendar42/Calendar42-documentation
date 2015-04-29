@@ -6,6 +6,14 @@
 
 Because we want to keep any public request linkable (e.g. on a web page or in an email) we will not use HTTP headers to provide request meta-data such as accepted content type.
 
+## Authenticated requests use the Authentication header parameter
+
+Our authentication scheme uses a simple token-based HTTP Authentication scheme. For clients to authenticate, the token key should be included in the `Authorization` HTTP header. The key should be prefixed by the string literal `Token`, with whitespace separating the two strings. For example:
+
+* `Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b`
+
+Tokens are one-on-one related to users on our platform. The data that is accessible with these tokens is thus also related to the relationships this user has to services, calendars and events.
+
 ## Endpoint URI syntax and specification
 
 ### API versioning
