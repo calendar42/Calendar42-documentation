@@ -1,33 +1,42 @@
-# The Calendar42 documentation
+# Calendar42 documentation
 
-_Note: This documentation is a work in progress. There may be errors and inconsistencies and things will change. However, you’ll be able to gain insight into our roadmap, ask questions, give suggestions and even help shape the development._
+_Note: This documentation is a work in progress, meaning things might change and you may come across some inconsistencies (or even errors). That being said, it gives direct insight in our roadmap and offers the opportunity to ask questions, give suggestions and help shape the development._
 
-This documentation is currently divided into the following categories:
+## Getting started
 
-1. [REST API](/rest-api/introduction/) 
-2. [XMPP API](/xmpp-api/introduction/) 
-3. [Application frameworks](/application-frameworks/introduction/)
-4. [Services](/services/introduction/) 
+1. Get started with our [REST API](/rest-api/introduction/) 
+2. Get started with our real-time [XMPP API](/xmpp-api/introduction/) 
+3. Learn more about our [Application frameworks](/application-frameworks/introduction/)
+4. Learn more about our [Services](/services/introduction/)
 
-## Introduction to Calendar42 
+## About Calendar42 
 
-The planning hub of Calendar42 is an information funnel that distributes, enriches and profiles time related information. This information will be communicated, in real-time, to end-users on a publish/subscription base through a browser- or native applications as well as through one of our other communication channels. We offer SMS text (not everyone one has a smartphone), transactional mail (nothing wrong with good old fashioned mailboxes) & native push notifications including custom templates & notification masks.
+Calendar42 is a planning ecosystem that distributes, enriches and profiles time related information. It communicates in real-time with end-users through our browser- & native apps, as well as our our other communication channels. We offer SMS text (not everyone one has a smartphone), transactional mail (nothing wrong with good old fashioned mailboxes) & native push notifications including custom templates & notification masks.
 
-The Calendar42 platform and technologies provide a fundament to create services for end users and organisations. Our technology stack is mainly build with the following elements: python, xmpp, zeromq, postgresql, django, ejabberd, javascript, elasticsearch, objective-c & java.
+### The ecosystem
 
-The platform can be divided into three separate layers. 
+The Calendar42 ecosystem can be divided into three seperate layers:
 
-* C42 Applications/frameworks
-* C42 Platform
-* C42 Data integrations & Add-ons 
+* C42 Platform - accesible through our [REST API](/rest-api/introduction/) and [XMPP API](/xmpp-api/introduction/)
+* C42 Applications and frameworks
+* C42 Data integrations & Add-ons
+
+Our technology stack is mainly build using: python, xmpp, zeromq, postgresql, django, ejabberd, javascript, elasticsearch, objective-c & java.
+
+### Enabling third parties
+
+Calendar42 has an open character on all layers and provides a fundament to create services for end-users and organisations that can do pretty much anything planning related.
+
+1. Create custom apps to access the data within the platform.
+2. Create extensions on the platform, like specific enrichment processes or interfaces to use information generated within the Calendar42 platform as input for other processes. 
+3. Create interfaces to enrich your own data and allow them to become consumable through the Calendar42 apps.
+
+### Privacy & Control
 
 Data owners (including the end users) have full control over the accessibility of their data, can enjoy the system services (enrichments, subscriptions, notifications) and are able to monitor historic, real-time and expected usage of this data and the events they represent. 
 
-The Calendar42 platform has an open character on all three levels, enabling third parties to develop their own solutions within the ecosystem of Calendar42: 
+## Plannerstack
 
-1. Creation of alternative or tailor-made applications to access the data within the platform with the Calendar42 hybrid & javascript application frameworks
-2. Creation of extensions to the platform, like specific enrichment processes or interfaces to use information generated within the Calendar42 platform as input for other processes. Using our API, you can make Calendar42 do pretty much anything planning related you want with the Calendar42 REST API. To make sure you never miss a beat, developers can go all the way with our real-time publish/subscribe API. 
-3. Creation of interfaces to allow their own data to become consumable through the Calendar42 platform.
+With our non-profit initiative [Plannerstack](http://plannerstack.org) we developed and open, multimodal, real-time travel information ‘toolbox’; including real-time trip planners, high quality linked geo-coders and subscription services. [Learn more](http://plannerstack.org)
 
-With our non-profit initiative [Plannerstack](http://plannerstack.org) we developed and open, multimodal, real-time travel information ‘toolbox’; including real-time trip planners, high quality linked geo-coders and subscription services. The purpose of this tool box is to enable any and all interested parties to develop and offer plug & play, dynamic and multimodal travel information services and applications. The idea is that collaboration makes innovative developments possible. Co-creation is an important factor to make new solutions possible.
-
+The purpose of this tool box is to enable any and all interested parties to develop and offer plug & play, dynamic and multimodal travel information services and applications. The idea is that collaboration makes innovative developments possible. Co-creation is an important factor to make new solutions possible.
