@@ -1,4 +1,8 @@
-# Request token
+# Use Token
+
+* API Token usage is descibed here: [authenticated requests](/rest-api/guidelines/#authenticated-requests-use-the-authentication-header-parameter)
+
+# Request API token
 
 Can't wait to start developing on top of the Calendar42 platform? Great!
 
