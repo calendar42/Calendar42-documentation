@@ -182,7 +182,8 @@ Parameter | Required | Description
 `service_ids` | false | Array of service ids. Only return locations that have labels in relation to the service
 `search_pattern` | false | String to match on in location text, address, city and label
 `location_types` | false | Array of [Location Type](/rest-api/constants/#location-type)
-`geo_circles` | false | Array of [Geo Circle](#geo-circle)
+`geo_circles` | false | Array of [Geo Circle]
+`geo_polylines` | false | Array of [GeoPolyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
 <br>
 
 Note: doesn't support order_by=distance yet
