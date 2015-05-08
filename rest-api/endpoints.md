@@ -109,6 +109,19 @@ Get a trip from point A to arrive at a certain time at point B
 
 * ``/events/trip-suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
+#### Error responses
+
+Even when the parameters are valid a trip suggestion request might still result in an error due to multiple other reasons. The trip planner might not support the locations send (the case when sending points in the middle of the sea), or the time might be too far in the future or history to be able to route for (in the case of public transport requests). When such cases occur an error message will be returned similar to:
+
+	{
+	  "error": {
+	    "status_code": 500,
+	    "message": "Trip is not possible.  You might be trying to plan a trip outside the map data boundary.",
+	    "code": "GENERAL_SYSTEM_ERROR"
+	  }
+	}
+
+
 ---------------------------------------
 
 ## • /calendars/
