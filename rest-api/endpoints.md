@@ -96,7 +96,7 @@ Supported methods
 
 Parameter | Required | 
 --- | --- | --- 
-`event_type` | true | [Event Type](/rest-api/constants/#event-type) (Journey subset)
+`event_type` | true | [Event Type](/rest-api/constants/#event-type) (currently only supports `arrive_by` & `depart_from`)
 `transport_modes` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
 `from_location` | true | Tuple with lat lon
 `to_location` | true | Tuple with lat lon
