@@ -53,10 +53,10 @@ Upon successful creation, the returned event resource **WILL** be modified:
 
 1. It **WILL** contain a new generated id
 2. It **WILL** be extended with several attributes and their default values
-  1. Examples here are `sync_token`, `event_type`, `permission`, `created`, `modified` & `creator`
+  * Examples here are `sync_token`, `event_type`, `permission`, `created`, `modified` & `creator`
 3. Its location data **COULD** be enriched to contain more specific location data
-  1. **Geocoding**: The posted event contains one or more locations without geo-position. The geo-position **COULD** be added based on location text, city, address and postcode.
-  2. **Reverse geocoding**: The posted event contains one or more locations with only geo-positions. Location text, city, address and postcode **COULD** be added.
+  * **Geocoding**: The posted event contains one or more locations without geo-position. The geo-position **COULD** be added based on location text, city, address and postcode.
+  * **Reverse geocoding**: The posted event contains one or more locations with only geo-positions. Location text, city, address and postcode **COULD** be added.
 
 See [the interactive Swagger Event API documentation for supported fields](http://calendar42.com/app/django/api/docs/#!/v2/Event_Api)
 
