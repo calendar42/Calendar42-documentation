@@ -188,7 +188,8 @@ Response with an error object
             original_error : <Nested error object | string represention>
         }
     }
-    
+
+
 ### Field names use underscore notation
 
 Field names in response bodies use underscore notation, for instance :
@@ -219,17 +220,19 @@ In a representation of a resource, related resources are represented by a list o
         
     }
 
+
+
 ## Date Time
 
 ### Date format
 
-    The date format that should be used is ISO-8601  2012-04-23T18:25:43.511Z extended.
+    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511Z extended.
     
-    So the expected format will be: "YYYY-MM-DDThh:hh:mm:ss.sss"
+    So the expected format will be: "YYYY-MM-DDThh:mm:ss.sssZ"
     
     An example of valid date format:
     
-    "2004-02-12T15:19:21+00:00" // URL ENCODED: 2015-03-24T14%3A29%3A47.613Z
+    "2004-02-12T15:19:21:00.000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000Z
     
 ### Timezone format
 
@@ -244,6 +247,8 @@ In order to cope with images being served over both secure (https) and insecure 
 To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
 
 Note that the `sync_token` returned is related to the current state of all the data, it's the responsibility of the client to have requested all the (paginated) data beforehand.
+
+Also note that GET requests will return deleted resources (see [Representation of deleted resources](#representation-of-deleted-resources)), this will allow clients to know which resources have been deleted since the last request.
 
 ### Example:
 
@@ -318,11 +323,19 @@ GET /api/v1/events/?limit=10&offset=10
         }
     }
 
-# Max-limit
+## Max-limit
 
 Currently the maximum value that can be set for `limit` is 100, meaning that any endpoint can only be paginated by 100 at the time. Setting the limit to any higher value will return an error.
 
-# Rate-limits
+## Rate-limits
 
 * The number of API calls is limited on an hour basis accross the API
 * The amount of calls differ between anonymous users and users with an [API Token](/rest-api/api-tokens/)
+
+## Representation of deleted resources
+
+Deleting a resource (e.g. DELETE /events/`event_id`) will only make its content inaccessible, its relationships (e.g. with users) will remain intact. This results in the resource still being returned on GET requests, but only containing its permission and id.
+
+As the deleted resource is still returned, clients can use the information for synchronization purposes (by sending along the [Sync token](#sync-token)) or use the information to undo a deletion (if allowed).
+
+Deleting a subscription related to a resource instead of the resource itself (e.g. DELETE /subscriptions/`subscription_id`) will result in making the content inaccessible to the user (or users, in the case of a calendar-event subscription) related to that subscription. Deleting all subscriptions related to a resource will result in the same as deleting the resource itself.

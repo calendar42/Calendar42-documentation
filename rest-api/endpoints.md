@@ -1,14 +1,15 @@
 # General introduction
 
-This chapter describes the actual endpoints ot the Calendar42 API.
+This chapter describes the actual endpoints of the Calendar42 API.
 
 ---------------------------------------
 
 ## • /events/
 
-Support methods:
+Supported methods:
 
-* GET
+* GET `acceptation`
+* POST `development`
 
 ### GET: /events/
 
@@ -20,36 +21,312 @@ Parameter | Required |
 :--- | :--- | :---
 `ids` | false | Array of event ids. To filter on specific events (reponse is not equally ordered)
 `service_ids` | false | Array of service ids
-`calendar_ids` | false | Array of calendar ids
+`calendar_ids` | false | Array of calendar ids <br> Supports the `or` operator
 `event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
 `geo_circles` | false | Array of [Geo Circles](#geo-circle)
-`length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports lt and gt operators
+`length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports `lt` and `gt` operators
 `order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
 <br>
 
 #### Example usages
 
-Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
+**Ordering**: Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
 
 * ``/events/?calendar_ids=[abc123]&geo_circles=[(52.28297176 5.27424839 5000)]&order_by=distance``
 
-Get trips longer than 15km
+**Operators**: Get trips longer than 15km, that are in either calendar 'abc1' or calendar 'abc2'
 
-* ``/events/?event_types=[arrive_by,depart_from]&length__gt=15000``
+* ``/events/?event_types=[arrive_by,depart_from]&length__gt=15000&calendar_ids__or=[abc1,abc2]``
 
-Get events that changed since last retrieval
+**Synchronisation**: Get events that changed since last retrieval
 
 * ``/events/?sync_token=128973981273``
 
 ---------------------------------------
 
+### POST: /events/
+
+Editable attributes of the [Event Model](/rest-api/objects/#event) can be sent in as an object to create a new Event resource. 
+
+Upon successful creation, the returned event resource **WILL** be modified:
+
+1. It **WILL** contain a new generated id
+2. It **WILL** be extended with several attributes and their default values
+  1. Examples here are `sync_token`, `event_type`, `permission`, `created`, `modified` & `creator`
+3. Its location data **COULD** be enriched to contain more specific location data
+  1. **Geocoding**: The posted event contains one or more locations without geo-position. The geo-position **COULD** be added based on location text, city, address and postcode.
+  2. **Reverse geocoding**: The posted event contains one or more locations with only geo-positions. Location text, city, address and postcode **COULD** be added.
+
+See [the interactive Swagger Event API documentation for supported fields](http://calendar42.com/app/django/api/docs/#!/v2/Event_Api)
+
+#### Example usage
+
+##### Most minimal creation in the form of a todo
+
+The most minimal event consists of todo, as 'normal' events (the default event type) requires start, end, start_timezone and end_timezone to be set.
+
+This example shows clearly which fields are being defaulted and which are being send back empty.
+
+This todo will then off course will not have any context related to it, not in the form of content (eg. title or description), nor in the form of calendar relations.
+
+```javascript
+# Request Payload
+    {
+        "event_type": "todo"
+    }
+```
+
+```javascript
+# Response (including automatically generated and defaulting fields)
+    {
+        "data": [
+            {
+              # ORIGINAL FIELD
+                "event_type": "todo",
+              # AUTOMATICALLY GENERATED FIELDS
+                "id": "897dsah8789had897had873b4",
+                "created": "2015-02-12T15:19:21:00.000Z",
+                "modified": "2015-02-12T15:19:21:00.000Z",
+                "sync_token": 142,
+                "creator": {
+                    "id": "987jbkhjasd7563ghjva78",
+                    "first_name": "Your",
+                    "last_name": "Name"
+                },
+              # AUTOMATICALLY DEFAULTING FIELDS
+                "permission": "subscribed_write",
+                "calendar_ids": [],
+              # EMPTY FIELDS
+                "previous_permission": null,
+                "is_suggestion": null,
+                "is_invitation": null,
+                "invitation": null,
+                "rsvp_status": null,
+                "start": null,
+                "end": null,
+                "start_timezone": null,
+                "end_timezone": null,
+                "all_day": null,
+                "title": null,
+                "description": null,
+                "color": null,
+                "logo": null,
+                "source_url": null,
+                "start_location": null,
+                "end_location": null,
+                "recurrence": null,
+                "recurrence_parent": null,
+                "related_event": null,
+                "trip": null,
+                "length": null
+            }
+        ],
+        "meta_data": {
+            "sync_token": 142
+        }
+    }
+```
+
+##### Creating a simple event into a calendar
+
+This example shows a regular usecase, where an event is created in one of the accesible calendars, together with a title and a description.
+
+* The `event_type` will default to `normal`
+* `normal` events require `start` and `end` to be set
+* These dates require their timezones to be set with `start_timezone` and `end_timezone`
+
+```javascript
+# Request Payload
+    {
+        "calendar_ids": ["42b42b42b42b42b42b42b42b42b42b42b42b42b4"],
+        "start": "2015-02-12T15:00:00:00.000Z",
+        "start_timezone": "Europe/Amsterdam",
+        "end": "2015-02-12T15:30:00:00.000Z",
+        "end_timezone": "Europe/Amsterdam",
+        "title": "Nice title",
+        "description": "A nice description",
+    }
+```
+
+```javascript
+# Response, including automatically generated and defaulting fields
+    {
+        "data": [
+            {
+              # ORIGINAL FIELDS
+                "id": "897dsah8789had897had873b4",
+                "calendar_ids": ["42b42b42b42b42b42b42b42b42b42b42b42b42b4"],
+                "start": "2015-02-12T15:00:00:00.000Z",
+                "start_timezone": "Europe/Amsterdam",
+                "end": "2015-02-12T15:30:00:00.000Z",
+                "end_timezone": "Europe/Amsterdam",
+                "title": "Nice title",
+                "description": "A nice description",
+              # AUTOMATICALLY DEFAULTING FIELDS
+                "event_type": "normal",
+                "permission": "subscribed_write",
+              # EMPTY FIELDS
+                "previous_permission": null,
+                "is_suggestion": null,
+                "is_invitation": null,
+                "invitation": null,
+                "rsvp_status": null,
+                "all_day": null,
+                "color": null,
+                "logo": null,
+                "source_url": null,
+                "start_location": null,
+                "end_location": null,
+                "recurrence": null,
+                "recurrence_parent": null,
+                "related_event": null,
+                "trip": null,
+                "length": null
+            }
+        ],
+        "meta_data" : {
+            "meta_data": {
+                "sync_token": 143
+            }
+        }
+    }
+```
+
+##### Special case: Event creation with location id
+
+Prefered way of posting locations in events.
+
+```javascript
+# Request Payload (partial)
+    {
+        ...
+        "start_location": {
+            "id": "789ash9d87a98sdh7987ads",
+        }
+        ...
+    }
+```
+
+```javascript
+# Response (partial), including id & extended location information
+    {
+        "data": [
+            {
+              ...
+                "start_location": {
+                    "id": "789ash9d87a98sdh7987ads",
+                    "text": "Dorpstraat 1, 2600 AE",
+                    "address": "Dorpstraat 1",
+                    "postcode": "2600 AE",
+                    "city": "Delft",
+                    "geo": {
+                        "latitude": 52.001,
+                        "longitude": 4.3065
+                    }
+                }
+              ...
+            }
+        ],
+        "meta_data" : {
+            ...
+        }
+    }
+```
+
+##### Special case: Event creation with automatic geocoding
+
+The server will try to perform geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has no `geo` object. This missing latitude, longitude will then automatically be filled in based on the `text`, or based on the `city`, `address`, `postcode` fields.
+
+```javascript
+# Request Payload (partial)
+    {
+        ...
+        "start_location": {
+            "text": "Dorpstraat 1, 2600 AE",
+        }
+        ...
+    }
+```
+
+```javascript
+# Response (partial), including id & enriched location
+    {
+        "data": [
+            {
+              ...
+                "start_location": {
+                    "text": "Dorpstraat 1, 2600 AE",
+                    "address": "Dorpstraat 1",
+                    "postcode": "2600 AE",
+                    "city": "Delft",
+                    "geo": {
+                        "latitude": 52.001,
+                        "longitude": 4.3065
+                    }
+                }
+              ...
+            }
+        ],
+        "meta_data" : {
+            ...
+        }
+    }
+```
+
+
+##### Special case: Event creation with automatic reverse geocoding
+
+The server will try to perform reverse geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has a `geo` object, but misses one of the fields for `text`, `address`, `postcode` or `city`. These missing fields will then automatically be filled in.
+
+```javascript
+# Request Payload (partial)
+    {
+        ...
+        "start_location": {
+            "geo": {
+                "latitude": 52.001,
+                "longitude": 4.3065
+            }
+        }
+        ...
+    }
+```
+
+```javascript
+# Response (partial), including id & enriched location
+    {
+        "data": [
+            {
+              ...
+                "start_location": {
+                    "text": "Dorpstraat 1, 2600 AE",
+                    "address": "Dorpstraat 1",
+                    "postcode": "2600 AE",
+                    "city": "Delft",
+                    "geo": {
+                        "latitude": 52.001,
+                        "longitude": 4.3065
+                    }
+                }
+              ...
+            }
+        ],
+        "meta_data" : {
+            ...
+        }
+    }
+```
+
+
 ## • /events/`<event_id>`/
 
-Supported methods
+Supported methods:
 
-* GET
-* PATCH
+* GET `acceptation`
+* PUT `development`
+* PATCH `development`
+* DELETE `development`
 
 ### GET: /events/`<event_id>`/
 
@@ -83,9 +360,9 @@ will not only update the calendar_ids list of the specific event resource, it wi
 
 ## • /events/trip-suggestions/
 
-Supported methods
+Supported methods:
 
-* GET
+* GET `acceptation`
 
 ### GET /events/trip-suggestions/
 
@@ -128,9 +405,8 @@ Even when the parameters are valid a trip suggestion request might still result 
 
 Supported methods:
 
-* GET
-* POST
-* PATCH
+* GET `acceptation`
+* POST `development`
 
 ### GET /calendars/
 
@@ -140,7 +416,7 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 
 Parameter | Required | 
 --- | --- | --- 
-`ids` | false | Array of calendar ids. To filter on specific events (reponse is not equally ordered)
+`ids` | false | Array of calendar ids. To filter on specific events (response is not equally ordered)
 `service_ids` | false | Array of service ids
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
 `sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
@@ -158,9 +434,9 @@ All editable params of a [calendar](/rest-api/objects/#calendar) can be sent as 
 
 ## • /calendars/`<calendar_id>`/
 
-Supported methods
+Supported methods:
 
-* GET
+* GET `acceptation`
 
 ### GET: /calendars/`<calendar_id>`/
 
@@ -170,12 +446,9 @@ Supported methods
 
 ## • /locations/
 
-Supported methods
+Supported methods:
 
-* GET
-* PUT
-* POST
-* DELETE
+* GET `acceptation`
 
 ### GET /locations/
 
@@ -209,9 +482,9 @@ Note: doesn't support order_by=distance yet
 
 ## • /locations/`<location_id>`/
 
-Supported methods
+Supported methods:
 
-* GET
+* GET `acceptation`
 
 ### GET: /locations/`<location_id>`/
 
@@ -230,7 +503,7 @@ Subscriptions are resources describing the relationship between events and users
 
 Supported methods:
 
-* GET
+* GET `development`
 
 Parameter | Required | Description
 --- | --- | --- 
@@ -256,11 +529,11 @@ Parameter | Required | Description
 
 ## • /subscriptions/`<subscription_id>`/
 
-Supported methods
+Supported methods:
 
-* GET Same as [/subscriptions/](#subscriptions) but getting a list containing the single subscription based on the subscription id.
-* POST
-* PATCH
+* GET `development`
+* POST `development`
+* PATCH `development`
 
 GET parameters
 
@@ -280,9 +553,9 @@ All editable params of a [subscription](/rest-api/objects/#subscription) can be 
 ## • /positions/
 <!-- *TODO* -->
 
-Supported methods
+Supported methods:
 
-* POST
+* POST `development`
 
  Request Body
 

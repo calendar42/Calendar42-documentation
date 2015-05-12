@@ -2,7 +2,7 @@ This chapter describes the different object models that can be expected within t
 
 # Event
 
-Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
+Attribute name | Type | Required | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
 id | String | false | false | true | Unique id that identifies the event | |
 event_type | String | true | false | 'normal' | Type of the event | [event type](/rest-api/constants/#event-type) |
@@ -44,7 +44,7 @@ trip | Object | false | true |  | If the event is actually a trip, this attribut
         "modified": "<date>",
 
         "is_invitation": "<bool>",
-        "invitation": "<string>",
+        "invitation": "<invitation-object>",
 
         "rsvp_status": "<rsvp-status>", // See rsvp list
 
@@ -179,7 +179,7 @@ Example of a trip containing one leg:
 
 The calendar data model
 
-Attribute name | Type | Mandatory | Editable | Default | Description | Valid value/s |
+Attribute name | Type | Required | Editable | Default | Description | Valid value/s |
 --- | --- | --- | --- | --- | --- | --- |
 id | String | false | false | true | Unique id that identifies the calendar | |
 created | [Date](/rest-api/guidelines/#date-format) | false | false |  | Date were the calendar was created | |
