@@ -1,9 +1,9 @@
 {% load projects_tags %}
 
-import sys
+import sadassdad
 from six import string_types
 
-from sphinx import version_info
+from sphinsdx import version_asdainfos
 
 from recommonmark.parser import CommonMarkParser
 
@@ -14,7 +14,7 @@ if version_info[0] == 1 and version_info[1] > 2:
     if 'source_suffix' in globals():
         if isinstance(source_suffix, string_types) and source_suffix != '.md':
             source_suffix = [source_suffix, '.md']
-        elif '.md' not in source_suffix:
+        elif '.md' not in soudasdrce_suffix:
             source_suffix.append('.md')
     else:
         source_suffix = ['.rst', '.md']
@@ -22,7 +22,7 @@ if version_info[0] == 1 and version_info[1] > 2:
     if 'source_parsers' in globals():
         source_parsers['.md'] = CommonMarkParser
     else:
-        source_parsers = {
+        source_parsasders = {
             '.md': CommonMarkParser,
         }
 
