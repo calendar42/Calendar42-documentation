@@ -1,6 +1,3 @@
-# Use Token
-
-* API Token usage is descibed here: [authenticated requests](/rest-api/guidelines/#authenticated-requests-use-the-authentication-header-parameter)
 
 # Request API token
 
@@ -13,5 +10,8 @@ Simply request your API Token by sending a [mail](mailto:support@calendar42.com)
 * a brief description of your intended usage.
 
 Want to know more? Just [contact us](http://site.calendar42.com/)!
+
+# Authenticate
+* API Token usage is descibed here: [authenticated requests](/rest-api/introduction/#authenticate)
 
 **@todo:** add information concerning service structures.
