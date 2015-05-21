@@ -1,59 +1,79 @@
-{% load projects_tags %}
+# -*- coding: utf-8 -*-
+#
+# -- General configuration -----------------------------------------------------
 
-import sadassdad
-from six import string_types
+source_suffix = '.rst'
+master_doc = 'index'
 
-from sphinsdx import version_asdainfos
+project = u'sphinx theme for basicstrap style'
+copyright = u'2014, tell-k'
 
-from recommonmark.parser import CommonMarkParser
+version = '0.4.1'
 
-# Only Sphinx 1.3+
-if version_info[0] == 1 and version_info[1] > 2:
+# -- Options for HTML output ---------------------------------------------------
 
-    # Markdown Support
-    if 'source_suffix' in globals():
-        if isinstance(source_suffix, string_types) and source_suffix != '.md':
-            source_suffix = [source_suffix, '.md']
-        elif '.md' not in soudasdrce_suffix:
-            source_suffix.append('.md')
-    else:
-        source_suffix = ['.rst', '.md']
+extensions = ['sphinxjp.themes.basicstrap']
+html_theme = 'basicstrap'
 
-    if 'source_parsers' in globals():
-        source_parsers['.md'] = CommonMarkParser
-    else:
-        source_parsasders = {
-            '.md': CommonMarkParser,
-        }
+# -- HTML theme options for `basicstrap` style -------------------------------------
 
-if globals().get('source_suffix', False):
-    if isinstance(source_suffix, string_types):
-        SUFFIX = source_suffix
-    else:
-        SUFFIX = source_suffix[0]
-else:
-    SUFFIX = '.rst'
+html_theme_options = {
+    'lang': 'en',
+    'nosidebar': False,
+    'rightsidebar': False,
+    'sidebar_span': 3,
+    'nav_fixed_top': True,
 
+    'nav_fixed': False,
+    'nav_width': '900px',
+
+    'content_fixed': False,
+    'content_width': '900px',
+
+    'row_fixed': False,
+    'noresponsive': False,
+    'noflatdesign': False,
+
+    'googlewebfont': False,
+    'googlewebfont_url': 'http://fonts.googleapis.com/css?family=Lily+Script+One',
+    'googlewebfont_style': u"font-family: 'Lily Script One' cursive;",
+
+    'header_inverse': False,
+    'relbar_inverse': False,
+
+    'inner_theme': False,
+    'inner_theme_name': 'bootswatch-flatly',
+
+    'bootstrap_version': '3',
+    'quick_preview': True,
+
+    # 'h1_size': '3.0em',
+    # 'h2_size': '2.6em',
+    # 'h3_size': '2.2em',
+    # 'h4_size': '1.8em',
+    # 'h5_size': '1.4em',
+    # 'h6_size': '1.1em',
+}
 
 
 #Add RTD Template Path.
 if 'templates_path' in globals():
-    templates_path.insert(0, '{{ template_path }}')
+    templates_path.insert(0, '/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx')
 else:
-    templates_path = ['{{ template_path }}', 'templates', '_templates',
+    templates_path = ['/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx', 'templates', '_templates',
                       '.templates']
 
 # Add RTD Static Path. Add to the end because it overwrites previous files.
 if 'html_static_path' in globals():
-    html_static_path.append('{{ static_path }}')
+    html_static_path.append('/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx/_static')
 else:
-    html_static_path = ['_static', '{{ static_path }}']
+    html_static_path = ['_static', '/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx/_static']
 
 # Add RTD Theme Path. 
 if 'html_theme_path' in globals():
-    html_theme_path.append('{{ template_path }}')
+    html_theme_path.append('/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx')
 else:
-    html_theme_path = ['_themes', '{{ template_path }}']
+    html_theme_path = ['_themes', '/home/docs/checkouts/readthedocs.org/readthedocs/templates/sphinx']
 
 # Add RTD Theme only if they aren't overriding it already
 using_rtd_theme = False
@@ -61,19 +81,19 @@ if 'html_theme' in globals():
     if html_theme in ['default']:
         # Allow people to bail with a hack of having an html_style
         if not 'html_style' in globals():
-            html_theme = 'alabaster'
+            html_theme = 'sphinx_rtd_theme'
             html_style = None
             html_theme_options = {}
             using_rtd_theme = True
 else:
-    html_theme = 'alabaster'
+    html_theme = 'sphinx_rtd_theme'
     html_style = None
     html_theme_options = {}
     using_rtd_theme = True
 
 # Force theme on setting
 if globals().get('RTD_NEW_THEME', False):
-    html_theme = 'alabaster'
+    html_theme = 'sphinx_rtd_theme'
     html_style = None
     html_theme_options = {}
     using_rtd_theme = True
@@ -82,50 +102,49 @@ if globals().get('RTD_OLD_THEME', False):
     html_style = 'rtd.css'
     html_theme = 'default'
 
-if globals().get('websupport2_base_url', False):
-    websupport2_base_url = '{{ api_host }}/websupport'
-    if 'http' not in settings.MEDIA_URL:
-        websupport2_static_url = '{{ settings.STATIC_URL }}'
-    else:
-        websupport2_static_url = '{{ settings.MEDIA_URL }}/static'
-
+if globals().get('source_suffix', False):
+    SUFFIX = source_suffix
+else:
+    SUFFIX = '.rst'
 
 #Add project information to the template context.
 context = {
-    'using_theme': alabaster,
-    'html_theme': alabaster,
-    'current_version': "{{ current_version }}",
-    'MEDIA_URL': "{{ settings.MEDIA_URL }}",
-    'PRODUCTION_DOMAIN': "{{ settings.PRODUCTION_DOMAIN }}",
-    'versions': [{% for version in versions %}
-    ("{{ version.slug }}", "/{{ version.project.language }}/{{ version.slug}}/"),{% endfor %}
+    'using_theme': using_rtd_theme,
+    'html_theme': html_theme,
+    'current_version': "latest",
+    'MEDIA_URL': "https://media.readthedocs.org/",
+    'PRODUCTION_DOMAIN': "readthedocs.org",
+    'versions': [
+    ("latest", "/en/latest/"),
     ],
-    'downloads': [ {% for key, val in downloads.items %}
-    ("{{ key }}", "{{ val }}"),{% endfor %}
+    'downloads': [ 
+    ("PDF", "https://readthedocs.org/projects/sphinxjpthemesbasicstrap/downloads/pdf/latest/"),
+    ("HTML", "https://readthedocs.org/projects/sphinxjpthemesbasicstrap/downloads/htmlzip/latest/"),
+    ("Epub", "https://readthedocs.org/projects/sphinxjpthemesbasicstrap/downloads/epub/latest/"),
     ],
-    'slug': '{{ project.slug }}',
-    'name': u'{{ project.name }}',
-    'rtd_language': u'{{ project.language }}',
-    'canonical_url': '{{ project.clean_canonical_url }}',
-    'analytics_code': '{{ project.analytics_code }}',
-    'single_version': {{ project.single_version }},
-    'conf_py_path': '{{ conf_py_path }}',
-    'api_host': '{{ api_host }}',
-    'github_user': '{{ github_user }}',
-    'github_repo': '{{ github_repo }}',
-    'github_version': '{{ github_version }}',
-    'display_github': {{ display_github }},
-    'bitbucket_user': '{{ bitbucket_user }}',
-    'bitbucket_repo': '{{ bitbucket_repo }}',
-    'bitbucket_version': '{{ bitbucket_version }}',
-    'display_bitbucket': {{ display_bitbucket }},
+    'slug': 'sphinxjpthemesbasicstrap',
+    'name': u'sphinxjp.themes.basicstrap',
+    'rtd_language': u'en',
+    'canonical_url': '',
+    'analytics_code': '',
+    'single_version': False,
+    'conf_py_path': '/docs/',
+    'api_host': 'https://readthedocs.org',
+    'github_user': 'tell-k',
+    'github_repo': 'sphinxjp.themes.basicstrap',
+    'github_version': 'master',
+    'display_github': True,
+    'bitbucket_user': 'None',
+    'bitbucket_repo': 'None',
+    'bitbucket_version': 'master',
+    'display_bitbucket': False,
     'READTHEDOCS': True,
-    'using_theme': (html_theme == "alabaster"),
-    'new_theme': (html_theme == "alabaster"),
+    'using_theme': (html_theme == "default"),
+    'new_theme': (html_theme == "sphinx_rtd_theme"),
     'source_suffix': SUFFIX,
-    'user_analytics_code': '{{ project.analytics_code|default_if_none:'' }}',
-    'global_analytics_code': '{{ settings.GLOBAL_ANALYTICS_CODE }}',
-    'commit': '{{ commit }}',
+    'user_analytics_code': '',
+    'global_analytics_code': 'UA-17997319-1',
+    'commit': 'ae900262762f9935398648f290c1e7d386ad3edc',
 }
 if 'html_context' in globals():
     html_context.update(context)
