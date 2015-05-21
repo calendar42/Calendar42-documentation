@@ -1,4 +1,4 @@
-# Calendar42 documentation - BRANCH CHECK
+# Calendar42 documentation
 
 _Note: This documentation is a work in progress, meaning things might change and you may come across some inconsistencies (or even errors). That being said, it gives direct insight in our roadmap and offers the opportunity to ask questions, give suggestions and help shape the development._
 
