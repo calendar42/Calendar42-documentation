@@ -92,8 +92,8 @@ if globals().get('websupport2_base_url', False):
 
 #Add project information to the template context.
 context = {
-    'using_theme': using_rtd_theme,
-    'html_theme': html_theme,
+    'using_theme': alabaster,
+    'html_theme': alabaster,
     'current_version': "{{ current_version }}",
     'MEDIA_URL': "{{ settings.MEDIA_URL }}",
     'PRODUCTION_DOMAIN': "{{ settings.PRODUCTION_DOMAIN }}",
