@@ -13,6 +13,10 @@ Every endpoint starts with /v`<x>` in which x is the version.
 * The number of API calls is limited on an hour basis accross the API
 * The amount of calls differ between anonymous users and users with an [API Token](/rest-api/api-tokens/)
    
+## Query param format
+
+Query parameters are automatically transformed into the specified format. So for example strings should not be surounded by quotes.
+
 ## Query evaluation
 
 When querying resources using GET requests with query parameters, the query is interpreted by concatenating the query predicates with AND operators.
