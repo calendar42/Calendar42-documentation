@@ -26,10 +26,10 @@ Parameter | Required |
 `geo_circles` | false | Array of [Geo Circles](#geo-circle)
 `length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports `lt` and `gt` operators
 `order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along
-`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
 <br>
 
-#### Example usages
+#### Examples
 
 **Ordering**: Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
 
@@ -60,7 +60,7 @@ Upon successful creation, the returned event resource **WILL** be modified:
 
 See [the interactive Swagger Event API documentation for supported fields](http://calendar42.com/app/django/api/docs/#!/v2/Event_Api)
 
-#### Example usage
+#### Example
 
 ##### Most minimal creation in the form of a todo
 
@@ -377,10 +377,10 @@ Parameter | Required |
 `transport_modes` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
 `from_location` | true | Tuple with lat lon
 `to_location` | true | Tuple with lat lon
-`time` | true | [Date time](/rest-api/guidelines/#date-time) (not required if event_type equals 'route')
+`time` | true | [Date time](/rest-api/usage/#date-time) (not required if event_type equals 'route')
 <br>
 
-#### Example usage
+#### Example
 
 Get a trip from point A to arrive at a certain time at point B
 
@@ -419,7 +419,7 @@ Parameter | Required |
 `ids` | false | Array of calendar ids. To filter on specific events (response is not equally ordered)
 `service_ids` | false | Array of service ids
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
-`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
 <br>
 
 #### POST parameters
@@ -463,7 +463,7 @@ When requesting the `/locations/` without any parameters, it will return all loc
 Parameter | Required | Description
 --- | --- | --- 
 `ids` | false | Array of location ids. To filter on specific locations (reponse is not equally ordered)
-`sync_token` | false | [Sync Token](/rest-api/guidelines/#sync-token)
+`sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
 `user_ids` | false | Array of service ids. Only return locations that have labels in relation to user
 `service_ids` | false | Array of service ids. Only return locations that have labels in relation to the service
 `search_pattern` | false | String to match on in location text, address, city and label
@@ -474,7 +474,7 @@ Parameter | Required | Description
 
 Note: doesn't support order_by=distance yet
 
-#### Example usage
+#### Example 
 
 **@todo:** Add example usage
 
