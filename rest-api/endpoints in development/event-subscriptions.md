@@ -1,5 +1,3 @@
-# /event-subscriptions
-
 **NOTE: This Endpoint is currently under development**
 
 Event Subscriptions are resources describing the relationship between Users and Events in the system.
