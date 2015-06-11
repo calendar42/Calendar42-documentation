@@ -1,4 +1,3 @@
-## • /events/
 
 Supported methods:
 
@@ -349,3 +348,21 @@ Similarly, the following request
     }
     
 will not only update the calendar_ids list of the specific event resource, it will also unsubscribe the specific event from the `calendar_id2` calendar.
+
+**Interdependencies between fields in PATCH**
+
+* `start` & `end`:
+    * start should always be before end
+* `start`, `end` & `event_type`:
+    * When the event type is `normal`, start and end should always both be set 
+* `start`, `end` and `all_day`:
+    * When all_day is set to `true`, the start and end should only contain the date and no time, e.g. `2015-02-12T00:00:00:00.000Z`
+* `start` & `start_timezone`:
+    * When start is set, start_timezone also always needs to be set
+* `end` & `end_timezone`:
+    * When end is set, end_timezone also always needs to be set
+* `event_type` & `related_event_id`:
+    * When the event type is not `arrive_by` or `depart_from`, related event can't be set
+
+
+
