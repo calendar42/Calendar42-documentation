@@ -11,8 +11,10 @@ pages:
     - 'Endpoints': 'rest-api/endpoints.md'
     - 'Endpoints in development':
         - 'Event Subscriptions': 'rest-api/endpoints-in-development/event-subscriptions.md'
-- 'XMPP API': 'xmpp-api/introduction.md'
-- 'Services': 'services/introduction.md'
+- 'XMPP API':
+    - 'Introduction': 'xmpp-api/introduction.md'
+- 'Services':
+    - 'Introduction': 'services/introduction.md'
 - 'Application Frameworks':
     - 'Introduction': 'application-frameworks/introduction.md'
     - 'C42.js': 'application-frameworks/C42_js.md'
