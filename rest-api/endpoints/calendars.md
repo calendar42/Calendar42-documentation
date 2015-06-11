@@ -14,7 +14,7 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 Parameter | Required | 
 --- | --- | --- 
 `ids` | false | Array of calendar ids. To filter on specific events (response is not equally ordered)
-`service_ids` | false | Array of service ids
+`service_ids` | false | Array of service ids to filter on. Note: still only returns events the requester has access to.
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
 `sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
 <br>

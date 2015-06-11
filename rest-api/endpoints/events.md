@@ -14,7 +14,7 @@ Supported methods:
 Parameter | Required | 
 :--- | :--- | :---
 `ids` | false | Array of event ids. To filter on specific events (reponse is not equally ordered)
-`service_ids` | false | Array of service ids
+`service_ids` | false | Array of service ids to filter on. Note: still only returns events the requester has access to.
 `calendar_ids` | false | Array of calendar ids <br> Supports the `or` operator
 `event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
 `geo_circles` | false | Array of [Geo Circles](#geo-circle)
@@ -124,7 +124,7 @@ This todo will then off course will not have any context related to it, not in t
 
 ##### Creating a simple event into a calendar
 
-This example shows a regular usecase, where an event is created in one of the accesible calendars, together with a title and a description.
+This example shows a regular usecase, where an event is created in one of the accessible calendars, together with a title and a description.
 
 * The `event_type` will default to `normal`
 * `normal` events require `start` and `end` to be set
