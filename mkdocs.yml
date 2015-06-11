@@ -10,6 +10,9 @@ pages:
     - 'Constants': 'rest-api/constants.md'
     - 'Endpoints':
         - 'Introduction': 'rest-api/endpoints.md'
+        - 'Events': 'rest-api/events.md'
+        - 'Calendars': 'rest-api/calendars.md'
+        - 'Locations': 'rest-api/locations.md'
     - 'Endpoints in development':
         - 'Event Subscriptions': 'rest-api/endpoints-in-development/event-subscriptions.md'
 - 'XMPP API':
