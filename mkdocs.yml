@@ -28,6 +28,7 @@ pages:
 docs_dir: "."
 theme: readthedocs
 site_favicon: favicon.png
+extra_css: ["css/extra_css.css"]
 
 # Want to work locally? Clone this repo, create a new virtualenv and..
 # 
