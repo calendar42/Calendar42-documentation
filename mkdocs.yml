@@ -1,13 +1,13 @@
 site_name: Calendar42 documentation
 # make sure you use space indentation!
 pages:
-- 'Home': 'index.md'
+- 'Introduction': 'index.md'
 - 'Rest Api':
     - 'Api Tokens': 'rest-api/api-tokens.md'
     - 'Usage': 'rest-api/usage.md'
-    - 'objects': 'rest-api/objects.md'
-    - 'constants': 'rest-api/constants.md'
-    - 'endpoints': 'rest-api/endpoints.md'
+    - 'Objects': 'rest-api/objects.md'
+    - 'Constants': 'rest-api/constants.md'
+    - 'Endpoints': 'rest-api/endpoints.md'
     - 'Endpoints in development':
         - 'Event Subscriptions': 'rest-api/endpoints-in-development/event-subscriptions.md'
 - 'XMPP API': 'xmpp-api/introduction.md'
