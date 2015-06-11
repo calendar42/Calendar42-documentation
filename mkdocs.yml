@@ -9,7 +9,7 @@ pages:
     - 'Objects': 'rest-api/objects.md'
     - 'Constants': 'rest-api/constants.md'
     - 'Endpoints':
-        - 'Introduction': 'rest-api/endpoints.md'
+        - 'Overview': 'rest-api/endpoints.md'
         - 'Events': 'rest-api/endpoints/events.md'
         - 'Calendars': 'rest-api/endpoints/calendars.md'
         - 'Locations': 'rest-api/endpoints/locations.md'
@@ -25,3 +25,5 @@ pages:
     - 'C42.js': 'application-frameworks/C42_js.md'
     - 'Native Mobile Component': 'application-frameworks/native_components.md'
 
+docs_dir: "."
+theme: readthedocs
