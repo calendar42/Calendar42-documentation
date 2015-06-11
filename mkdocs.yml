@@ -27,3 +27,10 @@ pages:
 
 docs_dir: "."
 theme: readthedocs
+
+# Want to work locally? Clone this repo, create a new virtualenv and..
+# 
+#   pip install mkdocs
+#   mkdocs serve
+# 
+# Then visit http://localhost:8000/
