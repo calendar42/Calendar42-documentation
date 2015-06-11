@@ -1,5 +1,1 @@
 site_name: Calendar42 documentation
-pages:
-- 'Home': 'index.md'
-- 'Rest Api': 'rest-api/index.md'
-- 'Api Tokens': 'rest-api/api-tokens.md'
