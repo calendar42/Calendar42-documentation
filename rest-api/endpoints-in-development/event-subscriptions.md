@@ -2,10 +2,18 @@ Event Subscriptions are resources describing the relationship between Users and 
 
 This relationship might be be based on one or more relations:
 
-* Indirect relations through calendars: The user is related to the event as a result of the event being in one ore more Calendars that the user is subscribed to.
-* Direct relations: The user is directly related to the event, without any Calendar in between
+* Indirect relations through calendars: The user is related to the Event as a result of the Event being in one ore more Calendars that the user is subscribed to.
+* Direct relations: The user is directly related to the Event, without any Calendar in between
 
 Within this relational structure, the Event Subscriptions represent the summary of these different relations. 
+
+* [Model Schema](#model-schema) - overview of the Event Subscription Model with detailed fields
+* [GET](#get) - to retrieve a set of Event Subscriptions
+* [POST by User ID](#post-by-user-id) -  to relate an existing C42 User to an Event by id
+* [POST by phone number/ email ](#post-by-phone-number-email) - to relate a new User to an Event by email or phone number
+* [PUT](#put) - to replace the relation between a User and an Event
+* [PATCH](#patch) - to update the relation between a User and an Event (e.g. the access rights)
+* [DELETE](#delete) - to remove the relation between a User and an Event
 
 ## Model Schema
 
