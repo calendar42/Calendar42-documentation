@@ -118,7 +118,7 @@ Example of a trip containing one leg:
             "mode": "<transport_type>",
             "start_time": "<date>",
             "end_time": "<date>",
-            "distance": "<float>",
+            "length": "<float>",
             "duration": "<float>",
             "real_time": "<boolean>",
             "departure_delay": "<int>",
@@ -152,7 +152,7 @@ Example of a trip containing one leg:
             "steps": [
                 {
                     "street_name": "<string>",
-                    "distance": "<int>",
+                    "length": "<int>",
                     "elevation": "<array>",
                     "area": "<boolean>",
                     "absolute_direction": "<string>",
