@@ -65,3 +65,43 @@ Within the platform of C42 services can be created that make use of a subset of 
 ```
     @todo
 ```
+
+## Endpoints over view
+
+* In production
+    * /calendars
+		* GET - To retrieve a list of calendars
+		* GET by id - To retrieve a specific calendar 
+    * /events
+		* GET - To retrieve a list of events
+		* GET by id - To retrieve a specific event 
+    * /event/trip-suggestions
+		* GET - To retrieve trip suggestions from A to B
+    * /locations
+		* GET - To retrieve a list of locations
+		* GET by id - To retrieve a specific location 
+* In acceptation
+    * /events
+		* POST
+		* PUT
+		* PATCH
+		* DELETE
+* In development
+    * /event-subscription
+		* POST
+		* PUT
+		* PATCH
+		* DELETE
+		* GET
+		* GET by id
+    * /action-tokens
+		* GET by id
+    * /events/time-slot-suggestions
+		* GET
+		* PATCH
+    * /services
+		* GET by id - To retrieve the public assets related to a service
+* In future
+    * /positions
+    * /users
+    * /calendar-subscription
