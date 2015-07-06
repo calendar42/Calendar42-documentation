@@ -66,7 +66,7 @@ Within the platform of C42 services can be created that make use of a subset of 
     @todo
 ```
 
-## Endpoints over view
+## Endpoints overview
 
 * In production
     * /calendars
