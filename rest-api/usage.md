@@ -45,13 +45,13 @@ The responses of the two requests are then combined to get the full query result
 
 ### Date format
 
-    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511Z extended.
+    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511233Z extended.
     
-    So the expected format will be: "YYYY-MM-DDThh:mm:ss.sssZ"
+    So the expected format will be: "YYYY-MM-DDThh:mm:ss.ssssssZ"
     
     An example of valid date format:
     
-    "2004-02-12T15:19:21:00.000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000Z
+    "2004-02-12T15:19:21:00.000000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000000Z
     
 
 ### Timezone format
