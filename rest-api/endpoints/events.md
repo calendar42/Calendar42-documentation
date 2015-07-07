@@ -79,8 +79,8 @@ This todo will then off course will not have any context related to it, not in t
                 "event_type": "todo",
               # AUTOMATICALLY GENERATED FIELDS
                 "id": "897dsah8789had897had873b4",
-                "created": "2015-02-12T15:19:21:00.000Z",
-                "modified": "2015-02-12T15:19:21:00.000Z",
+                "created": "2015-02-12T15:19:21:00.000000Z",
+                "modified": "2015-02-12T15:19:21:00.000000Z",
                 "sync_token": 142,
                 "creator": {
                     "id": "987jbkhjasd7563ghjva78",
@@ -133,9 +133,9 @@ This example shows a regular usecase, where an event is created in one of the ac
 # Request Payload
     {
         "calendar_ids": ["42b42b42b42b42b42b42b42b42b42b42b42b42b4"],
-        "start": "2015-02-12T15:00:00:00.000Z",
+        "start": "2015-02-12T15:00:00:00.000000Z",
         "start_timezone": "Europe/Amsterdam",
-        "end": "2015-02-12T15:30:00:00.000Z",
+        "end": "2015-02-12T15:30:00:00.000000Z",
         "end_timezone": "Europe/Amsterdam",
         "title": "Nice title",
         "description": "A nice description",
@@ -150,9 +150,9 @@ This example shows a regular usecase, where an event is created in one of the ac
               # ORIGINAL FIELDS
                 "id": "897dsah8789had897had873b4",
                 "calendar_ids": ["42b42b42b42b42b42b42b42b42b42b42b42b42b4"],
-                "start": "2015-02-12T15:00:00:00.000Z",
+                "start": "2015-02-12T15:00:00:00.000000Z",
                 "start_timezone": "Europe/Amsterdam",
-                "end": "2015-02-12T15:30:00:00.000Z",
+                "end": "2015-02-12T15:30:00:00.000000Z",
                 "end_timezone": "Europe/Amsterdam",
                 "title": "Nice title",
                 "description": "A nice description",
@@ -356,7 +356,7 @@ will not only update the calendar_ids list of the specific event resource, it wi
 * `start`, `end` & `event_type`:
     * When the event type is `normal`, start and end should always both be set 
 * `start`, `end` and `all_day`:
-    * When all_day is set to `true`, the start and end should only contain the date and no time, e.g. `2015-02-12T00:00:00:00.000Z`
+    * When all_day is set to `true`, the start and end should only contain the date and no time, e.g. `2015-02-12T00:00:00:00.000000Z`
 * `start` & `start_timezone`:
     * When start is set, start_timezone also always needs to be set
 * `end` & `end_timezone`:

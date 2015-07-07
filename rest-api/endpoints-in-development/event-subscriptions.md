@@ -113,7 +113,7 @@ To retrieve a set of Event Subscriptions
                     "user_id": "42abc42def42ghi"
                 },
                 "message": "Are you coming to the end of the universe?",
-                "created": "2042-02-12T15:19:21:00.000Z",
+                "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
                 "rsvp_status" "not_replied"
             }
@@ -176,7 +176,7 @@ Success Response:
                     "user_id": "42sdf42sd"
                 },
                 "message": "Want to meet up?",
-                "created": "2042-02-12T15:19:21:00.000Z",
+                "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
                 "rsvp_status" "not_replied"
             }
