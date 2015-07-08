@@ -37,8 +37,8 @@ Within this relational structure, the Event Subscriptions represent the summary 
         },
         "message": string,                  # write only on POST
         "created": datetime,                # read only
-        "calendar_ids": array,              # @todo
-        "rsvp_status": rsvp_status          # @todo
+        "calendar_ids": array,              # read only
+        "rsvp_status": rsvp_status          # write
     }
 ```
 
