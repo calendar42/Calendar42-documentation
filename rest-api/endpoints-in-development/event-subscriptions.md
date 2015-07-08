@@ -24,7 +24,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
         "subscriber": {
             "first_name": string,           # read only
             "last_name": string,            # read only
-            "user_id": string,              # write
+            "id": string,                   # write
             "email": string,                # write
             "phone_number": string          # write
         },
@@ -33,7 +33,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
         "actor":   {
             "first_name": string,           # read only
             "last_name": string,            # read only
-            "user_id": string               # read only
+            "id": string                    # read only
         },
         "message": string,                  # write only on POST
         "created": datetime,                # read only
