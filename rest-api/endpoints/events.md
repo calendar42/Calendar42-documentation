@@ -64,7 +64,7 @@ This example shows clearly which fields are being defaulted and which are being 
 This todo will then off course will not have any context related to it, not in the form of content (eg. title or description), nor in the form of calendar relations.
 
 ```javascript
-# Request Payload
+    // postdata
     {
         "event_type": "todo"
     }
@@ -130,7 +130,7 @@ This example shows a regular usecase, where an event is created in one of the ac
 * These dates require their timezones to be set with `start_timezone` and `end_timezone`
 
 ```javascript
-# Request Payload
+    // postdata
     {
         "calendar_ids": ["42b42b42b42b42b42b42b42b42b42b42b42b42b4"],
         "start": "2015-02-12T15:00:00:00.000Z",
@@ -191,7 +191,7 @@ This example shows a regular usecase, where an event is created in one of the ac
 Prefered way of posting locations in events.
 
 ```javascript
-# Request Payload (partial)
+    // postdata (partial)
     {
         ...
         "start_location": {
@@ -232,7 +232,7 @@ Prefered way of posting locations in events.
 The server will try to perform geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has no `geo` object. This missing latitude, longitude will then automatically be filled in based on the `text`, or based on the `city`, `address`, `postcode` fields.
 
 ```javascript
-# Request Payload (partial)
+    // postdata (partial)
     {
         ...
         "start_location": {
@@ -273,7 +273,7 @@ The server will try to perform geocoding when an event is posted that contains a
 The server will try to perform reverse geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has a `geo` object, but misses one of the fields for `text`, `address`, `postcode` or `city`. These missing fields will then automatically be filled in.
 
 ```javascript
-# Request Payload (partial)
+    // postdata (partial)
     {
         ...
         "start_location": {

@@ -26,7 +26,8 @@ Within this relational structure, the Event Subscriptions represent the summary 
             "last_name": string,            # read only
             "user_id": string,              # write
             "email": string,                # write
-            "phone_number": string          # write
+            "phone_number": string,         # write
+            "tags": array                   # read only
         },
         "is_invitation": boolean,           # write
         "permission": permission,           # write
@@ -75,11 +76,9 @@ Within this relational structure, the Event Subscriptions represent the summary 
 To retrieve a set of Event Subscriptions
 
 * **Supported Filters**:
-    * service_ids       = `[{service_id},]`
     * event_ids         = `[{event_id},]`
     * subscriber_ids    = `[{user_id},]`
     * sync_token        = `{sync_token}`
-    * calendar_ids      = `[{calendar_id},]`
     * rsvp_status       = `{rsvp_status}`
 * **Supported Ordering**:
     * order_by=creation_date
@@ -144,13 +143,14 @@ To subscribe a user to an event an Event.
 **Example Request Payload - POST: /event-subscriptions**
 
 ```javascript
+    // postdata
     {
         "event_id": "42abc42def42ghi",
         "subscriber": {
             "user_id": "42abc42de"
         }
         "is_invitation": true,
-        "permission": "member_write",
+        "permission": "invited_write",
         "message": "Want to meet up?",
     }
 ```
@@ -158,6 +158,7 @@ To subscribe a user to an event an Event.
 Success Response:
 
 ```javascript
+    // postdata
     {
         "data": [
             {
@@ -169,7 +170,7 @@ Success Response:
                     "user_id": "42abc42de"
                 }
                 "is_invitation": true,
-                "permission": "member_write",
+                "permission": "invited_write",
                 "actor":   {
                     "first_name": "Arthur",
                     "last_name": "Dent",
@@ -190,7 +191,7 @@ Success Response:
 Error Responses:
 
 ```javascript
-    # Not authorized
+    // Not authorized
     {
       "error": {
         "status_code": 404,
@@ -298,7 +299,7 @@ Subscription object after email and phonenumber vefification
             "user_id": "42abc42de"
         }
         "is_invitation": true,
-        "permission": "member_write",
+        "permission": "invited_write",
         "message": "A new message",
     }
 ```
