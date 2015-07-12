@@ -1,9 +1,9 @@
 
-# Request API token
+# Request API Server token
 
 Can't wait to start developing on top of the Calendar42 platform? Great!
 
-Simply request your API Token by sending a [mail](mailto:support@calendar42.com). Please include:
+Simply request your API Server Token by sending a [mail](mailto:support@calendar42.com). Please include:
 
 * your company name
 * desired mail address to link the token to
@@ -12,6 +12,6 @@ Simply request your API Token by sending a [mail](mailto:support@calendar42.com)
 Want to know more? Just [contact us](http://site.calendar42.com/)!
 
 # Authenticate
-* API Token usage is descibed here: [authenticated requests](/rest-api/introduction/#authenticate)
+* API Server Token usage is descibed here: [authenticated requests](/rest-api/introduction/#authenticate)
 
 **@todo:** add information concerning service structures.

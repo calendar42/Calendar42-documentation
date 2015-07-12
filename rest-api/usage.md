@@ -45,13 +45,13 @@ The responses of the two requests are then combined to get the full query result
 
 ### Date format
 
-    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511Z extended.
+    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511233Z extended.
     
-    So the expected format will be: "YYYY-MM-DDThh:mm:ss.sssZ"
+    So the expected format will be: "YYYY-MM-DDThh:mm:ss.ssssssZ"
     
     An example of valid date format:
     
-    "2004-02-12T15:19:21:00.000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000Z
+    "2004-02-12T15:19:21:00.000000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000000Z
     
 
 ### Timezone format
@@ -157,3 +157,13 @@ Deleting a resource (e.g. DELETE /events/`event_id`) will only make its content 
 As the deleted resource is still returned, clients can use the information for synchronization purposes (by sending along the [Sync token](#sync-token)) or use the information to undo a deletion (if allowed).
 
 Deleting a subscription related to a resource instead of the resource itself (e.g. DELETE /subscriptions/`subscription_id`) will result in making the content inaccessible to the user (or users, in the case of a calendar-event subscription) related to that subscription. Deleting all subscriptions related to a resource will result in the same as deleting the resource itself.
+
+## Definitions: PUT and PATCH
+
+### PUT
+
+A PUT call is a request to replace an object in the server. To perform this action, it is required to send (at least) all required fields having in mind the field type, the field dependencies ( e.g: start < end ). If any of these conditions are not accomplished, the request will return 400 Bad request. All non required fields that are not sent in the call won't be modified at all, leaving the previous value as it is.
+
+### PATCH
+
+A PATCH call is a request to change certain fields of the object in the server. To perform this action is required to send only the fields that will change it's value, having in mind the field type and the field dependencies ( e.g: start < end ). Note that setting the value of certain fields can require to send another value because the dependecy between them. ( e.g: start required the start_timezone ). All non required fields that are not sent in the call won't be modified at all, leaving the previous value as it is.

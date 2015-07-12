@@ -24,7 +24,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
         "subscriber": {
             "first_name": string,           # read only
             "last_name": string,            # read only
-            "user_id": string,              # write
+            "id": string,                   # write
             "email": string,                # write
             "phone_number": string,         # write
             "tags": array                   # read only
@@ -34,12 +34,12 @@ Within this relational structure, the Event Subscriptions represent the summary 
         "actor":   {
             "first_name": string,           # read only
             "last_name": string,            # read only
-            "user_id": string               # read only
+            "id": string                    # read only
         },
         "message": string,                  # write only on POST
         "created": datetime,                # read only
-        "calendar_ids": array,              # @todo
-        "rsvp_status": rsvp_status          # @todo
+        "calendar_ids": array,              # read only
+        "rsvp_status": rsvp_status          # write
     }
 ```
 
@@ -112,7 +112,7 @@ To retrieve a set of Event Subscriptions
                     "user_id": "42abc42def42ghi"
                 },
                 "message": "Are you coming to the end of the universe?",
-                "created": "2042-02-12T15:19:21:00.000Z",
+                "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
                 "rsvp_status" "not_replied"
             }
@@ -177,7 +177,7 @@ Success Response:
                     "user_id": "42sdf42sd"
                 },
                 "message": "Want to meet up?",
-                "created": "2042-02-12T15:19:21:00.000Z",
+                "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
                 "rsvp_status" "not_replied"
             }
