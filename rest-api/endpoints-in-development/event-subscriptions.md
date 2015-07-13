@@ -85,6 +85,8 @@ To retrieve a set of Event Subscriptions
     * order_by=sync_token
 * **Unordered and unfiltered**
     * When not sending along any filters or ordering, all subscriptions are returned that belong to Events you have access, ordered by creation date.
+* **Pagination**:
+    * This endpoint supports pagination through `offset` and `limit` as described in the [Pagination Usage](rest-api/usage/#pagination)
 
 ```
 @todo: Add more information about the different filters
