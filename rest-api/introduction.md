@@ -23,4 +23,4 @@ Tokens are one-on-one related to users on our platform. The data that is accessi
 
 ## Interactive documentation
 
-* Interactive API documentation `coming soon!`
+* [Interactive API documentation](https://calendar42.com/api)
