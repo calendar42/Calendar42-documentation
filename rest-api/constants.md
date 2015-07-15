@@ -38,13 +38,17 @@ This chapter describes the different constants that are used, both in paramaters
 
 ### Event types and their field dependencies
 
-|               	| todo          | timeblock `in development`        | normal        | depart_from                           	| arrive_by                             	| route `in development`               	|
-|:------------- 	|:------------- |:-------------                     |:------------- |:--------------------------------------	|:--------------------------------------	|:--------------------------------------|
-| **start**         | x				| √`Required`                      	| √`Required`  	| √`Required`                              	| ~`Read-only (calculated departure time)` 	| x										|
-| **end**           | x				| √`Required`                      	| √`Required`  	| ~`Read-only (calculated arrival time)`   	| √`Required`                              	| x										|
-| **due_date**      | √		        | √		                            | √		        | √		                                	| √		                                	| √		  								|
-| **start_location**| √		        | √		                            | √		        | √`Required`                              	| √`Required`                              	| √`Required` 							|
-| **end_location**  | x				| x				                    | Not allowed   | √`Required`                              	| √`Required`                              	| √`Required` 							|
+* **√** = allowed
+* **x** = not allowed
+* **~** = read-only
+
+|                   | todo          | timeblock       | normal        | depart_from                             | arrive_by                                 | route                                 |
+|:-------------     |:------------- |:-------------   |:------------- |:--------------------------------------  |:--------------------------------------    |:--------------------------------------|
+| **start**         | x             | √`Required`     | √`Required`   | √`Required`                             | ~`calculated departure time`              | x                                     |
+| **end**           | x             | √`Required`     | √`Required`   | ~`calculated arrival time`              | √`Required`                               | x                                     |
+| **due_date**      | √             | √               | √             | √                                       | √                                         | √                                     |
+| **start_location**| √             | √               | √             | √`Required`                             | √`Required`                               | √`Required`                           |
+| **end_location**  | x             | x               | x             | √`Required`                             | √`Required`                               | √`Required`                           |
 
 **Note on the difference between timeblock and normal events**
 
