@@ -30,7 +30,7 @@ This chapter describes the different constants that are used, both in paramaters
 ## • Event Type
 
 * **todo** - an unplanned event.
-* **timeblock** - a time block indication. `in development`
+* **time_block** - a time slot indication. `in development`
 * **normal** - a regular planned in event.
 * **arrive_by** - a trip planned with the end time set as arrival time. The start-time is read-only and follows the duration needed to travel between start & end locations based on the end-time.
 * **depart_from** - a trip planned with the start time set as departure time. The end-time is read-only and follows the duration needed to travel between start & end locations based on the start-time
@@ -42,22 +42,23 @@ This chapter describes the different constants that are used, both in paramaters
 * **x** = not allowed
 * **~** = read-only
 
-|                   | todo          | timeblock       | normal        | depart_from                             | arrive_by                                 | route                                 |
+|                   | todo          | time_block      | normal        | depart_from                             | arrive_by                                 | route                                 |
 |:-------------     |:------------- |:-------------   |:------------- |:--------------------------------------  |:--------------------------------------    |:--------------------------------------|
 | **start**         | x             | √`Required`     | √`Required`   | √`Required`                             | ~`calculated departure time`              | x                                     |
 | **end**           | x             | √`Required`     | √`Required`   | ~`calculated arrival time`              | √`Required`                               | x                                     |
 | **due_date**      | √             | √               | √             | √                                       | √                                         | √                                     |
 | **start_location**| √             | √               | √             | √`Required`                             | √`Required`                               | √`Required`                           |
 | **end_location**  | x             | x               | x             | √`Required`                             | √`Required`                               | √`Required`                           |
+| **duration**      | √             | √`=<(end-start)`| √`==(end-start)`| √`==(end-start)`                      | √`==(end-start)`                          | √`==(end-start)`                      |
 
-**Note on the difference between timeblock and normal events**
+**Note on the difference between time_block and normal events**
 
-Though the field dependencies are similar between timeblock and normal events, the objects do have different meaning: 
+Though the field dependencies are similar between time_block and normal events, the objects do have different meaning: 
 
-* the start and end times of the timeblock are only indicative, the actual event will happen somewhere in between these times
-* one single timeblock will not result into user being marked busy for that period. 
-    * Only if multiple timeblocks occur in the same period a person will be marked as busy
-    * This number of timeblocks is determined on a per service basis, it defaults to: the time period divided through 30 minutes.
+* the start and end times of the time_block are only indicative, the actual event will happen somewhere in between these times
+* one single time_block will not result into user a being marked busy for that period. 
+    * Only if multiple time_blocks occur in the same period a person will be marked as busy
+    * This number of time_blocks is determined on a per service basis, it defaults to: the time period divided through 30 minutes.
 
 **@todo:** ``tracked_tentative``, ``tracked_event`` & ``tracked_arrive_by``
 
