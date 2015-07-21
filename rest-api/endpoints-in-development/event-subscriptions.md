@@ -76,10 +76,22 @@ Within this relational structure, the Event Subscriptions represent the summary 
 To retrieve a set of Event Subscriptions
 
 * **Supported Filters**:
-    * event_ids         = `[{event_id},]`
-    * subscriber_ids    = `[{user_id},]`
-    * sync_token        = `{sync_token}`
-    * rsvp_status       = `{rsvp_status}`
+    * Event ids:
+        * Param name : event_ids
+        * Value : `[{event_id},]`
+        * Behaviour: Will return the subscriptions to all given events.
+    * Subscriber id:
+        * Param name: subscriber_ids
+        * Value : `[{user_id},]`
+        * Behaviour : Will return the subscriptions of the given subscriber.
+    * Sync Token
+        * Param name : sync_token
+        * Value : `{sync_token}`
+        * Behaviour : Will return the subscription changes since the given sync token.
+    * Rsvp status:
+        * Param name : rsvp_status
+        * Value : `{rsvp_status}`
+        * Behaviour : Will return all subscriptions with the given rsvp.
 * **Supported Ordering**:
     * order_by=creation_date
     * order_by=sync_token
