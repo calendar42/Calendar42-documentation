@@ -363,6 +363,5 @@ will not only update the calendar_ids list of the specific event resource, it wi
     * When end is set, end_timezone also always needs to be set
 * `event_type` & `related_event_id`:
     * When the event type is not `arrive_by` or `depart_from`, related event can't be set
-
-
-
+* `rsvp_status` & `calendar_ids`:
+    * When you want to change your rsvp on a read-only event or add a read-only event to one of your calendars, make sure to pas ONLY one or both of these fields. Anythng else mentioned in the payload will result in a 'forbidden' error message.
