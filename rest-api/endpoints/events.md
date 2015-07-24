@@ -358,9 +358,9 @@ will not only update the calendar_ids list of the specific event resource, it wi
 * `start`, `end` and `all_day`:
     * When all_day is set to `true`, the start and end should only contain the date and no time, e.g. `2015-02-12T00:00:00:00.000000Z`
 * `start` & `start_timezone`:
-    * When start is set, start_timezone also always needs to be set
+    * When start is set, start_timezone also always needs to be set. This holds true even if you are setting start_time to null (for todo events). 
 * `end` & `end_timezone`:
-    * When end is set, end_timezone also always needs to be set
+    * When end is set, end_timezone also always needs to be set. This holds true even if you are setting start_time to null (for todo events). 
 * `event_type` & `related_event_id`:
     * When the event type is not `arrive_by` or `depart_from`, related event can't be set
 * `rsvp_status` & `calendar_ids`:
