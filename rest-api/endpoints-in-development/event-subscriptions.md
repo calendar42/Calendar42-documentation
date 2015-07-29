@@ -54,6 +54,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
         * When a subscription is created with is_invitation is not set or `false`, the rsvp_status will not be set automatically
     * `actor`
         * Specifies the user that created the subscription, is set automatically by the system upon creation
+        * The initial user that created the subscription will always be the actor and cannot be changed.
     * `message`
         * Specifies the private message set by the creator
         * Will only be returned to the subscriber specified and the actor. Not to any other users that have access to the subscription
