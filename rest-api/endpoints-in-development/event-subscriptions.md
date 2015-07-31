@@ -17,7 +17,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
 
 ## Model Schema
 
-```javascript
+```python
     {
         "id": string,                       # read only
         "event_id": string,                 # write only on POST
@@ -30,7 +30,7 @@ Within this relational structure, the Event Subscriptions represent the summary 
             "tags": array                   # read only
         },
         "is_invitation": boolean,           # write
-        "permission": permission,           # write
+        "permission": permission_constant,  # write
         "actor":   {
             "first_name": string,           # read only
             "last_name": string,            # read only
@@ -39,7 +39,8 @@ Within this relational structure, the Event Subscriptions represent the summary 
         "message": string,                  # write only on POST
         "created": datetime,                # read only
         "calendar_ids": array,              # read only
-        "rsvp_status": rsvp_status          # write
+        "rsvp_status": rsvp_status_constant,# write
+        "sync_token": int                   # read only
     }
 ```
 
@@ -70,7 +71,15 @@ Within this relational structure, the Event Subscriptions represent the summary 
 
 * **Contants used:**
     * [permission](rest-api/constants/#permission)
-    * [rsvp_status](rest-api/constants/#rsvp-status)
+    * [rsvp_status](/rest-api/objects/#eventrsvp_status)
+
+
+### State transitions
+
+@todo:
+
+* only allowed to add invited_* as always handshake required
+
 
 ## GET
 
