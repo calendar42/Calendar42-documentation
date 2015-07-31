@@ -1,4 +1,4 @@
-Event Subscriptions are resources describing the relationship between Users and Events in the system.
+Event Subscriptions are resources describing the relationship between Users and Events in the system. If a user has a subscription to an Event, he will receive notifications concerning any updates related to it, and also has access to the full Event.
 
 This relationship might be be based on one or more relations:
 
@@ -74,12 +74,16 @@ Within this relational structure, the Event Subscriptions represent the summary 
     * [rsvp_status](/rest-api/objects/#eventrsvp_status)
 
 
-### State transitions
+### Subscription permission transitions
 
-@todo:
+The permission of a subscription can have the following values: `invited_read`, `subscribed_read`, `invited_write`, `subscribed_write` ,`removed`.
 
-* only allowed to add invited_* as always handshake required
+Besides the `removed` value that specifies that the subscription is no longer active, the permission inside a subscription determines two things:
 
+1. Whether the subsciber can change the event (`write`) or not (`read`)
+2. Whether the subscriber has acknowledged the event (`subscribed`) or not (`invited`)
+
+Adding a subscription (POST) to an event is only possible with setting `invited_*`; they always require an acknowledgement from the added subscriber.
 
 ## GET
 
