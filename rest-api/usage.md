@@ -127,7 +127,7 @@ Furthermore, even when specifying for a specific set of items with for instance 
 
 ### Example:
 
-GET /api/v1/events/?limit=10&offset=0
+GET /api/v1/events/?limit=42&offset=0
 
     {
         "data": [<event object i_0>, ..., <event object i_9>],
@@ -138,7 +138,7 @@ GET /api/v1/events/?limit=10&offset=0
         }
     }
 
-GET /api/v1/events/?limit=10&offset=10
+GET /api/v1/events/?limit=42&offset=10
 
     {
         "data": [<event object i_10>, ..., <event object i_19>],
