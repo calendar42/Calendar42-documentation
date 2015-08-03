@@ -179,9 +179,7 @@ This example shows a regular usecase, where an event is created in one of the ac
             }
         ],
         "meta_data" : {
-            "meta_data": {
-                "sync_token": 143
-            }
+            "sync_token": 143
         }
     }
 ```
