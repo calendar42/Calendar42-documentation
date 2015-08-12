@@ -23,6 +23,7 @@ The event object returned by the API always contains two types of fields:
         "end": datetime,                    # write
         "start_timezone": string,           # write
         "end_timezone": string,             # write
+        "due": datetime,                    # write
         "all_day": bool,                    # write
         "title": string,                    # write
         "description": string,              # write
