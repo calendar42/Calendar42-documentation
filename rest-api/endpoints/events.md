@@ -18,8 +18,9 @@ Parameter | Required |
 `event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
 `geo_circles` | false | Array of [Geo Circles](#geo-circle)
 `length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports `lt` and `gt` operators
-`order_by` | false | Can be set to "distance" when exactly one geo_circle is passed along
+`order_by` | false |  "sync_token", "due", "distance" (only when exactly one geo_circle is passed along)
 `sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
+`order_asc` | false | true (default), false. Whether to order in ascending or descending order
 <br>
 
 #### Examples
