@@ -1,8 +1,8 @@
 
 Supported methods:
 
-* GET `acceptation`
-* POST `development`
+* GET
+* POST
 
 ### GET: /events/
 
@@ -315,10 +315,10 @@ The server will try to perform reverse geocoding when an event is posted that co
 
 Supported methods:
 
-* GET `acceptation`
-* PUT `development`
-* PATCH `development`
-* DELETE `development`
+* GET
+* PUT
+* PATCH
+* DELETE
 
 ### GET: /events/`<event_id>`/
 

@@ -127,7 +127,7 @@ The event object returned by the API always contains two types of fields:
 ## Event.event_type
 
 * `todo` - an unplanned event.
-* `time_block` - a time indication. `in development`
+* `time_block` - a time indication.
 * `normal` - a regular planned in event.
 * `arrive_by` - a trip planned with the end time set as arrival time. The start-time is read-only and follows the duration needed to travel between start & end locations based on the end-time.
 * `depart_from` - a trip planned with the start time set as departure time. The end-time is read-only and follows the duration needed to travel between start & end locations based on the start-time
