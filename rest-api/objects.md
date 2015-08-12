@@ -63,15 +63,17 @@ The event object returned by the API always contains two types of fields:
 * `modified`
     * [Date](/rest-api/usage/#date-format) of the last modification
 * `start`
-    * Specifies the start time
+    * Specifies the start [Datetime](/rest-api/usage/#date-format)
 * `end`
-    * Specifies the end time
+    * Specifies the end [Datetime](/rest-api/usage/#date-format)
 * `start_timezone`
     * Specifies the [Timezone](/rest-api/usage/#timezone-format) of the start time
 * `end_timezone`
     *  Specifies the [Timezone](/rest-api/usage/#timezone-format) of the end time
 * `all_day`
-    * Specifies whether the event is an all day event this should have a true as a vaule
+    * Specifies whether the event is an all day event this should have a true as a value
+* `due`
+    * Specifies the Due [Datetime](/rest-api/usage/#date-format)
 * `title`
     * Specifies the title 
 * `description`
@@ -145,7 +147,7 @@ The event object returned by the API always contains two types of fields:
 |:-------------     |:------------- |:-------------     |:-------------     |:--------------------------------------  |:--------------------------------------    |:--------------------------------------|
 | **start**         | x             | √`Required`       | √`Required`       | √`Required`                             | ~`* calculated departure time`            | x                                     |
 | **end**           | x             | √`Required`       | √`Required`       | ~`* calculated arrival time`            | √`Required`                               | x                                     |
-| **due_date**      | √             | √                 | √                 | √                                       | √                                         | √                                     |
+| **due**      | √             | √                 | √                 | √                                       | √                                         | √                                     |
 | **start_location**| √             | √                 | √                 | √`Required`                             | √`Required`                               | √`Required`                           |
 | **end_location**  | x             | x                 | x                 | √`Required`                             | √`Required`                               | √`Required`                           |
 | **duration**      | √             | √`* =<(end-start)`| √`* ==(end-start)`| √`* ==(end-start)`                      | √`* ==(end-start)`                        | √`* ==(end-start)`                      |
