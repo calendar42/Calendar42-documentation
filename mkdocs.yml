@@ -11,6 +11,7 @@ pages:
     - 'Endpoints':
         - 'Overview': 'rest-api/endpoints.md'
         - 'Events': 'rest-api/endpoints/events.md'
+        - 'Event Subscriptions': 'rest-api/endpoints/event-subscriptions.md'
         - 'Calendars': 'rest-api/endpoints/calendars.md'
         - 'Locations': 'rest-api/endpoints/locations.md'
         - 'Event Trip Suggestions': 'rest-api/endpoints/event-trip-suggestions.md'
