@@ -12,6 +12,6 @@ Simply request your API Server Token by sending a [mail](mailto:support@calendar
 Want to know more? Just [contact us](http://site.calendar42.com/)!
 
 # Authenticate
-* API Server Token usage is descibed here: [authenticated requests](/rest-api/introduction/#authenticate)
+* API Server Token usage is descibed here: [authorized requests](/rest-api/introduction/#authorization)
 
 **@todo:** add information concerning service structures.

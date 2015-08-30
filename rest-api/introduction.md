@@ -2,10 +2,6 @@
 
 Using our [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) API, you can make Calendar42 do pretty much anything planning related you want. The only thing left to do for you is showing up!
 
-## Request an API token
-
-Request an [API Token](/rest-api/api-tokens/) to start developing!
-
 ## Authorization
 
 The C42 authorization scheme uses token-based HTTP Authorization. For clients to authorize a token key should be included in the `Authorization` HTTP header.
@@ -19,7 +15,7 @@ The key should be prefixed by either the string literal `Token` or `ActionToken`
 
 Server Tokens give access to all data related to a user on the C42 platform. These are often used to sync data between third party systems.
 
-* Server Tokens are created upon request
+* Server Tokens are created upon [request](/rest-api/api-tokens/)
 * Server Tokens give access to the data throught the relationships the user has to services, calendars and events, the user needs to be active
 * Server Tokens should not be shared or embedded in web-apps
 
