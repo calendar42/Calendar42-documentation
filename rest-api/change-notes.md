@@ -1,3 +1,31 @@
+# Change Notes
+
+<!-- MarkdownTOC -->
+
+- [2015-09-07](#2015-09-07)
+- [2015-08-15](#2015-08-15)
+
+<!-- /MarkdownTOC -->
+
+
+## 2015-09-07
+
+**FEATURES**
+
+* New endpoint to [get](/rest-api/endpoints/events/#get-eventsevent_idtime-block-suggestions) and [patch](/rest-api/endpoints/events/#patch-eventsevent_idtime-block-suggestions) time-block-suggestions
+* Added authorization through ActionTokens, next to normal Tokens ([docs](/rest-api/introduction/#action-tokens-actiontoken))
+* /event-subscriptions
+	* Added filter on `service_ids`, also returns the belonging tags of the subscribers
+
+**BUGFIXES**
+
+* /events endpoint
+	* Now correctly defaults the `modified` and `created` date to current date time
+	* Now allows to actually set the `source_url`
+* /event-subscriptions
+	* Now correctly defaults to to subscribe_(read/write) when setting rsvp to `attending`
+
+
 ## 2015-08-15
 
 **FEATURES**
