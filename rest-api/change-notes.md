@@ -15,7 +15,7 @@
 * New endpoint to [get](/rest-api/endpoints/events/#get-eventsevent_idtime-block-suggestions) and [patch](/rest-api/endpoints/events/#patch-eventsevent_idtime-block-suggestions) time-block-suggestions
 * Added authorization through ActionTokens, next to normal Tokens ([docs](/rest-api/introduction/#action-tokens-actiontoken))
 * /event-subscriptions
-	* Added filter on `service_ids`, also returns the belonging tags of the subscribers
+	* Added filter on `service_ids`, returns subscriptions of events which are in calendars related to the given services (also returns the belonging tags of the subscribers)
 
 **BUGFIXES**
 

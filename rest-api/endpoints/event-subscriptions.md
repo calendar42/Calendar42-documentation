@@ -98,6 +98,10 @@ To retrieve a set of Event Subscriptions
         * Param name: subscriber_ids
         * Value : `[{user_id},]`
         * Behaviour : Will return the subscriptions of the given subscriber.
+    * Service ids:
+        * Param name : service_ids
+        * Value : `[{service_id},]`
+        * Behaviour: Will return the subscriptions of events which are in calendars related to the given services
     * Sync Token
         * Param name : sync_token
         * Value : `{sync_token}`
