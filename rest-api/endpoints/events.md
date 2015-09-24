@@ -1,68 +1,395 @@
 
-Supported methods:
+# Introduction
 
-* GET
-* POST
+The *Events* endpoint returns information about the C42 Events related to the authorized user. The response includes the general details and also describes the relation between the requestor and the event.
 
-### GET: /events/
+## GET /events/
 
-* Returns a default response object with a list of [Event](/rest-api/objects/#event) objects inside the data object.
+```
+GET /v2/events
+```
 
-#### Parameters
+### Authorization
 
-Parameter | Required | 
+Server side *API Token* or *Authentication Action Token*
+
+### Query Parameters
+
+Name | Type | Description
 :--- | :--- | :---
-`ids` | false | Array of event ids. To filter on specific events (reponse is not equally ordered)
-`service_ids` | false | Array of service ids to filter on. Note: still only returns events the requester has access to.
-`calendar_ids` | false | Array of calendar ids <br> Supports the `or` operator
-`event_types` | false | Array of [Event Types](/rest-api/constants/#event-type)
-`geo_circles` | false | Array of [Geo Circles](#geo-circle)
-`length` | false | Length in meters of event types arrive_by, depart_from and route. <br>Supports `lt` and `gt` operators
-`order_by` | false |  "sync_token", "due", "distance" (only when exactly one geo_circle is passed along)
-`sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
-`order_asc` | false | true (default), false. Whether to order in ascending or descending order
-<br>
+`ids` | array |  specific id's of events
+`service_ids` | array | id's of services
+`calendar_ids` | array | id's of calendars, events are related to all
+`event_types` | array | one or more [Event Types](/rest-api/constants/#event-type)
+`geo_circles` | array | one or more [Geo Circles](#geo-circle)
+`length` | int | length in meters of event types arrive_by, depart_from and route
+`order_by` | string |  parameter to order on: "sync_token", "due", "distance"
+`sync_token` | int | [Sync Token](/rest-api/usage/#sync-token)
+`order_asc` | boolean | Whether to order in ascending or descending order (default: true)
 
-#### Examples
+**Allowed operators**
 
-**Ordering**: Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
+Name | Type | Description
+:--- | :--- | :---
+`calendar_ids__or` | array | id's of calendars, events are related to ANY
+`length__lt` | int | Less than length
+`length__gt` | int | Greater than length
 
-* ``/events/?calendar_ids=[abc123]&geo_circles=[(52.28297176 5.27424839 5000)]&order_by=distance``
+**Generic parameters**
 
-**Operators**: Get trips longer than 15km, that are in either calendar 'abc1' or calendar 'abc2'
+Name | Type | Description
+:--- | :--- | :---
+`offset` | int | offset inside entire set of results (default: 0)
+`page` | int | amount of results to return per page (default: 10)
 
-* ``/events/?event_types=[arrive_by,depart_from]&length__gt=15000&calendar_ids__or=[abc1,abc2]``
+**Implementation notes**
+
+* when requesting multiple specific events, the response will not be equally ordered
+* Whatever filter is set, the endpoint will only returns events the requestor has access to
+* Order by distance is only allowed when exactly one geo_circle is passed along
+
+### Response
+
+```
+Status-Code: 200 OK
+```
+
+```
+{
+  "meta_data": {
+    "count": 8,
+    "sync_token": 23924166,
+    "offset": 0
+  },
+  "data": [
+    {
+      "id": "32319dc9589464246699ecd6e5300458_14430973869068",
+      "event_type": "normal",
+      "creator": {},
+      "created": "2015-09-24T12:23:06.906807Z",
+      "modified": "2015-09-24T12:23:06.906811Z",
+      "invitation": {},
+      "calendar_ids": [],
+      "start": "2015-09-24T00:00:00.000000Z",
+      "end": "2018-06-20T00:00:00.000000Z",
+      "start_timezone": "Europe/Amsterdam",
+      "end_timezone": "Europe/Amsterdam",
+      "all_day": true,
+      "title": "HOME",
+      "description": null,
+      "color": null,
+      "icon": null,
+      "logo": null,
+      "source_url": null,
+      "time_buffer": null,
+      "start_location": {
+        "id": "265d7fe5ce987387bc9e77d64600c71e05dc015b",
+        "text": "Lloydstraat 138, 3024, Rotterdam",
+        "address": "Lloydstraat 138",
+        "postcode": "3024",
+        "city": "Rotterdam",
+        "geo": {
+          "latitude": 51.9030818,
+          "longitude": 4.4605326
+        },
+        "labels": []
+      },
+      "end_location": null,
+      "recurrence": false,
+      "recurrence_parent": null,
+      "sync_token": 23924087,
+      "length": null,
+      "is_suggestion": null,
+      "due": null,
+      "state": null,
+      "is_invitation": false,
+      "rsvp_status": "attending",
+      "permission": "subscribed_write",
+      "previous_permission": null
+    },
+   ...
+  ]
+}
+```
+
+**Fields describing the general event**
+
+Name | Description 
+:--- | :--- 
+`id` | Specifies the unique id that identifies the event |
+`event_type` | Specifies the [event type](#eventevent_type), e.g. **todo** or **route** |
+`is_suggestion` | Specifies whether the event is autogenerated by the system, so it is a suggestion based on the preferences of  he user
+`creator` |  [Person object](#person) that created that event |
+`modified` | [Date](/rest-api/usage/#date-format) of the last modification |
+`start` | Specifies the start [Datetime](/rest-api/usage/#date-format) |
+`end` | Specifies the end [Datetime](/rest-api/usage/#date-format) |
+`start_timezone` | Specifies the [Timezone](/rest-api/usage/#timezone-format) of the start time |
+`end_timezone` |  Specifies the [Timezone](/rest-api/usage/#timezone-format) of the end time |
+`all_day` | Specifies whether the event is an all day event this should have a true as a value |
+`due` | Specifies the Due [Datetime](/rest-api/usage/#date-format) |
+`state` | Specifies the internal state of the Event |
+`title` | Specifies the title  |
+`description` | Specifies the description |
+`color` | Specifies the color, this color should be in hsla format |
+`icon` | Specifies the url where to reach the event icon |
+`logo` | Specifies the url where to reach the event image |
+`source_url` | Specifies the Url source of the event (If the event is imported from an external service (ics) this attribute  ontains the URL where to reach the event information from the source)
+`start_location` | Specifies the [Location](/rest-api/objects/#location) where the event starts |
+`end_location` | Specifies the [Location](/rest-api/objects/#location) where the event ends |
+`recurrence` | Specifies whether the event is a recurrence event |
+`recurrence_parent` | Specifies the ID of the related recurrence event |
+`related_event` | Specifies the list of events ID's related to this event |
+`sync_token` | Specifies the [sync token](/rest-api/usage/#sync-token) |
+`time_buffer` |  Defines the temporal relation between trips and their related event in seconds. Used when event has event_type ` rrive_by` or `depart_from` and event has a defined `related_event`. 
+`trip` | Specifies all the [Trip](#eventtrip) data for trip. (Present when event_type equals arrive_by, depart_from or route) |
+`length` | Specifies the length of the trip in meters  (Present when event_type equals arrive_by, depart_from or route) |
+
+**Fields describing the relation between the event and the requestor**
+
+Name | Description 
+:--- | :--- 
+`is_invitation` | Specifies whether the event is an invitation.
+`invitation` | Specifies meta information about the invitation: [Invitation object](#invitation)
+`rsvp_status` |  Specifies the string that defines the [RSVP status](#eventrsvp_status) of the user at this event.
+`calendar_ids` | Specifies the list of calendar ID's that requestor has this event in
+`permission` | Specifies the string that defines the [Permission](/rest-api/constants/#permission) that the user have over this event. This is an user related attribute
+`previous_permission` | Specifies the previous [Permission](/rest-api/constants/#permission) that the user had over this event. This is an user related attribute
+
+
+### Examples
+
+**Using ordering**: Get events belonging to a certain calendar within a certain geographic range, orderder by distance:
+
+```
+GET: /events/?calendar_ids=[abc123]&geo_circles=[(52.28297176 5.27424839 5000)]&order_by=distance
+```
+
+**Using operators**: Get trips longer than 15km, that are in either calendar 'abc1' or calendar 'abc2'
+
+```
+GET: /events/?event_types=[arrive_by,depart_from]&length__gt=15000&calendar_ids__or=[abc1,abc2]
+```
+
 
 **Synchronisation**: Get events that changed since last retrieval
 
-* ``/events/?sync_token=128973981273``
+```
+GET: /events/?sync_token=128973981273
+```
+
+
 
 ---------------------------------------
 
-### POST: /events/
+## GET /events/{event_id}/
 
-Editable attributes of the [Event Model](/rest-api/objects/#event) can be sent in as an object to create a new Event resource. 
+```
+GET: /v2/events/{event_id}/
+```
 
-Upon successful creation, the returned event resource **WILL** be modified:
+### Authorization
 
-1. It **WILL** contain a new generated id
-2. It **WILL** be extended with several attributes and their default values
-  * Examples here are `sync_token`, `event_type`, `permission`, `created`, `modified` & `creator`
-3. Its location data **COULD** be enriched to contain more specific location data
-  * **Geocoding**: The posted event contains one or more locations without geo-position. The geo-position **COULD** be added based on location text, city, address and postcode.
-  * **Reverse geocoding**: The posted event contains one or more locations with only geo-positions. Location text, city, address and postcode **COULD** be added.
+Server side *API Token* or *Authentication Action Token*
 
-See [the interactive Swagger Event API documentation for supported fields](http://calendar42.com/app/django/api/docs/#!/v2/Event_Api)
+### Query Parameters
 
-#### Example
+Name | Type | Description
+:--- | :--- | :---
+`event_id` | string |  Unique identifier representing a specific event
 
-##### Most minimal creation in the form of a todo
 
-The most minimal event consists of todo, as 'normal' events (the default event type) requires start, end, start_timezone and end_timezone to be set.
+### Response
 
-This example shows clearly which fields are being defaulted and which are being send back empty.
+```
+Status-Code: 200 OK
+```
 
-This todo will then off course will not have any context related to it, not in the form of content (eg. title or description), nor in the form of calendar relations.
+```
+{
+  "meta_data": {
+    "count": 1,
+    "sync_token": 23924166,
+    "offset": 0
+  },
+  "data": [
+    {
+      "id": "32319dc9589464246699ecd6e5300458_14430973869068",
+      "event_type": "normal",
+      "creator": {},
+      "created": "2015-09-24T12:23:06.906807Z",
+      "modified": "2015-09-24T12:23:06.906811Z",
+      "invitation": {},
+      "calendar_ids": [],
+      "start": "2015-09-24T00:00:00.000000Z",
+      "end": "2018-06-20T00:00:00.000000Z",
+      "start_timezone": "Europe/Amsterdam",
+      "end_timezone": "Europe/Amsterdam",
+      "all_day": true,
+      "title": "HOME",
+      "description": null,
+      "color": null,
+      "icon": null,
+      "logo": null,
+      "source_url": null,
+      "time_buffer": null,
+      "start_location": {
+        "id": "265d7fe5ce987387bc9e77d64600c71e05dc015b",
+        "text": "Lloydstraat 138, 3024, Rotterdam",
+        "address": "Lloydstraat 138",
+        "postcode": "3024",
+        "city": "Rotterdam",
+        "geo": {
+          "latitude": 51.9030818,
+          "longitude": 4.4605326
+        },
+        "labels": []
+      },
+      "end_location": null,
+      "recurrence": false,
+      "recurrence_parent": null,
+      "sync_token": 23924087,
+      "length": null,
+      "is_suggestion": null,
+      "due": null,
+      "state": null,
+      "is_invitation": false,
+      "rsvp_status": "attending",
+      "permission": "subscribed_write",
+      "previous_permission": null
+    },
+   ...
+  ]
+}
+```
+
+**Fields describing the general event**
+
+Same as GET: /v2/events/
+
+**Fields describing the relation between the event and the requestor**
+
+Same as GET: /v2/events/
+
+---------------------------------------
+
+## POST /events/
+
+```
+POST: /v2/events/
+```
+
+### Authorization
+
+Server side *API Token* or *Authentication Action Token*
+
+### Post Parameters
+
+Name | Type | Description
+:--- | :--- | :---
+`event_type` | string | Specifies the [event type](#eventevent_type), e.g. **todo** or **route** |
+`is_suggestion` | boolean | Specifies whether the event is autogenerated by the system, so it is a suggestion based on the preferences of  he user
+`start` | string | Specifies the start [Datetime](/rest-api/usage/#date-format) |
+`end` | string | Specifies the end [Datetime](/rest-api/usage/#date-format) |
+`start_timezone` | string | Specifies the [Timezone](/rest-api/usage/#timezone-format) of the start time |
+`end_timezone` | string |  Specifies the [Timezone](/rest-api/usage/#timezone-format) of the end time |
+`all_day` | boolean | Specifies whether the event is an all day event this should have a true as a value |
+`due` | string | Specifies the Due [Datetime](/rest-api/usage/#date-format) |
+`title` | string | Specifies the title  |
+`description` | string | Specifies the description |
+`color` | string | Specifies the color, this color should be in hsla format |
+`icon` | string | Specifies the url where to reach the event icon |
+`logo`  | string| Specifies the url where to reach the event image |
+`source_url` | string | Specifies the Url source of the event (If the event is imported from an external service (ics) this attribute  ontains the URL where to reach the event information from the source)
+`start_location` | object | Specifies the [Location](/rest-api/objects/#location) where the event starts |
+`end_location`  | object | Specifies the [Location](/rest-api/objects/#location) where the event ends |
+`related_event` | string | Specifies the list of events ID's related to this event |
+`time_buffer` | int |  Defines the temporal relation between trips and their related event in seconds. Used when event has event_type `arrive_by` or `depart_from` and event has a defined `related_event`. 
+`rsvp_status`  | string |  Specifies the string that defines the [RSVP status](#eventrsvp_status) of the user at this event.
+`calendar_ids` | array | Specifies the list of calendar ID's that requestor has this event in
+
+
+**Implementation notes**
+
+* Created events **WILL** contain a new generated id
+* Created events **WILL** be extended with the following attributes and their default values
+    * `sync_token`, `event_type`, `permission`, `created`, `modified` & `creator`
+* Created events **COULD** be enriched to contain more specific location data
+    * **Geocoding**: The posted event contains one or more locations without geo-position. The geo-position **COULD** be added based on location text, city, address and postcode.
+    * **Reverse geocoding**: The posted event contains one or more locations with only geo-positions. Location text, city, address and postcode **COULD** be added.
+
+### Response
+
+```
+Status-Code: 200 OK
+```
+
+```
+{
+  "meta_data": {
+    "count": 1,
+    "sync_token": 23924166,
+    "offset": 0
+  },
+  "data": [
+    {
+      "id": "32319dc9589464246699ecd6e5300458_14430973869068",
+      "event_type": "normal",
+      "creator": {},
+      "created": "2015-09-24T12:23:06.906807Z",
+      "modified": "2015-09-24T12:23:06.906811Z",
+      "invitation": {},
+      "calendar_ids": [],
+      "start": "2015-09-24T00:00:00.000000Z",
+      "end": "2018-06-20T00:00:00.000000Z",
+      "start_timezone": "Europe/Amsterdam",
+      "end_timezone": "Europe/Amsterdam",
+      "all_day": true,
+      "title": "HOME",
+      "description": null,
+      "color": null,
+      "icon": null,
+      "logo": null,
+      "source_url": null,
+      "time_buffer": null,
+      "start_location": {
+        "id": "265d7fe5ce987387bc9e77d64600c71e05dc015b",
+        "text": "Lloydstraat 138, 3024, Rotterdam",
+        "address": "Lloydstraat 138",
+        "postcode": "3024",
+        "city": "Rotterdam",
+        "geo": {
+          "latitude": 51.9030818,
+          "longitude": 4.4605326
+        },
+        "labels": []
+      },
+      "end_location": null,
+      "recurrence": false,
+      "recurrence_parent": null,
+      "sync_token": 23924087,
+      "length": null,
+      "is_suggestion": null,
+      "due": null,
+      "state": null,
+      "is_invitation": false,
+      "rsvp_status": "attending",
+      "permission": "subscribed_write",
+      "previous_permission": null
+    },
+   ...
+  ]
+}
+```
+
+### Error Response
+
+`@todo`
+
+### Examples
+
+**Most minimal creation in the form of a todo**
+
+The most minimal event consists of todo, as it doesn't requires start, end, start_timezone or end_timezone to be set. This example shows clearly which fields are being defaulted and which are being send back empty.
 
 ```javascript
     // postdata
@@ -123,7 +450,7 @@ This todo will then off course will not have any context related to it, not in t
     }
 ```
 
-##### Creating a simple event into a calendar
+**Creating a simple event into a calendar**
 
 This example shows a regular usecase, where an event is created in one of the accessible calendars, together with a title and a description.
 
@@ -186,7 +513,7 @@ This example shows a regular usecase, where an event is created in one of the ac
     }
 ```
 
-##### Special case: Event creation with location id
+**Special case: Event creation with location id**
 
 Prefered way of posting locations in events.
 
@@ -227,7 +554,7 @@ Prefered way of posting locations in events.
     }
 ```
 
-##### Special case: Event creation with automatic geocoding
+**Event creation with automatic geocoding**
 
 The server will try to perform geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has no `geo` object. This missing latitude, longitude will then automatically be filled in based on the `text`, or based on the `city`, `address`, `postcode` fields.
 
@@ -268,7 +595,7 @@ The server will try to perform geocoding when an event is posted that contains a
 ```
 
 
-##### Special case: Event creation with automatic reverse geocoding
+**Event creation with automatic reverse geocoding**
 
 The server will try to perform reverse geocoding when an event is posted that contains a location (either `start_location` or `end_location`) that has a `geo` object, but misses one of the fields for `text`, `address`, `postcode` or `city`. These missing fields will then automatically be filled in.
 
@@ -311,45 +638,44 @@ The server will try to perform reverse geocoding when an event is posted that co
     }
 ```
 
+---------------------------------------
 
-## • /events/`<event_id>`/
+## PATCH /events/{event_id}/
 
-Supported methods:
+```
+PATCH /v2/events/{event_id}/
+```
 
-* GET
-* PUT
-* PATCH
-* DELETE
+### Authorization
 
-### GET: /events/`<event_id>`/
+Server side *API Token* or *Authentication Action Token*
 
-* Returns a default response object with a list containing the requested [Event](/rest-api/objects/#event) object inside the data object.
+### Patch Parameters
 
-### PATCH: /events/`<event_id>`/
+Name | Type | Description
+:--- | :--- | :---
+`event_type` | string | Specifies the [event type](#eventevent_type), e.g. **todo** or **route** |
+`is_suggestion` | boolean | Specifies whether the event is autogenerated by the system, so it is a suggestion based on the preferences of  he user
+`start` | string | Specifies the start [Datetime](/rest-api/usage/#date-format) |
+`end` | string | Specifies the end [Datetime](/rest-api/usage/#date-format) |
+`start_timezone` | string | Specifies the [Timezone](/rest-api/usage/#timezone-format) of the start time |
+`end_timezone` | string |  Specifies the [Timezone](/rest-api/usage/#timezone-format) of the end time |
+`all_day` | boolean | Specifies whether the event is an all day event this should have a true as a value |
+`due` | string | Specifies the Due [Datetime](/rest-api/usage/#date-format) |
+`title` | string | Specifies the title  |
+`description` | string | Specifies the description |
+`color` | string | Specifies the color, this color should be in hsla format |
+`icon` | string | Specifies the url where to reach the event icon |
+`logo`  | string| Specifies the url where to reach the event image |
+`source_url` | string | Specifies the Url source of the event (If the event is imported from an external service (ics) this attribute  ontains the URL where to reach the event information from the source)
+`start_location` | object | Specifies the [Location](/rest-api/objects/#location) where the event starts |
+`end_location`  | object | Specifies the [Location](/rest-api/objects/#location) where the event ends |
+`related_event` | string | Specifies the list of events ID's related to this event |
+`time_buffer` | int |  Defines the temporal relation between trips and their related event in seconds. Used when event has event_type `arrive_by` or `depart_from` and event has a defined `related_event`. 
+`rsvp_status`  | string |  Specifies the string that defines the [RSVP status](#eventrsvp_status) of the user at this event.
+`calendar_ids` | array | Specifies the list of calendar ID's that requestor has this event in
 
-Any (#events)editable attribute can be sent as a param and it will be replaced with the sended param.
-
-_Using PATCH to subscribe to calendars or unsubscribe from calendars_
-
-    PATCH /events/`<event_id>`/ with the following body :
-
-    {
-    	calendar_ids : [calendar_id1, calendar_i2, new_calendar_id3, new_calendar_id4]
-    }
-    
-will not only add the two new calendars to the list in the event resource, it will also subscribe the event to these new calendars.
-
-Similarly, the following request
-
-    PATCH /events/`<event_id>`/ with the following body :
-
-    {
-    	calendar_ids : [calendar_id1, calendar_id3, calendar_id4]
-    }
-    
-will not only update the calendar_ids list of the specific event resource, it will also unsubscribe the specific event from the `calendar_id2` calendar.
-
-**Interdependencies between fields in PATCH**
+**Implementation notes**
 
 * `start` & `end`:
     * start should always be before end
@@ -367,12 +693,91 @@ will not only update the calendar_ids list of the specific event resource, it wi
     * When you want to change your rsvp on a read-only event or add a read-only event to one of your calendars, make sure to pas ONLY one or both of these fields. Anythng else mentioned in the payload will result in a 'forbidden' error message.
 
 
-### GET: /events/`<event_id>`/time-block-suggestions/
+### Response
 
-`todo`
+```
+Status-Code: 200 OK
+```
+
+```
+{
+  "meta_data": {
+    "count": 1,
+    "sync_token": 23924166,
+    "offset": 0
+  },
+  "data": [
+    {
+      "id": "32319dc9589464246699ecd6e5300458_14430973869068",
+      "event_type": "normal",
+      "creator": {},
+      "created": "2015-09-24T12:23:06.906807Z",
+      "modified": "2015-09-24T12:23:06.906811Z",
+      "invitation": {},
+      "calendar_ids": [],
+      "start": "2015-09-24T00:00:00.000000Z",
+      "end": "2018-06-20T00:00:00.000000Z",
+      "start_timezone": "Europe/Amsterdam",
+      "end_timezone": "Europe/Amsterdam",
+      "all_day": true,
+      "title": "HOME",
+      "description": null,
+      "color": null,
+      "icon": null,
+      "logo": null,
+      "source_url": null,
+      "time_buffer": null,
+      "start_location": {
+        "id": "265d7fe5ce987387bc9e77d64600c71e05dc015b",
+        "text": "Lloydstraat 138, 3024, Rotterdam",
+        "address": "Lloydstraat 138",
+        "postcode": "3024",
+        "city": "Rotterdam",
+        "geo": {
+          "latitude": 51.9030818,
+          "longitude": 4.4605326
+        },
+        "labels": []
+      },
+      "end_location": null,
+      "recurrence": false,
+      "recurrence_parent": null,
+      "sync_token": 23924087,
+      "length": null,
+      "is_suggestion": null,
+      "due": null,
+      "state": null,
+      "is_invitation": false,
+      "rsvp_status": "attending",
+      "permission": "subscribed_write",
+      "previous_permission": null
+    },
+   ...
+  ]
+}
+```
+
+### Error Responses
+
+`@todo`
+
+### Examples
 
 
-### PATCH: /events/`<event_id>`/time-block-suggestions/
+**Using PATCH to subscribe to calendars or unsubscribe from calendars**
 
+Say event_42 is both in calendar_id1 & calendar_id2 the following PATCH operation can be performed to add new_calendar_id3 and new_calendar_id4 to it:
 
-`todo`
+```javascript
+  {
+   	calendar_ids : [calendar_id1, calendar_id2, new_calendar_id3, new_calendar_id4]
+   }
+```
+
+Similarly, the following PATCH operation will remove it from all calendars but calendar_id1:
+
+```javascript
+    {
+    	calendar_ids : [calendar_id1, calendar_id3, calendar_id4]
+    }
+```

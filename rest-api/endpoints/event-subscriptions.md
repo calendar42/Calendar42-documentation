@@ -87,7 +87,7 @@ Adding a subscription (POST) to an event is only possible with setting `invited_
 
 ## GET
 
-To retrieve a set of Event Subscriptions
+To retrieve a set of Event Subscriptions, perform a GET request on `/event-subscriptions/`
 
 * **Supported Filters**:
     * Event ids:

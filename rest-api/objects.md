@@ -377,23 +377,3 @@ import_failed | [Date](/rest-api/usage/#date-format) | false |  | true | Date of
         "phonenumber": "<phonenumber>",
     }
 ```
-
-# Subscription
-
-```javascript
-    {
-        "id": "<string>",
-
-        "object": {
-            "object_type": "<event || calendar>",
-            "id": "<string>",
-        }
-
-        "subscriber": "<person>", // Person that has the subscription
-        "creator": "<person>", // Person created the subscription
-
-        "is_invitation": "<boolean>",
-        "rsvp_status": "<rsvp-status>",
-        "permission": "<permission>",
-    }
-```

@@ -15,6 +15,7 @@ pages:
         - 'Calendars': 'rest-api/endpoints/calendars.md'
         - 'Locations': 'rest-api/endpoints/locations.md'
         - 'Event Trip Suggestions': 'rest-api/endpoints/event-trip-suggestions.md'
+        - 'Time Block Suggestions': 'rest-api/endpoints/time-block-suggestions.md'
     - 'Change notes': 'rest-api/change-notes.md'
 - 'XMPP API':
     - 'Introduction': 'xmpp-api/introduction.md'
