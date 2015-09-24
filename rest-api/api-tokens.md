@@ -1,4 +1,3 @@
-
 # Request API Server token
 
 Can't wait to start developing on top of the Calendar42 platform? Great!

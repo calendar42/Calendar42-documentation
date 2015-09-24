@@ -1,7 +1,4 @@
-
-# Usage
-
----------------------------------------
+# General Implementation Notes
 
 ## API versioning
 
@@ -12,91 +9,60 @@ Every endpoint starts with /v`<x>` in which x is the version.
 
 * The number of API calls is limited on an hour basis accross the API
 * The amount of calls differ between anonymous users and users with an [API Token](/rest-api/api-tokens/)
-   
-## Query param format
-
-Query parameters are automatically transformed into the specified format. So for example strings should not be surounded by quotes.
-
-## Query evaluation
-
-When querying resources using GET requests with query parameters, the query is interpreted by concatenating the query predicates with AND operators.
-
-Thus the following query
-
-    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarX>,<calendarY>]
-    
-is interpreted as
-
-    GET tags that belong to <serviceA> AND <calendarX> AND <calendarY>
-
-The user of the API must use multiple API calls to simulate queries that require OR operators. E.g. the following query
-
-    GET tags that belong to <serviceA> AND (<calendarX> OR <calendarY>)
-
-Needs two API calls as follows
-
-    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarX>]
-    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarY>]
-    
-The responses of the two requests are then combined to get the full query result.
 
 
-## Date Time
+## Special Field Types
 
-### Date format
+### Permission Field
 
-    The date format that should be used is ISO-8601 2012-04-23T18:25:43.511233Z extended.
-    
-    So the expected format will be: "YYYY-MM-DDThh:mm:ss.ssssssZ"
-    
-    An example of valid date format:
-    
-    "2004-02-12T15:19:21:00.000000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000000Z
-    
+Value | Description
+:--- |  :---
+``invited_read`` | Invited with read-only permission
+``subscribed_read`` | Subscribed with read-only permission
+``invited_write``  | Invited with read-write permission
+``subscribed_write`` | Subscribed with read-write permission
+``removed`` | Removed
 
-### Timezone format
+
+### Transport Mode Field
+
+Value | Description
+:--- |  :---
+``car`` | Travel by car
+``transit`` | Travel by transit/ public transport
+``bicycle`` | Travel by bicycle
+``walk`` | Travel by foot
+
+Inside trip requests combinations of several transport modes may also occur, `[transit,walk]` is for instance often used to serve door-to-door trips by public transport.
+
+### Calendar Type Field
+
+``private``, ``webdav``, ``ics`` & ``google``
+
+
+### Location Type Field
+
+``favorite``, ``home`` & ``work``
+
+### Date Time Field
+
+**Date format**
+
+The date format that should be used is ISO-8601 extended, formatted as `YYYY-MM-DDThh:mm:ss.ssssssZ`.
+
+An example of valid date format:
+
+```
+"2004-02-12T15:19:21:00.000000Z" // URL ENCODED: 2004-02-12T15%3A19%3A21%3A00.000000Z
+```
+
+**Timezone format**
 
 For timezones the standard olson timezone definitions should be used (see: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
-## URL Fields pointing to images
+### image-URL Field
 
 In order to cope with images being served over both secure (https) and insecure (http) connections, URL fields are expected to begin with `"://"` instead of "http://" or "https://".
-
-
-## Sync token
-
-To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
-
-Note that the `sync_token` returned is related to the current state of all the data, it's the responsibility of the client to have requested all the (paginated) data beforehand.
-
-Also note that GET requests will return deleted resources (see [Representation of deleted resources](#representation-of-deleted-resources)), this will allow clients to know which resources have been deleted since the last request.
-
-### Example:
-
-*Step 1:*
-GET /api/v1/events/ 
-
-All of the events are returned and the current sync_token.
-
-    {
-        "data": [<event object 1>, <event object 2>],
-        "meta_data": {
-            "sync_token": 142
-        }
-    }
-
-*Step 2:*
-GET /api/v1/events/?sync_token=142
-
-
-Only the event changed between Step 1, and Step 2 are returned, so in this case event1 is changed, and event3 was added.
-
-    {
-        "data": [<event object 1>, <event object 3>],
-        "meta_data": {
-            "sync_token": 144
-        }
-    }
 
 
 ## Pagination
@@ -150,6 +116,71 @@ GET /api/v1/events/?limit=42&offset=10
     }
 
 
+## Synchronization
+
+To make it easy to just request for resources updated since your last request you can use a `sync_token`. Within each request the `sync_token` is added to the `meta_data` object of the response. When making the next request the `sync_token` can be added to the query-parameters to request for all changes since the previous request.
+
+Note that the `sync_token` returned is related to the current state of all the data, it's the responsibility of the client to have requested all the (paginated) data beforehand.
+
+Also note that GET requests will return deleted resources (see [Representation of deleted resources](#representation-of-deleted-resources)), this will allow clients to know which resources have been deleted since the last request.
+
+**Example**
+
+*Step 1:*
+GET /api/v1/events/ 
+
+All of the events are returned and the current sync_token.
+
+    {
+        "data": [<event object 1>, <event object 2>],
+        "meta_data": {
+            "sync_token": 142
+        }
+    }
+
+*Step 2:*
+GET /api/v1/events/?sync_token=142
+
+
+Only the event changed between Step 1, and Step 2 are returned, so in this case event1 is changed, and event3 was added.
+
+    {
+        "data": [<event object 1>, <event object 3>],
+        "meta_data": {
+            "sync_token": 144
+        }
+    }
+
+## Query evaluation
+   
+### Query param format
+
+Query parameters are automatically transformed into the specified format. So for example strings should not be surounded by quotes.
+
+### Query evaluation
+
+When querying resources using GET requests with query parameters, the query is interpreted by concatenating the query predicates with AND operators.
+
+Thus the following query
+
+    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarX>,<calendarY>]
+    
+is interpreted as
+
+    GET tags that belong to <serviceA> AND <calendarX> AND <calendarY>
+
+The user of the API must use multiple API calls to simulate queries that require OR operators. E.g. the following query
+
+    GET tags that belong to <serviceA> AND (<calendarX> OR <calendarY>)
+
+Needs two API calls as follows
+
+    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarX>]
+    GET /tags/?service_ids=[<serviceA>]&calendar_ids=[<calendarY>]
+    
+The responses of the two requests are then combined to get the full query result.
+
+
 ## Representation of deleted resources
 
 Deleting a resource (e.g. DELETE /events/`event_id`) will only make its content inaccessible, its relationships (e.g. with users) will remain intact. This results in the resource still being returned on GET requests, but only containing its permission and id.
@@ -158,7 +189,7 @@ As the deleted resource is still returned, clients can use the information for s
 
 Deleting a subscription related to a resource instead of the resource itself (e.g. DELETE /subscriptions/`subscription_id`) will result in making the content inaccessible to the user (or users, in the case of a calendar-event subscription) related to that subscription. Deleting all subscriptions related to a resource will result in the same as deleting the resource itself.
 
-## Definitions: PUT and PATCH
+## PUT and PATCH Definitions
 
 ### PUT
 
