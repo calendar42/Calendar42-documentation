@@ -1,3 +1,7 @@
+# Introduction
+
+The *Locations* endpoint returns information about C42 Locations. The response always includes the general public details of the location and can contain private details related to the authorized user. Within filtering both these public detailand the restricted private details will be queried.
+
 ## • /locations/
 
 Supported methods:
@@ -9,8 +13,6 @@ Supported methods:
 Returns a default response object with a list of [Location](/rest-api/objects/#location) objects inside the data object.
 
 As depicted, [Location](/rest-api/objects/#location) objects may contain one or more labels that add extra details to the location. These labels add extra context for a user or a service. It may for instance mark the location as a work location for the requesting user, or contain service specific details.
-
-When requesting the `/locations/` without any parameters, it will return all locations available in the system, ordered by most used by the requesting user.
 
 #### Parameters
 
