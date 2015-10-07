@@ -146,7 +146,7 @@ To retrieve a set of Event Subscriptions, perform a GET request on `/event-subsc
                 "message": "Are you coming to the end of the universe?",
                 "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
-                "rsvp_status" "not_replied"
+                "rsvp_status": "not_replied"
             }
         ],
         "meta_data": {
@@ -180,10 +180,10 @@ To subscribe a user to an event an Event.
         "event_id": "42abc42def42ghi",
         "subscriber": {
             "user_id": "42abc42de"
-        }
+        },
         "is_invitation": true,
         "permission": "invited_write",
-        "message": "Want to meet up?",
+        "message": "Want to meet up?"
     }
 ```
 
@@ -200,7 +200,7 @@ Success Response:
                     "first_name": "",
                     "last_name": "",
                     "user_id": "42abc42de"
-                }
+                },
                 "is_invitation": true,
                 "permission": "invited_write",
                 "actor":   {
@@ -211,7 +211,7 @@ Success Response:
                 "message": "Want to meet up?",
                 "created": "2042-02-12T15:19:21:00.000000Z",
                 "calendar_ids": [],
-                "rsvp_status" "not_replied"
+                "rsvp_status": "not_replied"
             }
         ],
         "meta_data": {
@@ -261,19 +261,21 @@ An Event Subscription can contain both an email and a phonenumber. In our platfo
         "subscriber": {
             "first_name": "Ella",
             "last_name": "Bartledan",
-            "phone_number" "0031612345678",
-        }
+            "phone_number": "0031612345678"
+        },
         "is_invitation": true,
-        "permission": "invited_read",
+        "permission": "invited_read"
     }
+```
+```javascript
     // by email
     {
         "event_id": "17171771717171717717171_2a98898b9892",
         "subscriber": {
-            'first_name': 'Ella',
-            'last_name': 'Bartledan',
-            'email': 'ella@bartledan.com',
-        }
+            "first_name": "Ella",
+            "last_name": "Bartledan",
+            "email": "ella@bartledan.com",
+        },
         "is_invitation": true,
         "permission": "invited_read",
     }
@@ -326,13 +328,13 @@ Subscription object after email and phonenumber vefification
 
 ```javascript
   {
-        "event_id":"42abc42def42ghi"
+        "event_id":"42abc42def42ghi",
         "subscriber": {
             "user_id": "42abc42de"
-        }
+        },
         "is_invitation": true,
         "permission": "invited_write",
-        "message": "A new message",
+        "message": "A new message"
     }
 ```
 
@@ -362,7 +364,7 @@ Subscription object after email and phonenumber vefification
 ```javascript
     # Change the rights of a user
     {
-        "permission": "member_read",            # permission_type [write]
+        "permission": "member_read"            # permission_type [write]
     }
 ```
 
