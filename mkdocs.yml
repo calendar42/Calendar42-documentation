@@ -12,7 +12,10 @@ pages:
         - 'Event Subscriptions': 'rest-api/endpoints/event-subscriptions.md'
         - 'Event Trip Suggestions': 'rest-api/endpoints/event-trip-suggestions.md'
         - 'Time Block Suggestions': 'rest-api/endpoints/time-block-suggestions.md'
-    - 'Authentication': 'rest-api/authentication.md'
+    - 'Authentication':
+        - 'Authentication types': 'rest-api/authentication.md'
+        - 'oAuth authentication': 'rest-api/oAuth-authorization.md'
+        - 'Request API Tokens': 'rest-api/api-tokens.md'
     # - 'Api Tokens': 'rest-api/api-tokens.md'
     - 'General Implementation Notes': 'rest-api/usage.md'
     - 'Objects': 'rest-api/objects.md'
@@ -33,8 +36,8 @@ site_favicon: favicon.png
 extra_css: ["css/extra_css.css"]
 
 # Want to work locally? Clone this repo, create a new virtualenv and..
-# 
+#
 #   pip install mkdocs
 #   mkdocs serve
-# 
+#
 # Then visit http://localhost:8000/
