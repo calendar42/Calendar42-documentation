@@ -24,12 +24,15 @@ C42 provides of action related tokens. This tokens are similar as User Tokens in
 
 **Authorization**
 
-Server Tokens give access to the data through the relationships the user has to services, calendars and events, the user needs to be active
-Server Tokens should not be shared or embedded in web-apps
+  Server Tokens give access to the data through the relationships the user has to services, calendars and events.
 
-It should be added in the `Authorization` HTTP header under the `ActionToken` tag. E.g:
+The Token needs to be added in the `Authorization` HTTP header under the `ActionToken` tag. E.g:
 
 `'Authorization': 'ActionToken 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'`
+
+To use this type of token the user **needs** to be **active**.
+
+Server Tokens should **not** be shared or embedded in web-apps.
 
 ## oAuth
 
@@ -59,7 +62,12 @@ It means the user is not requested to accept the rights the app will have and th
 
 **Authorization**
 
-The Silent oAuth authorization process allows an *App* to have access to service related for a certain user.
-What defines the scope of this app is the service where the app is registered to.
+The Silent oAuth authorization process allows an *App* to have access to the information of a **sandBox** user.
 
-To have more information about scopes, as implementation of a silent oAuth authentication and authorization process check our [oAuth-authorization](/rest-api/oAuth-authorization) page.
+A sandBox user have a closed environment, and the information that can be managed on it is only the one is created in that sandBox. In this way the application that makes use of this authentication method will never have access to the information the user created by it's own before or after.
+
+The only way for the application to have access to this information is by getting user authorization through the normal oAuth Authentication process, where the user explicitly allows the app access to his information.
+
+As in the normal oAuth process, what defines the scope of this app is the service where the app is registered to.
+
+For more information about scopes, implementation and authorization process check our [oAuth-authorization](/rest-api/oAuth-authorization) documentation page.
