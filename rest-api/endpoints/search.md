@@ -38,6 +38,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
 
 *** format ***
 
+```
 {
   "meta_data": {
     "count": 8
@@ -91,6 +92,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
     }
   ]
 }
+```
 
 ** Search-specific fields **
  - `object_type`: type of the object returned
