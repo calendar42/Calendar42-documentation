@@ -33,7 +33,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
 
 *** fields searched ***
  - In the event: 'title' and 'description' 
- - In the event related 'start_location': 'text', 'address', 'city', 'postcode' 
+ - In the event related 'start_location' (the only location of a normal event): 'text', 'address', 'city', 'postcode' 
  - In the users subscribed to the event: 'first_name' and 'last_name' 
 
 *** format ***
