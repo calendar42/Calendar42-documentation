@@ -21,22 +21,22 @@ Name | Type | Description
 `limit` | int | number of results returned; currently maxed out at 10 
 `offset` | int | offset inside entire set of results (default: 0)
 
-** Operators **
+**Operators**
 
 The 'q' parameter allows for AND and OR; which will be evealuated in order. AND is the default (space means AND).
 
-** Notes **
+**Notes**
 
  - events partially in the from_time/to_time interval will be included in the search result.
 
 ### Results
 
-*** fields searched ***
+**fields searched**
  - In the event: 'title' and 'description' 
  - In the event related 'start_location' (the only location of a normal event): 'text', 'address', 'city', 'postcode' 
  - In the users subscribed to the event: 'first_name' and 'last_name' 
 
-*** format ***
+**format**
 
 ```
 {
@@ -94,7 +94,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
 }
 ```
 
-** Search-specific fields **
+**Search-specific fields**
  - `object_type`: type of the object returned
  - `object`: the object where a match was found, either directly or through some queried relation
  - `matched_related_objects`: list of objects in which matched to the search terms were found
