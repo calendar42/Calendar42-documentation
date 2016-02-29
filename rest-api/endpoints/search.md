@@ -106,5 +106,6 @@ Other parts of the results can be found in the corresponding docs for get events
 
 ### example
 
+```
 GET: /search/events/?q=John OR Eric&from_time=2015-03-24T14:29:47.613Z&to_time=2015-03-26T14:29:47.613Z&limit=5&offset=0
-
+```
