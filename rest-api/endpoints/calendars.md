@@ -1,6 +1,8 @@
-## • /calendars/
+# Introduction
 
-Supported methods:
+Provides of information about the calendars in which the user have access.
+
+**Supported methods:**
 
 * GET `acceptation`
 * POST `development`
@@ -11,8 +13,8 @@ Returns a default response object with a list of [Calendar](/rest-api/objects/#c
 
 #### parameters
 
-Parameter | Required | 
---- | --- | --- 
+Parameter | Required |
+--- | --- | ---
 `ids` | false | Array of calendar ids. To filter on specific events (response is not equally ordered)
 `service_ids` | false | Array of service ids to filter on. Note: still only returns events the requester has access to.
 `categories` | false | Array of [Calendar Category](/rest-api/objects/#calendar)
@@ -29,7 +31,7 @@ All editable params of a [calendar](/rest-api/objects/#calendar) can be sent as 
 
 ---------------------------------------
 
-## • /calendars/`<calendar_id>`/
+### GET /calendars/`<calendar_id>`/
 
 Supported methods:
 

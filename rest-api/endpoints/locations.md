@@ -2,7 +2,7 @@
 
 The *Locations* endpoint returns information about C42 Locations. The response always includes the general public details of the location and can contain private details related to the authorized user. Within filtering both these public detailand the restricted private details will be queried.
 
-## • /locations/
+## /locations/
 
 Supported methods:
 
@@ -17,7 +17,7 @@ As depicted, [Location](/rest-api/objects/#location) objects may contain one or 
 #### Parameters
 
 Parameter | Required | Description
---- | --- | --- 
+--- | --- | ---
 `ids` | false | Array of location ids. To filter on specific locations (reponse is not equally ordered)
 `sync_token` | false | [Sync Token](/rest-api/usage/#sync-token)
 `user_ids` | false | Array of service ids. Only return locations that have labels in relation to user
@@ -30,13 +30,13 @@ Parameter | Required | Description
 
 Note: doesn't support order_by=distance yet
 
-#### Example 
+#### Example
 
 **@todo:** Add example usage
 
 ---------------------------------------
 
-## • /locations/`<location_id>`/
+## /locations/`<location_id>`/
 
 Supported methods:
 

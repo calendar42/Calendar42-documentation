@@ -1,8 +1,8 @@
-# search
+# Introduction
 
 Search provides smart search functionality to the C42 authorized user. Currently it only searches for events in events and related locations and users for words, postal codes, etc. It supports AND and OR as keywords (but not NOT yet). Results are returned including the objects where matches are found and the search term resulting in the match (for e.g. highlighting purposes).
 
-###endpoint
+### endpoint
 
 ```
 GET /v2/search/events/
@@ -18,7 +18,7 @@ Name | Type | Description
 `q` | string |  search terms to be searched for.  
 `from_time` | datetime string | lower bound for the end time of the event
 `to_time` | datetime string | upper bound for the start time of the event
-`limit` | int | number of results returned; currently maxed out at 10 
+`limit` | int | number of results returned; currently maxed out at 10
 `offset` | int | offset inside entire set of results (default: 0)
 
 **Operators**
@@ -32,9 +32,9 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
 ### Results
 
 **fields searched**
- - In the event: 'title' and 'description' 
- - In the 'start_location' and 'end_location' related to the event: 'text', 'address', 'city', 'postcode' 
- - In the users subscribed to the event: 'first_name' and 'last_name' 
+ - In the event: 'title' and 'description'
+ - In the 'start_location' and 'end_location' related to the event: 'text', 'address', 'city', 'postcode'
+ - In the users subscribed to the event: 'first_name' and 'last_name'
 
 **format**
 

@@ -1,3 +1,5 @@
+# Introduction
+
 Event Subscriptions are resources describing the relationship between Users and Events in the system. If a user has a subscription to an Event, he will receive notifications concerning any updates related to it, and also has access to the full Event.
 
 This relationship might be be based on one or more relations:
@@ -297,7 +299,7 @@ Subscription object after email and phonenumber vefification
 {
     "data": [
         {
-            
+
             // ...
 
             "subscriber": {
@@ -315,7 +317,7 @@ Subscription object after email and phonenumber vefification
     "meta_data": {
 
         // ...
-        
+
     }
 }
 ```

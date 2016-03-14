@@ -1,6 +1,8 @@
-## • /events/trip-suggestions/
+# Introduction
 
-Supported methods:
+Provides of trip suggestions towards the provided event.
+
+**Supported methods:**
 
 * GET `acceptation`
 
@@ -11,8 +13,8 @@ Supported methods:
 
 #### Parameters
 
-Parameter | Required | 
---- | --- | --- 
+Parameter | Required | Description
+--- | --- | ---
 `event_type` | true | [Event Type](/rest-api/constants/#event-type) (currently only supports `arrive_by` & `depart_from`)
 `transport_modes` | true | Array of [Transport Modes](/rest-api/constants/#transport-mode)
 `from_location` | true | Tuple with lat lon
@@ -24,7 +26,7 @@ Parameter | Required |
 
 Get a trip from point A to arrive at a certain time at point B
 
-* ``/events/trip-suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
+``/events/trip-suggestions?event_type=arrive_by&transport_modes=[bicycle]&from_location=(42.1 4.5)&to_location=(42.5 4.6)&time=2015-03-24T14%3A29%3A47.613Z``
 
 #### Error responses
 
