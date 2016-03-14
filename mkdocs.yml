@@ -4,7 +4,11 @@ pages:
 - 'Introduction': 'index.md'
 - 'Rest Api':
     - 'Introduction': 'rest-api/introduction.md'
-    - 'Endpoints':
+    - 'Authentication':
+        - 'Authentication types': 'rest-api/authentication.md'
+        - 'oAuth authentication': 'rest-api/oAuth-authorization.md'
+        - 'Request API Tokens': 'rest-api/api-tokens.md'
+    - 'Endpoints' :
         # - 'Overview': 'rest-api/endpoints.md'
         - 'Events': 'rest-api/endpoints/events.md'
         - 'Calendars': 'rest-api/endpoints/calendars.md'
@@ -12,13 +16,9 @@ pages:
         - 'Event Subscriptions': 'rest-api/endpoints/event-subscriptions.md'
         - 'Event Trip Suggestions': 'rest-api/endpoints/event-trip-suggestions.md'
         - 'Time Block Suggestions': 'rest-api/endpoints/time-block-suggestions.md'
-    - 'Authentication':
-        - 'Authentication types': 'rest-api/authentication.md'
-        - 'oAuth authentication': 'rest-api/oAuth-authorization.md'
-        - 'Request API Tokens': 'rest-api/api-tokens.md'
     # - 'Api Tokens': 'rest-api/api-tokens.md'
-    - 'General Implementation Notes': 'rest-api/usage.md'
     - 'Objects': 'rest-api/objects.md'
+    - 'General Implementation Notes': 'rest-api/usage.md'
     # - 'Constants': 'rest-api/constants.md'
     - 'Change notes': 'rest-api/change-notes.md'
 - 'XMPP API':
