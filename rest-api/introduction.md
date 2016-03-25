@@ -10,7 +10,7 @@ All the required information about [how to get access](/rest-api/api-tokens/) to
 
 ## Endpoints
 
-Where to find all endpoints available. Everything you need about [Events](/endpoints/events/), [Calendars](/endpoints/calendars/), [Locations](/endpoints/calendars/), [Trip-suggestions](/endpoints/calendars/), etc.
+Where to find all endpoints available. Everything you need about [Events](/rest-api/endpoints/events/), [Calendars](/rest-api/endpoints/calendars/), [Locations](/rest-api/endpoints/locations/), [Trip-suggestions](/rest-api/endpoints/calendars/), etc.
 
 ## Objects
 
