@@ -4,22 +4,22 @@ For an interactive API documentation you can go directly to our <a href="https:/
 
 In here you will find the following information:
 
-#### Authentication
+## Authentication
 
 All the required information about [how to get access](/rest-api/api-tokens/) to our system, as the [different ways you can authenticate](/rest-api/authentication/) and authorize your users and apps.
 
-#### Endpoints
+## Endpoints
 
 Where to find all endpoints available. Everything you need about [Events](/endpoints/events/), [Calendars](/endpoints/calendars/), [Locations](/endpoints/calendars/), [Trip-suggestions](/endpoints/calendars/), etc.
 
-#### Objects
+## Objects
 
 A description of all the objects structure you can send/receive from our REST-API can be found [here](/rest-api/objects/)
 
-#### General implementation notes
+## General implementation notes
 
 [Here](/rest-api/usage/) you can find a description of all the objects you can send/receive from the C42 API
 
-#### Change notes
+## Change notes
 
 In the [change notes](/rest-api/change-notes/) you can find the details of our implementations as enhancements of the C42 API
