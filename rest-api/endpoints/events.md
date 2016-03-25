@@ -793,3 +793,90 @@ It is possible to 'clean' the location field of an event setting it to `null`
 "end_location": null,
 ...
 ```
+
+
+## Example Use Cases
+
+### How to: perform synchronization of data
+
+For synchronization the following query parameters are important to understand:
+
+name | Type | Descriptions
+:------ | :----- | :---
+`sync_token` | integer | the sync_token value to filter above (default: 0)
+`order_by` | string |  parameter to order on
+`order_asc` | boolean | whether to order in ascending or descending order (default: true)
+`limit` | integer | number of items per page (default: 10)
+
+In order to not miss any items during synchronization it is vital to:
+
+* Make sure to set the `sync_token` to be equal to the `sync_token` of the last received item
+    * Upon start of the synchronization this sync_token be equal to `0`
+* Make sure to set `order_by` to `sync_token`
+* Make sure to keep `order_asc` set to `true`
+* Make sure to pick a reasonable limit, or keep the default value of `10`
+
+The following example will show how to use these parameters together and perform a stable synchronization process.
+
+#### Synchronization of a small set of items
+
+Imagine you would like to synchronize the following set of items:
+
+Item ID | Sync token
+:--- | :---
+ `A` | `2123`
+ `B` | `3634`
+ `C` | `3855`
+ `D` | `4546`
+ `E` | `5546`
+
+**1) Initial synchronization call**
+
+As upon the start of the synchronization process we don't know how high the sync_token of the different items are, we just send along a `sync_token` of `0` and request the first page. Note that:
+
+* in order to keep things simple to understand, we use a small set of items and also use a very low pagination size.
+* we don't send along `order_by_asc=true` as this is the default value
+
+```
+GET: /items/?sync_token=0&order_by=sync_token&limit=2
+```
+
+The response will contain:
+
+* Item A (with sync_token `2123`)
+* Item B (with sync_token `3634`)
+
+**2) Subsequent synchronization calls**
+
+As we now know that the last item we got has sync_token `3634`, we can pass this along in the next call and retrieve the next set.
+
+```
+GET: /items/?sync_token=3634&order_by=sync_token&limit=2
+```
+
+The response will contain:
+
+* Item C (with sync_token `3855`)
+* Item D (with sync_token `4546`)
+
+
+**3) Final request**
+
+The pagination can continu, until no items are left anymore. This is indicated by the fact that the amount of returned items is less than the limit set in the query parameters.
+
+```
+GET: /items/?sync_token=4546&order_by=sync_token&limit=2
+```
+
+The response will contain:
+
+* Item E (with sync_token `5546`)
+
+Only one item is retrieved, indicating that the synchronization process is done. Note that in order to further optimize the synchronization process, the client can also choose to now save the token as stated in the `meta_data` of the response. This token will indicate the last possible sync_token within C42 and can be used to start the next synchronization process.
+
+**Note about updates to items during synchronization**
+
+If an item is updated during pagination, it will move to the last page again (as it will receive the highest sync token), ensuring that no items will be missed
+
+If for instance in the example above `Item C` is updated, the sync token of the `Item C` will become a number higher then 5546, and will show up on the last page.
+
