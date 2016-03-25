@@ -2,11 +2,17 @@
 
 <!-- MarkdownTOC -->
 
+- [2015-04-25](#2015-04-25)
 - [2015-09-07](#2015-09-07)
 - [2015-08-15](#2015-08-15)
 
 <!-- /MarkdownTOC -->
 
+
+## 2015-04-25
+
+* Restructure of information and fix broken links
+* Add implementation nots on event synchronization
 
 ## 2015-09-07
 
