@@ -28,6 +28,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
 **Notes**
 
  - events partially in the from_time/to_time interval will be included in the search result.
+ - for faster results, search terms with 3 or less characters will only return exact matches, so searching for 'eri' might return nothing, while searching for 'eric' would return Eric's events.
 
 ### Results
 
@@ -100,7 +101,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
  - `matched_related_objects`: list of objects in which matched to the search terms were found
  - `matches`: list of keys and value lists described below
  - `key`: relative point separated location of the field in which yhe match was found
- - `values`: value of the match the fields, corresponing to one og the search terms.
+ - `values`: value of the match the fields, corresponing to one of the search terms.
 
 Other parts of the results can be found in the corresponding docs for get events, get location, get event-subscription.
 
