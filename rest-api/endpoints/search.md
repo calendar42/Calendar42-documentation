@@ -100,7 +100,7 @@ The 'q' parameter allows for AND and OR; which will be evealuated in order. AND 
  - `object`: the object where a match was found, either directly or through some queried relation
  - `matched_related_objects`: list of objects in which matched to the search terms were found
  - `matches`: list of keys and value lists described below
- - `key`: relative point separated location of the field in which yhe match was found
+ - `key`: relative point separated location of the field in which the match was found
  - `values`: value of the match the fields, corresponing to one of the search terms.
 
 Other parts of the results can be found in the corresponding docs for get events, get location, get event-subscription.
