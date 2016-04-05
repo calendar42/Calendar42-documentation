@@ -14,9 +14,9 @@ All applications follow a basic pattern when accessing to C42 API using oAuth 2.
 
 **Obtain an access token from the C42 Authorization Server**
 
-  To get the access token is required to make a request to C42 servers with the `service_id`, `grant_type` and `redirect_uri`.
+  The user should be sent to the C42oAuth page with the `service_id`, `grant_type` and `redirect_uri`. There he will be able to login/register and allow your app to access to his C42 information.
 
-  With that call the user will be redirected to the `redirect_uri` with a `code` as a parameter in the url. That code is the one that should be used to get the access token.
+  After the user will be redirected to the `redirect_uri` with a `code` as a parameter in the url. That code is the one that should be used to get the access token.
 
   Internet is a very good place to find different examples about how to consume an API using the oAuth authentication system.
 
