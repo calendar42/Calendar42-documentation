@@ -102,6 +102,7 @@ Limitations on creation of a Sandbox
 * If no Sandbox can be created due to the reasons above, an error will be returned, and the regular non-silent oAuth flow will need to be presented to the user
 
 Limitations on allowed actions to perform
+
 * The service CAN ONLY create data in the Sandbox and retrieve (enriched) data from this same Sandbox
 * As the email address is not verified by the user, the service can't act in name of the user towards other users:
   * The service CAN NOT share data (e.g. add event subscriptions to the created data)
