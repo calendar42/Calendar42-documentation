@@ -82,7 +82,7 @@ As soon as the service wants to do any of the above, the user needs to approve t
 
 ## Silent oAuth Authentication
 
-**Silent oAuth Authentication is a C42 specific extension to the oAuth standard in order to allow applications to store C42 data in relation to a certain email-address without requiring any user interaction to confirm. As no user-interaction is required, multiple limitations to the usage are set in place. In practice the flow adds one parameter to the request of the access_token: `email_address`.**
+**Silent oAuth Authentication is a C42 specific extension to the oAuth standard in order to allow applications to store C42 data in relation to a certain email-address without requiring any user interaction to confirm. As no user-interaction is required, multiple limitations to the usage are set in place. In actual usage, the flow only adds one parameter to the request of the access_token: `email_address`.**
 
 **Purpose**
 
@@ -94,16 +94,18 @@ As this "C42 data sandbox" can be created and accessed through a small tweak to 
 
 In order to make the silent oAuth flow secure without any explicit user interaction, several limitations are in place:
 
-* Limitations on creation of a Sandbox
-  * A "C42 Data Sandbox" will ONLY be created if:
-    * The email address is NOT related to an activated account in C42
-    * The email address is NOT related to any account that is related to the service that requests the Sandbox (e.g. a service admin)
-  * If no Sandbox can be created due to the reasons above, an error will be returned, and the regular non-silent oAuth flow will need to be presented to the user
-* Limitations on allowed actions to perform
-  * The service CAN ONLY create data in the Sandbox and retrieve (enriched) data from this same Sandbox
-  * As the email address is not verified by the user, the service can't act in name of the user towards other users:
-    * The CAN NOT share data (e.g. add event subscriptions to the created data)
-    * All data of a user will be contained in the Sandbox
+Limitations on creation of a Sandbox
+
+* A "C42 Data Sandbox" will ONLY be created if:
+  * The email address is NOT related to an activated account in C42
+  * The email address is NOT related to any account that is related to the service that requests the Sandbox (e.g. a service admin)
+* If no Sandbox can be created due to the reasons above, an error will be returned, and the regular non-silent oAuth flow will need to be presented to the user
+
+Limitations on allowed actions to perform
+* The service CAN ONLY create data in the Sandbox and retrieve (enriched) data from this same Sandbox
+* As the email address is not verified by the user, the service can't act in name of the user towards other users:
+  * The CAN NOT share data (e.g. add event subscriptions to the created data)
+  * All data of a user will be contained in the Sandbox
 
 These limitations can be removed by letting the user related to the email address go through the regular oAuth flow, with it verifying their mail and explicitly accepting the access to the data again. C42 will then merge the earlier created Data Sandbox into the active user Data.
 
