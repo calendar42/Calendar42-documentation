@@ -82,7 +82,7 @@ As soon as the service wants to do any of the above, the user needs to approve t
 
 ## Silent oAuth Authentication
 
-Silent oAuth Authentication is a C42 specific extension to the oAuth standard in order to allow applications to store C42 data in relation to a certain email-address without requiring any user interaction to confirm. As no user-interaction is required, multiple limitations to the usage are set in place. In practice the flow adds one parameter to the request of the access_token: `email_address`.
+**Silent oAuth Authentication is a C42 specific extension to the oAuth standard in order to allow applications to store C42 data in relation to a certain email-address without requiring any user interaction to confirm. As no user-interaction is required, multiple limitations to the usage are set in place. In practice the flow adds one parameter to the request of the access_token: `email_address`.**
 
 **Purpose**
 
