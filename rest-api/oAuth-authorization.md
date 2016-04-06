@@ -47,7 +47,7 @@ All applications follow a basic pattern when accessing to C42 API using oAuth 2.
 
 > Note: Save your refresh tokens in a **secure** long-term storage and keep using them as long as they remain valid. Limits apply to the number of refresh tokens that are issued per client-user combination, and per user across all clients, and these limits are different. If your application requests enough refresh tokens to go over one of the limits, older refresh tokens stop working.
 
-## Scopes (WIP)
+## Scopes
 
 Scopes let you to specify exactly what type of access you need. Scopes limit access for oAuth tokens. They do not grant any additional permission beyond that which the user already has.
 
@@ -88,9 +88,9 @@ As soon as the service wants to do any of the above, the user needs to approve t
 
 We allow apps to manage user data using an email as initial starting point without user interaction by adding the email_address as a parameter in the first oAuth call.
 
-It means that the user doesn't need to accept the service and the app can't use the information of the user but all data created by the service where the app belongs to.
+It means that the user doesn't need to accept the service and the app can't use the information of the user but all data created by the service where the app belongs to. Also the app can't perform any sharing related actions, so all data of that user will be contained in the Sandbox and cannot be shared with other users.
 
-For security reasons the email shouldn't belong to a user that has an active service subscription to the service.
+For security reasons the email shouldn't belong to a user that is already subscribed to the service.
 
 What is happening in the background is that we are creating a 'sandbox user' for that service with a restricted access to information created in that sandbox.
 
@@ -98,7 +98,7 @@ The only way for the app to have access to the user information out of the sandb
 
 **Implementation**
 
-To trigger the *Silent oAuth Authentication* process, is required to send the `email_address` when the access token is requested for the very first time. The token received will be a service restricted token.
+To trigger the *Silent oAuth Authentication* process, is required to send the `email_address` and one of the service scopes when the access token is requested for the very first time. The token received will be a service restricted token.
 
 A registered oAuth App related to a Service requests the following:
 
@@ -110,12 +110,9 @@ Different actions would be performed based on the current status of the email_ad
 
 | Status         | Performed action |
 | ------------- |:---------:|
-| email_address is not in C42 | Creation of a sandbox user and subscribe it to the app service |
-| email_address is related to inactive user in C42 | (WIP) |
-| email_address is related to active user in C42 | (WIP) |
-| email_address is related to an inactive ServiceUser of service already (also diff app)    | (WIP) |
-| email_address is related to user with an (in)active service-subscription to service         | Access to normal oAuth flow |
-| Scope requested is a full scope, not just service                                            | Forbidden |
+| email_address is **not** related to a user with an (in)active service-subscription to the service | Creation of a sandbox user and subscribe it to the service of the oauth application |
+| email_address is related to a user with an (in)active service-subscription to the service          | Access to normal oAuth flow |
+| Scope requested is a full scope, not just service                                            | Access to normal oAuth flow |
 
 > In all cases the service will be checked to verify that this app is registered and have access to the requested scopes
 
