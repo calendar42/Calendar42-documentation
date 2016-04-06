@@ -25,7 +25,7 @@ All applications follow a basic pattern when accessing to C42 API using oAuth 2.
   Some other examples found in the net:
 
   * [Java](https://github.com/google/google-oauth-java-client)
-  * [python-oauth2](https://github.com/joestump/python-oauth2)
+  * [Python requests-oauthlib](http://requests-oauthlib.readthedocs.org/)
   * [PHP](https://github.com/thephpleague/oauth2-client)
   * [Ruby](https://github.com/intridea/oauth2)
   * [NodeJS](https://github.com/ciaranj/node-oauth) - used in the C42 example -
