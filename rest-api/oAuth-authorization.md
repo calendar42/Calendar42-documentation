@@ -104,7 +104,7 @@ Limitations on creation of a Sandbox
 Limitations on allowed actions to perform
 * The service CAN ONLY create data in the Sandbox and retrieve (enriched) data from this same Sandbox
 * As the email address is not verified by the user, the service can't act in name of the user towards other users:
-  * The CAN NOT share data (e.g. add event subscriptions to the created data)
+  * The service CAN NOT share data (e.g. add event subscriptions to the created data)
   * All data of a user will be contained in the Sandbox
 
 These limitations can be removed by letting the user related to the email address go through the regular oAuth flow, with it verifying their mail and explicitly accepting the access to the data again. C42 will then merge the earlier created Data Sandbox into the active user Data.
