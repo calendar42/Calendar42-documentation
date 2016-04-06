@@ -1,28 +1,26 @@
 # oAuth
 
-C42 Platform allows to use oAuth 2.0 protocol to authenticate. C42 supports common oAuth 2.0 scenarios such as those for web server, installed, and client-side applications.
-
 This page gives an overview of the oAuth 2.0 authorization scenarios that C42 supports, and provides links to more detailed content. For details about using oAuth 2.0 for authentication, see OpenID Connect.
 
 All applications follow a basic pattern when accessing to C42 API using oAuth 2.0:
 
 **Obtain oAuth 2.0 credentials from C42**
 
-  It is required to contact C42 to obtain oAuth 2.0 credentials such as a client *ID* and client *secret*. Both are known by C42 and the application. The set of values changes based on what type of application is being built. E.g. a JavaScript application does not require a secret, but a web server application does.
+  It is required to contact C42 to obtain oAuth 2.0 credentials such as a client *ID* and client *secret*. Both are known by C42 and the application. The set of values changes based on what type of application is being built. E.g. a JavaScript applications do not require a secret, but a web server application does.
 
   [Request oAuth Access](/rest-api/api-tokens/)
 
 **Obtain an access token from the C42 Authorization Server**
 
-  The user should be sent to the C42oAuth page with the `service_id`, `grant_type` and `redirect_uri`. There he will be able to login/register and allow your app to access to his C42 information.
+  The user should be sent to the C42 oAuth page with the parameters `service_id`, `grant_type` and `redirect_uri`. There the user will be able to login/register and allow your app to access to his C42 information.
 
-  After the user will be redirected to the `redirect_uri` with a `code` as a parameter in the url. That code is the one that should be used to get the access token.
+  After the user is successfully logged in, he will be directed to the `redirect_uri` with a `code` as a parameter in the url. That code should then be used to get the actual access token for that user on the C42 platform.
 
-  Internet is a very good place to find different examples about how to consume an API using the oAuth authentication system.
+  All over the web different examples about how to consume an API using oAuth can be found.
 
-  We provide of an example made with nodeJS: [C42-node-oauth](https://github.com/calendar42/c42-node-oauth)
+  We provide of an example made with nodeJS that also includes an extension dubbed "Silent oAuth Authentication": [C42-node-oauth](https://github.com/calendar42/c42-node-oauth)
 
-  Some other examples found in the net:
+  Some plain oAuth implementations are:
 
   * [Java](https://github.com/google/google-oauth-java-client)
   * [Python requests-oauthlib](http://requests-oauthlib.readthedocs.org/)
@@ -33,13 +31,11 @@ All applications follow a basic pattern when accessing to C42 API using oAuth 2.
 
 **Send the access token to an API**
 
-  After an application obtains an access token needs to send the token to the C42 API in the HTTP authorization header. E.g:
+  The access token retrieved in the previous step needs to be send in the HTTP authorization header with each API request:
 
   `'Authorization': 'Bearer 9944fake99c62btoken8ad8examplebbdfc6ee4b'`
 
-  It is possible to send tokens as URI query-string parameters, but we **do not recommend it**, because URI parameters can end up in log files that are not completely secure. Also, it is good REST practice to avoid creating unnecessary URI parameter names.
-
-  Access tokens are valid only for the set of operations and resources described in the scope of the token request. For example, if an access token is issued for the C42 API, it does not grant access to the C42 Contacts API. You can, however, send that access token to the C42 API multiple times for similar operations.
+  It is possible to send tokens as URI query-string parameters, but we **do not recommend it**, as it's considered to be less secure.
 
 **Refresh the access token, if necessary**
 
@@ -56,7 +52,7 @@ For the web flow, requested scopes will be displayed to the user on the authoriz
 | Name        | Description|
 | ------------- |:---------:|
 | Service.read      | Read all calendars and events related to the user and the service. |
-| Service.write      | *Read* and modify all calendars and events related to the user and the service. |
+| Service.write      | Read *and modify* all calendars and events related to the user and the service. |
 
 > Note: The list of scopes will grow as soon they will be available from the C42 oAuth authentication.
 
@@ -65,7 +61,7 @@ For the web flow, requested scopes will be displayed to the user on the authoriz
 | Need        | Scope(s) |
 | ------------- |:---------:|
 | Access to the service related calendars and events, but not modify it. | Service.read |
-| Access to the service related calendars and events and modify it. This scope provides of *read* and write access     | Service.write|
+| Access to the service related calendars and events and modify it. This scope provides of read and write access     | Service.write|
 
 ## Scenarios
 
