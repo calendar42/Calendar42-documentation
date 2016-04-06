@@ -82,19 +82,34 @@ As soon as the service wants to do any of the above, the user needs to approve t
 
 ## Silent oAuth Authentication
 
-We allow apps to manage user data using an email as initial starting point without user interaction by adding the email_address as a parameter in the first oAuth call.
+Silent oAuth Authentication is a C42 specific extension to the oAuth standard in order to allow applications to store C42 data in relation to a certain email-address without requiring any user interaction to confirm. As no user-interaction is required, multiple limitations to the usage are set in place. In practice the flow adds one parameter to the request of the access_token: `email_address`.
 
-It means that the user doesn't need to accept the service and the app can't use the information of the user but all data created by the service where the app belongs to. Also the app can't perform any sharing related actions, so all data of that user will be contained in the Sandbox and cannot be shared with other users.
+**Purpose**
 
-For security reasons the email shouldn't belong to a user that is already subscribed to the service.
+This silent flow enables applications to offer *Personal* C42 Planning & Mobility services to their end-users without requiring any explicit user acceptance by their users. It allows to store and retrieve user related planning data in a "C42 Data Sandbox" that is related to an email address and your C42 service, ready to be enriched with services like automatic trip-suggestions or automatic check-ins.
 
-What is happening in the background is that we are creating a 'sandbox user' for that service with a restricted access to information created in that sandbox.
+As this "C42 data sandbox" can be created and accessed through a small tweak to the oAuth 2.0 specification, it is easy to integrate based on the large set of existing oAuth 2.0 libraries. All you need to provide is the email address of a user, that is used as identifier of the service related sandbox.
 
-The only way for the app to have access to the user information out of the sandbox is by getting the user authorization through the normal oAuth Authentication process, where the user explicitly allows the app access to his information.
+**limitations**
 
-**Implementation**
+In order to make the silent oAuth flow secure without any explicit user interaction, several limitations are in place:
 
-To trigger the *Silent oAuth Authentication* process, is required to send the `email_address` and one of the service scopes when the access token is requested for the very first time. The token received will be a service restricted token.
+* Limitations on creation of a Sandbox
+  * A "C42 Data Sandbox" will ONLY be created if:
+    * The email address is NOT related to an activated account in C42
+    * The email address is NOT related to any account that is related to the service that requests the Sandbox (e.g. a service admin)
+  * If no Sandbox can be created due to the reasons above, an error will be returned, and the regular non-silent oAuth flow will need to be presented to the user
+* Limitations on allowed actions to perform
+  * The service CAN ONLY create data in the Sandbox and retrieve (enriched) data from this same Sandbox
+  * As the email address is not verified by the user, the service can't act in name of the user towards other users:
+    * The CAN NOT share data (e.g. add event subscriptions to the created data)
+    * All data of a user will be contained in the Sandbox
+
+These limitations can be removed by letting the user related to the email address go through the regular oAuth flow, with it verifying their mail and explicitly accepting the access to the data again. C42 will then merge the earlier created Data Sandbox into the active user Data.
+
+**Usage**
+
+To trigger the *Silent oAuth Authentication* process, it is required to send the `email_address` and one of the service scopes when the access token is requested for the very first time. The token received will be a service restricted token.
 
 A registered oAuth App related to a Service requests the following:
 
@@ -102,13 +117,13 @@ A registered oAuth App related to a Service requests the following:
 https://calendar42.com/oauth2/authorize?email_address=someone@somesite.com&app=&token=&scope=...
 ```
 
-Different actions would be performed based on the current status of the email_address used to request authorization:
+Different actions can be expected based on the current status of the email_address used to request authorization:
 
 | Status         | Performed action |
 | ------------- |:---------:|
-| email_address is **not** related to a user with an (in)active service-subscription to the service | Creation of a sandbox user and subscribe it to the service of the oauth application |
-| email_address is related to a user with an (in)active service-subscription to the service          | Access to normal oAuth flow |
-| Scope requested is a full scope, not just service                                            | Access to normal oAuth flow |
+| email_address is **not** related to a user with an (in)active service-subscription to the service | SUCCESS: Creation of a sandbox user and subscribe it to the service of the oauth application |
+| email_address is related to a user with an (in)active service-subscription to the service          | ERROR: Access to normal oAuth flow |
+| Scope requested is a full scope, not just service                                            | ERROR: Access to normal oAuth flow |
 
 > In all cases the service will be checked to verify that this app is registered and have access to the requested scopes
 
@@ -119,9 +134,11 @@ In the case that no user action is required, a solution would be:
 1. Preform all required redirections to finalize the authorization to our servers.
 1. On success redirect to the logged in page, where the token will be used to proceed of all actions to the C42 API.
 
-In this case the user experience could be a 'longer' response time from the login page.
-Different options are available like showing a loader with a message explaining which actions are happening in the background.
-In a Smartphone Native app a Web-view can be opened in the background and make this process totally invisible for the user.
+In this case the Silent oAuth flow only impacts the user experience minimally by offering a slightly longer response time from the login page.
+Different options are:
+
+* showing a loader with a message explaining which actions are happening in the background.
+* (in a Native app) opening a Web-view off-screen and making this process totally invisible for the user.
 
 # Error responses (WIP)
 
