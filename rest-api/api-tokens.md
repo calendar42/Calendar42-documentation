@@ -10,6 +10,6 @@ Simply request your oAuth app access by [signing up here](https://app.moonclerk.
 
 # Authentication and Authorization
 
-* API Server Token usage is described here: [authorized requests](/rest-api/authorization/)
+* API Server Token usage is described here: [authorized requests](/rest-api/authentication/)
 
 Want to know more? Just [contact us](http://site.calendar42.com/)!
